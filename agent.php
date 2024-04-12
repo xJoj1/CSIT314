@@ -1,11 +1,14 @@
 <?php 
-
 ini_set('session.cache_limiter','public');
 session_cache_limiter(false);
 session_start();
-include("config.php");
-///code								
-?><!-- remember to comment because its "good practice" -->
+include("agentcontroller.php");
+
+if(!isset($_SESSION['uemail'])) {
+    header("location:login.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,21 +20,20 @@ include("config.php");
 
 <!-- Meta Tags -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
 <link rel="shortcut icon" href="images/favicon.ico">
 
 <!--	Fonts
 	========================================================-->
 <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,500,600,700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700" rel="stylesheet">
-<!-- remember to comment because its "good practice" -->
+
 <!--	Css Link
 	========================================================-->
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap-slider.css">
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="css/layerslider.css">
-<link rel="stylesheet" type="text/css" href="css/color.css" id="color-change">
+<link rel="stylesheet" type="text/css" href="css/color.css">
 <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="fonts/flaticon/flaticon.css">
@@ -43,26 +45,13 @@ include("config.php");
 </head>
 <body>
 
-<!--	Page Loader
-=============================================================
-<div class="page-loader position-fixed z-index-9999 w-100 bg-white vh-100">
-	<div class="d-flex justify-content-center y-middle position-relative">
-	  <div class="spinner-border" role="status">
-		<span class="sr-only">Loading...</span>
-	  </div>
-	</div>
-</div>
---> 
-
-
 <div id="page-wrapper">
     <div class="row"> 
-        <!--	Header One -->
-        <!--	Header start  -->
-		<?php include("include/header.php");?><!-- remember to comment because its "good practice" -->
-        <!--	Header end  -->
+        <!-- Header -->
+		<?php include("include/header.php");?>
+        <!-- Header end -->
 
-        <!--	Banner   --->
+        <!-- Banner -->
         <!-- <div class="banner-full-row page-banner" style="background-image:url('images/breadcromb.jpg');">
             <div class="container">
                 <div class="row">
@@ -80,7 +69,7 @@ include("config.php");
                 </div>
             </div>
         </div> -->
-         <!--	Banner   --->
+         <!-- Banner end -->
 
 
         <div class="full-row">
@@ -91,38 +80,29 @@ include("config.php");
                         </div>
                 </div>
                 <div class="row">
-                <!-- remember to comment because its "good practice" -->
-                    <?php 
-							$query=mysqli_query($con,"SELECT * FROM user WHERE utype='agent'");
-								while($row=mysqli_fetch_array($query))
-								{
-                            ?>
-                            
+                    <?php foreach ($agents as $agent) { ?>
                     <div class="col-md-6 col-lg-4">
                         <div class="hover-zoomer bg-white shadow-one mb-4">
-                            <div class="overflow-hidden"> <img src="admin/user/<?php echo $row['6'];?>" alt="aimage"> </div>
+                            <div class="overflow-hidden"> <img src="admin/user/<?php echo $agent['6']; ?>" alt="aimage"> </div>
                             <div class="py-3 text-center">
-                                <h5 class="text-secondary hover-text-success"><a href="#"><?php echo $row['1'];?></a></h5>
-                                <span>Real Estate - Agent</span> </div>
+                                <h5 class="text-secondary hover-text-success"><a href="#"><?php echo $agent['1']; ?></a></h5>
+                                <span>Real Estate - Agent</span> 
+                            </div>
                         </div>
                     </div>
-                   
                     <?php } ?>
-                
-                  
                 </div>
             </div>
         </div>
 
-
-        <!--	Footer   start-->
+		<!-- Footer -->
 		<?php include("include/footer.php");?>
-		<!--	Footer   start-->
+		<!-- Footer end -->
 
 
         <!-- Scroll to top --> 
         <a href="#" class="bg-secondary text-white hover-text-secondary" id="scroll"><i class="fas fa-angle-up"></i></a> 
-        <!-- End Scroll To top --> 
+        <!-- Scroll to top end --> 
     </div>
 </div>
 <!-- Wrapper End --> 
@@ -130,11 +110,9 @@ include("config.php");
 <!--	Js Link
 ============================================================--> 
 <script src="js/jquery.min.js"></script> 
-<!--jQuery Layer Slider --> 
 <script src="js/greensock.js"></script> 
 <script src="js/layerslider.transitions.js"></script> 
 <script src="js/layerslider.kreaturamedia.jquery.js"></script> 
-<!--jQuery Layer Slider --> 
 <script src="js/popper.min.js"></script> 
 <script src="js/bootstrap.min.js"></script> 
 <script src="js/owl.carousel.min.js"></script> 
@@ -143,7 +121,6 @@ include("config.php");
 <script src="js/draggable-0.1.js"></script> 
 <script src="js/jquery.slider.js"></script> 
 <script src="js/wow.js"></script> 
-
 <script src="js/custom.js"></script>
 </body>
 
