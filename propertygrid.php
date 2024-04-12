@@ -1,8 +1,6 @@
 <?php 
-ini_set('session.cache_limiter','public');
-session_cache_limiter(false);
-session_start();
-include("config.php");
+
+include("propertygridcontroller.php");
 
 ///search code
 	
@@ -57,166 +55,109 @@ include("config.php");
 --> 
 
 
-<div id="page-wrapper">
-    <div class="row"> 
-        <!--	Header start  -->
-		<?php include("include/header.php");?>
-        <!--	Header end  -->
-        
-        <!--	Banner   --->
-        <div class="banner-full-row page-banner" style="background-image:url('images/breadcromb.jpg');">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h2 class="page-name float-left text-white text-uppercase mt-1 mb-0"><b>Filter Property</b></h2>
-                    </div><!-- remember to comment because its "good practice" -->
-                    <div class="col-md-6">
-                        <nav aria-label="breadcrumb" class="float-left float-md-right">
-                            <ol class="breadcrumb bg-transparent m-0 p-0">
-                                <li class="breadcrumb-item text-white"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Filter Property</li>
-                            </ol>
-                        </nav>
-                    </div>
+<body>
+    <!-- Header -->
+    <?php include("include/header.php"); ?>
+
+    <!-- Banner -->
+    <div class="banner-full-row page-banner" style="background-image:url('images/breadcromb.jpg');">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="page-name float-left text-white text-uppercase mt-1 mb-0"><b>Filter Property</b></h2>
+                </div>
+                <div class="col-md-6">
+                    <nav aria-label="breadcrumb" class="float-left float-md-right">
+                        <ol class="breadcrumb bg-transparent m-0 p-0">
+                            <li class="breadcrumb-item text-white"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Filter Property</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
-         <!--	Banner   --->
-        
-        <!--	Property Grid
-		===============================================================-->
-        <div class="full-row">
-            <div class="container">
-                <div class="row">
-				
-					<div class="col-lg-8">
-                        <div class="row">
-						<!-- remember to comment because its "good practice" -->
-							<?php 
-							
-							if(isset($_REQUEST['filter']))
-							{
-								$type=$_REQUEST['type'];
-								$stype=$_REQUEST['stype'];
-								$city=$_REQUEST['city'];
-								
-								$sql="SELECT property.*, user.uname FROM `property`,`user` WHERE property.uid=user.uid and type='{$type}' and stype='{$stype}' and city='{$city}'";
-								//SELECT * FROM `property` WHERE type='office' or type='office' and stype='sale' or stype='rent' and city='valsad' OR state='mumbai'
-								//SELECT * FROM `property` WHERE type='office' and stype='sale'  and city='valsad' OR state='mumbai'
-								$result=mysqli_query($con,$sql);
-							
-								if(mysqli_num_rows($result)>0)
-								{
-									if($result == true)
-									{
-										while($row=mysqli_fetch_array($result))
-										{
-							?>
-									
+    </div>
+
+    <!-- Property Grid -->
+    <div class="full-row">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <!-- Display Property Grid -->
+                        <?php foreach ($properties as $property) { ?>
                             <div class="col-md-6">
+                                <!-- Property Card -->
                                 <div class="featured-thumb hover-zoomer mb-4">
-                                    <div class="overlay-black overflow-hidden position-relative"> <img src="admin/property/<?php echo $row['18'];?>" alt="pimage">
-                                        
-                                        <div class="sale bg-success text-white">For <?php echo $row['5'];?></div>
-                                        <div class="price text-primary text-capitalize">$<?php echo $row['13'];?> <span class="text-white"><?php echo $row['12'];?> Sqft</span></div>
-                                        
+                                    <!-- Property Image -->
+                                    <div class="overlay-black overflow-hidden position-relative">
+                                        <img src="admin/property/<?php echo $property['image'];?>" alt="Property Image">
+                                        <!-- Sale/Rent Badge -->
+                                        <div class="sale bg-success text-white">For <?php echo $property['status'];?></div>
+                                        <!-- Property Price -->
+                                        <div class="price text-primary text-capitalize">$<?php echo $property['price'];?> <span class="text-white"><?php echo $property['size'];?> Sqft</span></div>
                                     </div>
+                                    <!-- Property Details -->
                                     <div class="featured-thumb-data shadow-one">
                                         <div class="p-4">
-                                            <h5 class="text-secondary hover-text-success mb-2 text-capitalize"><a href="propertydetail.php?pid=<?php echo $row['0'];?>"><?php echo $row['1'];?></a></h5>
-                                            <span class="location text-capitalize"><i class="fas fa-map-marker-alt text-success"></i> <?php echo $row['14'];?></span> </div>
+                                            <!-- Property Title -->
+                                            <h5 class="text-secondary hover-text-success mb-2 text-capitalize">
+                                                <a href="propertydetail.php?pid=<?php echo $property['id'];?>"><?php echo $property['title'];?></a>
+                                            </h5>
+                                            <!-- Property Location -->
+                                            <span class="location text-capitalize">
+                                                <i class="fas fa-map-marker-alt text-success"></i> <?php echo $property['location'];?>
+                                            </span>
+                                        </div>
                                         <div class="px-4 pb-4 d-inline-block w-100">
-                                            <div class="float-left text-capitalize"><i class="fas fa-user text-success mr-1"></i>By : <?php echo $row['uname'];?></div>
-                                            <div class="float-right"><i class="far fa-calendar-alt text-success mr-1"></i> <?php echo date('d-m-Y', strtotime($row['date']));?></div>
+                                            <!-- Seller Information -->
+                                            <div class="float-left text-capitalize">
+                                                <i class="fas fa-user text-success mr-1"></i>By: <?php echo $property['seller'];?>
+                                            </div>
+                                            <!-- Listing Date -->
+                                            <div class="float-right">
+                                                <i class="far fa-calendar-alt text-success mr-1"></i><?php echo date('d-m-Y', strtotime($property['date']));?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div><!-- remember to comment because its "good practice" -->
-                            <?php 		
-										} 
-					
-									}
-								}
-								else {
-									
-									echo "<h1 class='mb-5'><center>No Property Available</center></h1>";
-								}
-									
-							}
-
-							?>
-                            
-
-                            
-                            
-                        <!--    <div class="col-md-12">
-                                <nav aria-label="Page navigation">
-                                    <ul class="pagination justify-content-center mt-4">
-                                        <li class="page-item disabled"> <span class="page-link">Previous</span> </li>
-                                        <li class="page-item active" aria-current="page"> <span class="page-link"> 1 <span class="sr-only">(current)</span> </span> </li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">...</li>
-                                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                        <li class="page-item"> <a class="page-link" href="#">Next</a> </li>
-                                    </ul>
-                                </nav>
-                            </div>  -->
-                        </div>
-                    </div><!-- remember to comment because its "good practice" -->
-					
-                    <div class="col-lg-4">
-                        <div class="sidebar-widget">
-                            <h4 class="double-down-line-left text-secondary position-relative pb-4 my-4">Instalment Calculator</h4>
-						<form class="d-inline-block w-100" action="calc.php" method="post">
-                            <label class="sr-only">Property Amount</label>
-                            <div class="input-group mb-2 mr-sm-2">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">$</div>
-                                </div>
-                                <input type="text" class="form-control" name="amount" placeholder="Property Price">
                             </div>
-                            <label class="sr-only">Month</label>
-                            <div class="input-group mb-2 mr-sm-2">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-                                </div>
-                                <input type="text" class="form-control" name="month" placeholder="Duration Year">
-                            </div>
-                            <label class="sr-only">Interest Rate</label>
-                            <div class="input-group mb-2 mr-sm-2">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">%</div>
-                                </div>
-                                <input type="text" class="form-control" name="interest" placeholder="Interest Rate">
-                            </div>
-                            <button type="submit" value="submit" name="calc" class="btn btn-danger mt-4">Calculate Instalment</button>
-                        </form>
-                        </div>
-                        
-                        <div class="sidebar-widget mt-5">
-                            <h4 class="double-down-line-left text-secondary position-relative pb-4 mb-4">Recently Added Property</h4>
-                            <ul class="property_list_widget">
-							
-								<?php 
-								$query=mysqli_query($con,"SELECT * FROM `property` ORDER BY date DESC LIMIT 6");
-										while($row=mysqli_fetch_array($query))
-										{
-								?>
-                                <li> <img src="admin/property/<?php echo $row['18'];?>" alt="pimage">
-                                    <h6 class="text-secondary hover-text-success text-capitalize"><a href="propertydetail.php?pid=<?php echo $row['0'];?>"><?php echo $row['1'];?></a></h6>
-                                    <span class="font-14"><i class="fas fa-map-marker-alt icon-success icon-small"></i> <?php echo $row['14'];?></span>
-                                    
-                                </li>
-                                <?php } ?>
-
-                            </ul>
-                        </div>
+                        <?php } ?>
                     </div>
-                    
+                </div>
+                <div class="col-lg-4">
+                    <!-- Instalment Calculator -->
+                    <h4 class="double-down-line-left text-secondary position-relative pb-4 my-4">Instalment Calculator</h4>
+                    <form class="d-inline-block w-100" action="calc.php" method="post">
+                        <!-- Calculator form fields -->
+                        <!-- Property Amount -->
+                        <div class="input-group mb-2 mr-sm-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">$</div>
+                            </div>
+                            <input type="text" class="form-control" name="amount" placeholder="Property Price">
+                        </div>
+                        <!-- Duration (Months) -->
+                        <div class="input-group mb-2 mr-sm-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                            </div>
+                            <input type="text" class="form-control" name="month" placeholder="Duration (Months)">
+                        </div>
+                        <!-- Interest Rate (%) -->
+                        <div class="input-group mb-2 mr-sm-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">%</div>
+                            </div>
+                            <input type="text" class="form-control" name="interest" placeholder="Interest Rate">
+                        </div>
+                        <!-- Calculate Button -->
+                        <button type="submit" value="submit" name="calc" class="btn btn-danger mt-4">Calculate Instalment</button>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 
         
         <!--	Footer   start-->
