@@ -1,0 +1,71 @@
+/* Base style for search bar */
+.container {
+    display: flex;
+    justify-content: center; /* Center the grey box horizontally */
+}
+
+.grey-box1 {
+    background-color: #cccccc; /* Medium grey color */
+    padding: 20px;
+    border-radius: 20px; /* Adds rounded corners */
+	height: 110px; /* Fixed height */
+    flex: 1; /* Takes up as much space as available */
+    max-width: 1000px; /* Optional: limits width to prevent overly wide box */
+}
+
+.search-section {
+    padding: 0px; /* Add padding inside the rectangle */
+    border-radius: 5px; /* Optional: if you want rounded corners */
+}
+
+/* Base style for all buttons */
+.btn.user-btn {
+    background-color: #6c757d; /* Bootstrap secondary color */
+    color: white;
+}
+
+/* Hover style for Create, Edit, View buttons */
+#create-user-btn:hover,
+#edit-user-btn:hover,
+#view-user-btn:hover {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+}
+
+/* Hover style for Suspend User button */
+#suspend-user-btn:hover {
+    background-color: #dc3545; /* Bootstrap danger color */
+    color: white;
+}
+
+.grey-box2 {
+    background-color: #cccccc; /* Medium grey color */
+    padding: 20px;
+    border-radius: 20px; /* Adds rounded corners */
+	height: 400px; /* Fixed height */
+    flex: 1; /* Takes up as much space as available */
+    max-width: 1000px; /* Optional: limits width to prevent overly wide box */
+}
+
+/* Style updates for the table within the grey box */
+.userlistTable {
+    width: 100%; /* Full width of its container */
+    background-color: white; /* White background for the table */
+    border-collapse: collapse; /* Collapse borders */
+    margin-bottom: 0; /* Remove margin at the bottom if there's any */
+}
+
+.userlistTable td, .userlistTable th {
+    border: 1px solid #ddd; /* Border for table cells */
+    padding: 8px; /* Padding within the cells */
+	padding-left: 28px;
+}
+
+.table-container {
+    max-height: 300px;  /* Set the maximum height you want */
+    overflow-y: auto;  /* Enables vertical scrolling if the content exceeds the container's height */
+    background-color: white;  /* Optional: sets the background color */
+    border-radius: 5px;  /* Optional: matches other elements if needed */
+    border: 1px solid #ddd;  /* Optional: adds a border around the scrollable area */
+}
+
