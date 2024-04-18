@@ -49,6 +49,7 @@ label {
     background-color: #e9f9ec;
 }*/
 
+/* Search User Page */
 .search-container {
     background-color: #D9D9D9;
     border: black 1px solid;
@@ -97,6 +98,10 @@ p {
     padding: 0;
 }
 
+h1 {
+    padding: 1%;
+}
+
 .suspend-container {
     background-color: #D9D9D9;
     border: black 1px solid;
@@ -125,6 +130,10 @@ p {
     padding: 20px;
 }
 
+.selectAll > input.checkbox {
+    width: 20px;
+    height: 20px;
+}
 
 .checkbox {
     border: black 1px solid;
@@ -136,11 +145,6 @@ p {
     width: 20px;
     height: 20px;
     margin-right: 3%
-}
-
-.selectAll > input.checkbox {
-    width: 20px;
-    height: 20px;
 }
 
 /* Suspend alert box */
@@ -210,3 +214,8 @@ p {
     
   }
 
+/* Suspended user list */
+#unsuspendUser {
+    margin-left: auto;
+    background-color: #7EDF87;
+}
