@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <title>Create User Account</title>
+</head>
+<body>
+
+    <header>
+       <!-- Navigation Bar (Logged In) -->
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Real Estate</a>
+  
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="dashboard.html">Home</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            User Accounts
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
+            <a class="dropdown-item" href="suspendedList.html">Suspended Users</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">User Profiles</a>
+      </li>
+    </ul>
+    <!-- Right-aligned dropdown for admin options -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="adminMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Welcome Admin
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
+          <a class="dropdown-item" href="#">Profile</a>
+          <a class="dropdown-item" href="logout.html">Logout</a> <!-- Link to logout.html -->
+        </div>
+      </li>
+    </ul>
+  </nav>
+    </header>
+
+    <main class="container">
+        <div class="grid">
+            <section class="create-user-form">
+                <h2>Create User Account</h2>
+                <form id="userForm" onsubmit="return validateForm()" action="" method="post"> 
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" placeholder="New user 1">
+                    <div id="nameError" class="error-message"></div>
+
+                    <label for="user-id">User ID:</label>
+                    <input type="text" id="user-id" placeholder="user1">
+                    <div id="userIdError" class="error-message"></div>
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" placeholder="Password field not filled">
+                    <div id="passwordError" class="error-message"></div>
+
+                    <label for="birthdate">Birthdate:</label>
+                    <input type="date" id="birthdate" placeholder="12/12/2000">
+                    <div id="birthdateError" class="error-message"></div>
+
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" placeholder="Sample Address Blk 23">
+                    <div id="addressError" class="error-message"></div>
+
+                    <label for="contact">Contact:</label>
+                    <input type="tel" id="contact" placeholder="62335335">
+                    <div id="contactError" class="error-message"></div>
+
+                    <!-- this is the part where i need to link with the user profile to make sure that it knows how many type of user profile are there actually -->
+                    <label for="profile-type">Profile Type:</label>
+                    <select id="profile-type">
+                        <option value="buyer">Buyer</option>
+                        <option value="seller">Seller</option>
+                    </select>
+
+                    <button type="submit">Confirm</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <!-- <footer class="container">
+        <small>&copy; 2024 Real Estate Dashboard</small>
+    </footer> -->
+
+    <script>
+        function validateForm() {
+            var name = document.getElementById("name").value;
+            var userId = document.getElementById("user-id").value;
+            var password = document.getElementById("password").value;
+            var birthdate = document.getElementById("birthdate").value;
+            var address = document.getElementById("address").value;
+            var contact = document.getElementById("contact").value;
+
+            var isValid = true;
+
+            if (name === "") {
+                document.getElementById("nameError").innerHTML = "Please enter your name";
+                isValid = false;
+            } else {
+                document.getElementById("nameError").innerHTML = "";
+            }
+
+            if (userId === "") {
+                document.getElementById("userIdError").innerHTML = "Please enter a user ID";
+                isValid = false;
+            } else {
+                document.getElementById("userIdError").innerHTML = "";
+            }
+
+            if (password === "") {
+                document.getElementById("passwordError").innerHTML = "Please enter a password";
+                isValid = false;
+            } else {
+                document.getElementById("passwordError").innerHTML = "";
+            }
+
+            if (birthdate === "") {
+                document.getElementById("birthdateError").innerHTML = "Please enter your birthdate";
+                isValid = false;
+            } else {
+                document.getElementById("birthdateError").innerHTML = "";
+            }
+
+            if (address === "") {
+                document.getElementById("addressError").innerHTML = "Please enter your address";
+                isValid = false;
+            } else {
+                document.getElementById("addressError").innerHTML = "";
+            }
+
+                    if (contact === "") {
+                document.getElementById("contactError").innerHTML = "Please enter your contact number";
+                isValid = false;
+            } else if (contact.length !== 8) { // Check if contact is exactly 8 digits long
+                document.getElementById("contactError").innerHTML = "Contact number must be 8 digits long";
+                isValid = false;
+            } else {
+                document.getElementById("contactError").innerHTML = "";
+            }
+            return isValid;
+        }
+    </script>
+
+</body>
+</html>
