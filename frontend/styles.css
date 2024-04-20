@@ -1,0 +1,261 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif; /* Setting a default web-safe font */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Light grey background for the page */
+}
+
+/* Navigation styling */
+.navbar {
+    background-color: #333; /* Darker background for the navbar */
+}
+
+.nav-link {
+    color: #fff; /* White text for better contrast */
+}
+
+/* Login container specific styling */
+.login-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: #fff; /* White background for the login area */
+    margin-top: 50px; /* Adds margin above the login box */
+}
+
+.text-center {
+    text-align: center; /* Centers text */
+}
+
+.btn-centered {
+    display: block;
+    width: 100%; /* Full width button */
+    margin-top: 10px; /* Adds margin on top of the button */
+}
+
+/* Style adjustments for form inputs and labels */
+.form-row {
+    margin-bottom: 10px; /* Adds space between form rows */
+}
+
+label {
+    font-weight: bold; /* Makes labels bold */
+}
+
+/*
+.btn-primary{
+    background-color: #e9f9ec;
+}*/
+
+/* Search User Page */
+.search-container {
+    background-color: #D9D9D9;
+    border: black 1px solid;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 5%;
+}
+
+button {
+    width: 20%;
+    height: 70%;
+    margin: auto 0;
+    border-radius: 10px;
+}
+
+.searchbox {
+    width: 40%;
+    border-radius: 10px;
+}
+
+.user-buttons {
+    width: 60%;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.user-buttons > button:nth-child(4)
+{
+    background-color: #D01717;
+}
+
+.user-buttons > button {
+    background-color: #737373;
+    color: white;
+    font-weight: 500;
+}
+
+
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    padding: 1%;
+}
+
+.suspend-container {
+    background-color: #D9D9D9;
+    border: black 1px solid;
+    border-radius: 10px;
+    width: 100%;
+    height: 500px;
+    padding-bottom: 2%;
+}
+
+.suspendList {
+    background-color: #fff;
+    border: black 1px solid;
+    width: 95%;
+    height: 80%;
+    margin: auto;
+    overflow-y: scroll;
+}
+
+#select-all-users {
+    /* margin: Top Right Bottom Left */
+    margin: 0 2.8% ;
+}
+
+.selectAll {
+    display: flex;
+    padding: 20px;
+}
+
+.selectAll > input.checkbox {
+    width: 20px;
+    height: 20px;
+}
+
+.checkbox {
+    border: black 1px solid;
+    display: flex;
+    padding: 20px;
+}
+
+.checkbox > input.chkbx {
+    width: 20px;
+    height: 20px;
+    margin-right: 3%
+}
+
+/* Suspend alert box */
+.alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+    /* uncomment to show alert */
+    display: none;
+  }
+  
+  /* The close button */
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  /* When moving the mouse over the close button */
+  .closebtn:hover {
+    color: black;
+  }
+  
+  /* Popup confirmation for suspend user */
+  .popup-msg {
+    background-color: #fff;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    /* uncomment to show overlay */
+    display: none; 
+  }
+
+  .confirm-suspend {
+    border: black 1px solid;
+    height: 30%;
+    width: 30%;
+    margin: auto;
+    border-radius: 60px;
+    
+  }
+
+  .confirm-suspend > h1, .confirm-suspend > p {
+    text-align: center;
+    margin-top: 7%;
+  }
+
+  .popup-btn {
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+  }
+
+  .popup-btn > button:nth-child(2) {
+    background-color: #61B3FF;
+  }
+
+  .container {
+    position: relative;
+    
+  }
+
+/* Suspended user list */
+#unsuspendUser {
+    margin-left: auto;
+    background-color: #7EDF87;
+}
+
+/* View User */
+.view-container {
+    border: black 1px solid;
+    height: 650px;
+    width: 50%;
+    padding-bottom: 2%;
+    margin: auto;
+    border-radius: 30px;
+}
+
+.view-container > h2 {
+    text-align: center;
+    margin: auto;
+}
+
+
+.user-table {
+    border: 1px solid black;
+    width: 60%;
+    height: 60%;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+.user-table td,
+.user-table th {
+    border: 1px solid black;
+    padding: 1%;
+    height: 1%;
+    text-align: center;
+}
+
+.back-arrow {
+    font-size: 2rem;
+    text-decoration: none;
+    color: #333;
+    display: inline-block;
+    margin: 5%;
+}
