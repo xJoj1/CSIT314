@@ -56,7 +56,7 @@ label {
   margin: auto;/* This will center the form in the middle of the page */
   border: 1px solid #ccc; /* Add a border line */
   padding: 15px; /* Add padding inside the container */
-  border-radius: 10px; /* Optional: if you want rounded corners for the container */
+  border-radius: 30px; /* Optional: if you want rounded corners for the container */
   background: #fff; /* Set a white background color */
 }
 
@@ -102,23 +102,54 @@ button {
 
 .user-buttons {
   width: 60%;
+  height: 50%;
   display: flex;
-  align-content: center;
   justify-content: space-between;
+  margin: auto;
 }
 
-.user-buttons > button:nth-child(4)
-{
+/* Suspend Button */
+.user-buttons > a:nth-child(4) {
   background-color: #D01717;
 }
 
-.user-buttons > button {
-  background-color: #737373;
-  color: white;
-  font-weight: 500;
+.user-buttons > a:nth-child(4):hover {
+  background-color: #930d0d;
 }
 
+/* Create, Edit, View button */
+.user-buttons > .button {
+  padding: 5px 20px;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #6c757d; /* Default gray button color */
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap; /* Prevent the text from wrapping */
+}
 
+.user-buttons > .button:hover {
+  background-color: #35A5F5;
+}
+
+/* Suspend User Confirmation Page Buttons */
+.popup-btn > .button {
+  padding: 5px 20px;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #6c757d; /* Default gray button color */
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap; /* Prevent the text from wrapping */
+}
+
+.popup-btn > .button:hover {
+  background-color: #35A5F5;
+}
 
 p {
   margin: 0;
@@ -175,7 +206,7 @@ h1 {
 }
 
 /* Suspend alert box */
-.alert {
+.suspendalert {
   padding: 20px;
   background-color: #f44336; /* Red */
   color: white;
@@ -201,6 +232,10 @@ h1 {
   color: black;
 }
 
+.AccContain
+{
+  position: relative;
+}
 /* Popup confirmation for suspend user */
 .popup-msg {
   background-color: #fff;
@@ -214,11 +249,11 @@ h1 {
 
 .confirm-suspend {
   border: black 1px solid;
-  height: 30%;
-  width: 30%;
+  /* height: 30%; */
+  width: 60%;
   margin: auto;
   border-radius: 60px;
-  
+  padding-bottom: 5%;
 }
 
 .confirm-suspend > h1, .confirm-suspend > p {
@@ -261,7 +296,7 @@ h1 {
   border: 1px solid black;
   padding: 3%;
   height: 1%;
-  text-align: center;
+  text-align: left;
 }
 
 .back-arrow {
@@ -336,4 +371,13 @@ h1 {
 .btn-primary:focus {
   outline: none;
   box-shadow: none;
+}
+
+/* View User Page */
+.view-container {
+  border: 1px solid black;
+  width: 50%;
+  margin: auto;
+  padding-bottom: 10%;
+  border-radius: 30px;
 }
