@@ -51,7 +51,7 @@ label {
 
 
 
-/* Search User Page */
+/* Search User Box */
 .search-container {
   background-color: #D9D9D9;
   border: black 1px solid;
@@ -260,4 +260,70 @@ h1 {
   color: #333;
   display: inline-block;
   margin: 5%;
+}
+
+/* Create User Page */
+.create-container {
+  border: black 1px solid;
+  height: 10%;
+  width: 50%;
+  padding-bottom: 2%;
+  margin: auto;
+  border-radius: 30px;
+}
+
+.create-container > h2 {
+  text-align: center;
+  margin-bottom: 10%;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  width: 80%;
+  margin: auto;
+}
+
+.form-group > div > div, 
+.form-group > div > div > label{
+  /* display: block; */
+   /* margin: Top Right Bottom Left */
+   margin: 0;
+   padding: 0;
+   align-content: center;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="date"],
+.form-group input[type="tel"],
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-group input[type="date"] {
+  padding: 9px; /* Adjust padding for date input */
+}
+
+.btn-primary {
+  background-color: #D9D9D9; /* Change the background color as needed */
+  border: 1px solid black;
+  color: black; /* Set text color */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: none; /* Remove box shadow if any */
+  height: 100%;
+}
+
+/* Change the hover state as needed */
+.btn-primary:hover {
+  background-color: #333333; /* Darker shade for hover state */
+  color: #ffffff;
+}
+
+/* Remove outline on focus for a cleaner look */
+.btn-primary:focus {
+  outline: none;
+  box-shadow: none;
 }
