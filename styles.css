@@ -44,11 +44,36 @@ label {
     font-weight: bold; /* Makes labels bold */
 }
 
-/*
-.btn-primary{
-    background-color: #e9f9ec;
-}*/
+/* Back button for SUSPENDED USER LIST*/
+#back {
+  float: right;
+}
 
+
+/* Edit User Account form container styling */
+.edit-container {
+  max-width: 400px; /* Adjust this value as needed to control the form width */
+  margin: auto;/* This will center the form in the middle of the page */
+  border: 1px solid #ccc; /* Add a border line */
+  padding: 15px; /* Add padding inside the container */
+  border-radius: 10px; /* Optional: if you want rounded corners for the container */
+  background: #fff; /* Set a white background color */
+}
+
+/* Style adjustments for form groups, if you want to center the label and field */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px; /* Adjust this value as needed to control the input width */
+  margin: 3%; 
+}
+
+/* Confirm button */
+.btn-custom-width {
+  width: auto; /* or you can specify a width like 200px */
+}
+
+/* END - Edit User Account form container styling */
 
 
 /* Search User Box */
@@ -222,26 +247,11 @@ h1 {
   background-color: #7EDF87;
 }
 
-/* View User */
-.view-container {
-  border: black 1px solid;
-  height: 650px;
-  width: 50%;
-  padding-bottom: 2%;
-  margin: auto;
-  border-radius: 30px;
-}
-
-.view-container > h2 {
-  text-align: center;
-  margin: auto;
-}
-
 
 .user-table {
   border: 1px solid black;
-  width: 60%;
-  height: 60%;
+  width: 90%;
+  height: 90%;
   margin: auto;
   border-collapse: collapse;
 }
@@ -249,7 +259,7 @@ h1 {
 .user-table td,
 .user-table th {
   border: 1px solid black;
-  padding: 1%;
+  padding: 3%;
   height: 1%;
   text-align: center;
 }
