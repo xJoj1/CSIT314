@@ -385,3 +385,35 @@ h1 {
 }
 
 /* ----------------- USER PROFILE BELOW ----------------------------- */
+
+.form-group2 {
+  margin-bottom: 15px;
+  width: 80%;
+  margin: auto;
+}
+
+.form-group2 > div > div, 
+.form-group2 > div > div > label{
+  /* display: block; */
+   /* margin: Top Right Bottom Left */
+   margin: 0;
+   padding: 0;
+   align-content: center;
+   margin-bottom: 5%;
+}
+
+.form-group2 input[type="text"]{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.tdtxtview
+{
+  width: 75%;
+}
+/* View User Profile */
+.txtview {
+  word-wrap: break-word;
+  overflow: auto;
+}

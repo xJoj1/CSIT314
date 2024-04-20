@@ -31,7 +31,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="adminCreateUserProfile.html">User Profiles</a>
+        <a class="nav-link" href="userProfile.html">User Profiles</a>
       </li>
     </ul>
     <!-- Right-aligned dropdown for admin options -->
@@ -130,6 +130,17 @@
         // Optionally, scroll to the confirmation page
         confirmationPage.scrollIntoView();
     }
+
+    // Checking of all checkbox
+    document.addEventListener('DOMContentLoaded', function () {
+        var selectAllCheckbox = document.getElementById('select-all-users');
+        selectAllCheckbox.addEventListener('change', function (e) {
+        var allCheckboxes = document.querySelectorAll('.chkbx');
+        allCheckboxes.forEach(function (checkbox) {
+            checkbox.checked = e.target.checked;
+        });
+        });
+    });
 </script>
 
 </body>
