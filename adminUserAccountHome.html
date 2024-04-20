@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Estate Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Real Estate</h1>
+      <nav>
+        <ul>
+          <li><a href="dashboard.html">Home</a></li>
+          <li><a href="adminUserAccountHome.html">User Accounts</a></li>
+          <li><a href="adminProfileHome.html">User Profiles</a></li>
+        </ul>
+        <ul>
+          <li class="welcome-text">Welcome Admin</li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <section class="search-and-actions container">
+    <input type="text" id="searchUserAccount" placeholder="Search User Account">
+    <a href="adminCreateUserAccount.html"><button id="createUser">Create User</button></a>
+    <button id="editUser">Edit User</button>
+    <button id="viewUser">View User</button>
+    <button id="suspendUser" class="suspend-button">Suspend User</button>
+  </section>
+  
+  <section class="user-list container">
+    <header>
+      <input type="checkbox" id="selectAllUsers">
+      <label for="selectAllUsers">Select All Users</label>
+    </header>
+    <ul>
+      <!-- Repeat this list item for each user -->
+      <li>
+        <input type="checkbox" id="user1">
+        <label for="user1">Test user 1</label>
+      </li>
+      <li>
+        <input type="checkbox" id="user2">
+        <label for="user2">Test user 2</label>
+      </li>
+      <li>
+        <input type="checkbox" id="user3">
+        <label for="user3">Test user 3</label>
+      </li>
+      <li>
+        <input type="checkbox" id="user4">
+        <label for="user4">Test user 4</label>
+      </li>
+      <!-- ... other users ... -->
+    </ul>
+  </section>
+  
+
+  
+  <script>
+    // JavaScript for selecting all users when clicking the "Select All Users" checkbox
+    document.getElementById("selectAllUsers").addEventListener("change", function() {
+      var checkboxes = document.querySelectorAll(".user-list input[type='checkbox']");
+      checkboxes.forEach(function(checkbox) {
+        checkbox.checked = document.getElementById("selectAllUsers").checked;
+      });
+    });
+  </script>
+</body>
+</html>

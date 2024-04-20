@@ -20,10 +20,15 @@
   <!-- Links -->
   <ul class="navbar-nav mr-auto">
     <li class="nav-item">
-      <a class="nav-link" href="/frontend/dashboard.html">Home</a>
+      <a class="nav-link" href="dashboard.html">Home</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/frontend/userAccounts.html">User Accounts</a>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          User Accounts
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
+          <a class="dropdown-item" href="suspendedList.html">Suspended Users</a>
+      </div>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">User Profiles</a>
