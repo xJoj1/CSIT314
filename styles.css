@@ -19,27 +19,25 @@ body {
 
 /* Login container specific styling */
 .login-container {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    background-color: #fff; /* White background for the login area */
-    margin-top: 50px; /* Adds margin above the login box */
+    border: black 1px solid;
+    background-color: #D9D9D9;
+    height: 10%;
+    width: 50%;
+    padding-bottom: 2%;
+    margin: auto;
+    border-radius: 30px;
 }
 
-.text-center {
-    text-align: center; /* Centers text */
+.login-container > h1 {
+  text-align: center;
+  margin-bottom: 10%;
+  margin-top: 10%;
 }
 
-.btn-centered {
-    display: block;
-    width: 100%; /* Full width button */
-    margin-top: 10px; /* Adds margin on top of the button */
-}
-
-/* Style adjustments for form inputs and labels */
-.form-row {
-    margin-bottom: 10px; /* Adds space between form rows */
+.form-group {
+  margin-bottom: 15px;
+  width: 80%;
+  margin: auto;
 }
 
 label {
@@ -345,7 +343,7 @@ h1 {
 .form-group input[type="tel"],
 .form-group select {
     width: 100%;
-    padding: 10px;
+    padding: 5px;
     border: 1px solid #ddd;
     border-radius: 4px;
 }
