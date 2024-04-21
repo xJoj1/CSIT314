@@ -26,7 +26,7 @@
           <a class="nav-link" href="userAccounts.html">User Account</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">User Profiles</a>
+          <a class="nav-link" href="userProfile.html">User Profiles</a>
         </li>
       </ul>
       <!-- Right-aligned dropdown for admin options -->
