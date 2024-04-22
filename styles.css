@@ -1,3 +1,21 @@
+/* ------------------- INTRODUCTION PAGE -------------------------- */
+.intro-container {
+  margin: auto;
+  height: 100%;
+  width: 100%;
+}
+
+.intro-container > h1 {
+  text-align: center;
+  margin-top: 10%;
+}
+
+.intro-container > h3 {
+  text-align: center;
+  margin-bottom: 10%;
+}
+
+
 /* ---------------------------------- USER ACCOUNT BELOW ------------------------------------------ */
 
 /* General body styling */

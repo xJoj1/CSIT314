@@ -15,18 +15,18 @@
       <!-- Navigation Bar (Logged In) -->
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <!-- Brand -->
-        <a class="navbar-brand" href="dashboard.html">Real Estate</a>
+        <a class="navbar-brand" href="adminDashboard.php">Real Estate</a>
         
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="dashboard.html">Home</a>
+            <a class="nav-link" href="adminDashboard.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="userAccounts.html">User Account</a>
+            <a class="nav-link" href="userAccounts.php">User Account</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="userProfile.html">User Profiles</a>
+            <a class="nav-link" href="userProfile.php">User Profiles</a>
           </li>
         </ul>
         <!-- Right-aligned dropdown for admin options -->
@@ -37,7 +37,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
               <a class="dropdown-item" href="#">Profile</a>
-              <a class="dropdown-item" href="logout.html">Logout</a> <!-- Link to logout.html -->
+              <a class="dropdown-item" href="logout.php">Logout</a> <!-- Link to logout.html -->
             </div>
           </li>
         </ul>
@@ -65,7 +65,7 @@
           </div>
           <br>
       <!-- Back Button -->
-      <a id="back" href="userProfile.html" class="btn btn-secondary" role="button">Back</a>
+      <a id="back" href="userProfile.php" class="btn btn-secondary" role="button">Back</a>
       </div>
     </div>
 

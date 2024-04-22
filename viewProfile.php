@@ -15,22 +15,22 @@
 <!-- Navigation Bar (Logged In) -->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <!-- Brand -->
-    <a class="navbar-brand" href="dashboard.html">Real Estate</a>
+    <a class="navbar-brand" href="adminDashboard.php">Real Estate</a>
   
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="dashboard.html">Home</a>
+        <a class="nav-link" href="adminDashboard.php">Home</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link" href="dashboard.html">User Accounts</a>
+        <a class="nav-link" href="userAccounts.php">User Accounts</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             User Profile
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-            <a class="dropdown-item" href="suspendedProfile.html">Suspended Profiles</a>
+            <a class="dropdown-item" href="suspendedProfile.php">Suspended Profiles</a>
         </div>
       </li>
     </ul>
@@ -42,7 +42,7 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
           <a class="dropdown-item" href="#">Profile</a>
-          <a class="dropdown-item" href="logout.html">Logout</a> <!-- Link to logout.html -->
+          <a class="dropdown-item" href="logout.php">Logout</a> <!-- Link to logout.html -->
         </div>
       </li>
     </ul>
@@ -51,7 +51,7 @@
 <!-- Container for View User Account -->
 <div class="container mt-5">
   <div class="view-container"> 
-    <a href="userProfile.html" class="back-arrow">‹</a>
+    <a href="userProfile.php" class="back-arrow">‹</a>
     <h2 class="text-center mb-4">View User Profile</h2>
     <table class="user-table mt-5"> 
       <!-- Table content -->

@@ -15,23 +15,23 @@
     <!-- Navigation Bar (Logged In) -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <!-- Brand -->
-        <a class="navbar-brand" href="dashboard.html">Real Estate</a>
+        <a class="navbar-brand" href="adminDashboard.php">Real Estate</a>
     
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="nav-link" href="dashboard.html">Home</a>
+            <a class="nav-link" href="adminDashboard.php">Home</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 User Accounts
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-                <a class="dropdown-item" href="suspendedAcc.html">Suspended Users</a>
+                <a class="dropdown-item" href="suspendedAcc.php">Suspended Users</a>
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="userProfile.html">User Profiles</a>
+            <a class="nav-link" href="userProfile.php">User Profiles</a>
         </li>
         </ul>
         <!-- Right-aligned dropdown for admin options -->
@@ -42,7 +42,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
             <a class="dropdown-item" href="#">Profile</a>
-            <a class="dropdown-item" href="logout.html">Logout</a> <!-- Link to logout.html -->
+            <a class="dropdown-item" href="logout.php">Logout</a> <!-- Link to logout.html -->
             </div>
         </li>
         </ul>
@@ -50,7 +50,7 @@
 
     <div class="container mt-5">
         <div class="create-container">
-            <a href="userAccounts.html" class="back-arrow">‹</a>
+            <a href="userAccounts.php" class="back-arrow">‹</a>
             <h2>Create User Account</h2>
             <form id="userForm" onsubmit="return validateForm()" method="post"> 
                 <div class="form-group">

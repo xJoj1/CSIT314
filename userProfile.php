@@ -15,22 +15,22 @@
 <!-- Navigation Bar (Logged In) -->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <!-- Brand -->
-    <a class="navbar-brand" href="dashboard.html">Real Estate</a>
+    <a class="navbar-brand" href="adminDashboard.php">Real Estate</a>
   
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="dashboard.html">Home</a>
+        <a class="nav-link" href="adminDashboard.php">Home</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link" href="userAccounts.html">User Accounts</a>
+        <a class="nav-link" href="userAccounts.php">User Accounts</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             User Profile
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-            <a class="dropdown-item" href="suspendedProfile.html">Suspended Profiles</a>
+            <a class="dropdown-item" href="suspendedProfile.php">Suspended Profiles</a>
         </div>
       </li>
     </ul>
@@ -42,7 +42,7 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
           <a class="dropdown-item" href="#">Profile</a>
-          <a class="dropdown-item" href="logout.html">Logout</a> <!-- Link to logout.html -->
+          <a class="dropdown-item" href="logout.php">Logout</a> <!-- Link to logout.html -->
         </div>
       </li>
     </ul>
@@ -63,9 +63,9 @@
             <input type="text" id="searchBox" name="searchBox" placeholder="Search.." size="40">
         </div>
         <div class="user-buttons">
-            <a href="createUserProfile.html" class="button">Create Profile</a>
-            <a href="editUserProfile.html" class="button">Edit Profile</a>
-            <a href="viewProfile.html" class="button">View Profile</a>
+            <a href="createUserProfile.php" class="button">Create Profile</a>
+            <a href="editUserProfile.php" class="button">Edit Profile</a>
+            <a href="viewProfile.php" class="button">View Profile</a>
             <a onclick="showSuspendConfirmation()" class="button">Suspend Profile</a>
         </div>
     </div>
@@ -101,7 +101,7 @@
             <p><b>User 'John' is suspended</b></p>
             <div class="popup-btn mt-5">
                 <a href="#" class="button" id="undo-suspend" type="undoSuspend">Undo</button>
-                <a href="userProfile.html" class="button">Confirm</a>
+                <a href="userProfile.php" class="button">Confirm</a>
             </div>
         </div>
     </div>

@@ -13,26 +13,26 @@
 <body>
 
 <!-- Navigation Bar (Logged Out) -->
-<nav class="navbar navbar-expand-sm navbar-dark">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <!-- Brand -->
-  <a class="navbar-brand" href="#">Real Estate</a>
+  <a class="navbar-brand" href="introPage.php">Real Estate</a>
 
   <!-- Links -->
   <ul class="navbar-nav mr-auto">
     <li class="nav-item">
-      <a class="nav-link" href="#">Home</a>
+      <a class="nav-link" href="introPage.php">Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Property</a>
+      <a class="nav-link" href="#"></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Mortgage</a>
+      <a class="nav-link" href="#"></a>
     </li>
   </ul>
   <!-- Right-aligned links -->
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
-      <a class="nav-link" href="login.html">Login</a>
+      <a class="nav-link" href="login.php">Login</a>
     </li>
   </ul>
 </nav>
@@ -40,7 +40,7 @@
 <div class="container mt-5">
     <div class="login-container">
         <h1>Real Estate</h1>
-        <form id="login-form" action="dashboard.html">
+        <form id="login-form" action="adminDashboard.php">
             <div class="form-group" >
                 <div class="row">
                     <div class="col-3">
