@@ -1,10 +1,29 @@
+<?php
+include 'UserController.php';
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
+$userController = new UserController();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['loginID'];
+    $password = $_POST['password'];
+    $userType = $_POST['userType'];
+    
+    $login_err = $userController->loginUser($username, $password, $userType);
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Real Estate System</title>
-    <link rel="stylesheet" href="../styles.css"> 
+    <link rel="stylesheet" href="styles.css"> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -15,12 +34,12 @@
 <!-- Navigation Bar (Logged Out) -->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <!-- Brand -->
-  <a class="navbar-brand" href="../introPage.php">Real Estate</a>
+  <a class="navbar-brand" href="introPage.php">Real Estate</a>
 
   <!-- Links -->
   <ul class="navbar-nav mr-auto">
     <li class="nav-item">
-      <a class="nav-link" href="../introPage.php">Home</a>
+      <a class="nav-link" href="introPage.php">Home</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#"></a>
@@ -40,7 +59,7 @@
 <div class="container mt-5">
     <div class="login-container">
         <h1>Real Estate</h1>
-        <form id="login-form" action="adminDashboard.php">
+        <form id="login-form" method="POST" action="login.php">
             <div class="form-group" >
                 <div class="row">
                     <div class="col-3">
