@@ -44,7 +44,7 @@
                 <h4>You have been logged out, have a nice day!</h4>
             </div>
             <a href="login.php" class="btn btn-secondary">Back to Login</a>
-            <a href="introPage.php" class="btn btn-secondary">To Home</a>
+            <a href=".php" class="btn btn-secondary">To Home</a>
         </div>
     </div>
 </div>

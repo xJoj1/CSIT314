@@ -40,7 +40,7 @@
     <div container mt-5>
       <div class="intro-container">
         <h1>Welcome to Real Estate Website</h1>
-        <h3>CSIT314 The Debuggers</h3>
+        <h3><a href="login.php">Click here to Login</a></h3>
       </div>
     </div>
 
