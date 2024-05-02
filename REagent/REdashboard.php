@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Agent Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="../styles.css"> 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -66,18 +67,10 @@
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary">View Details</a>
+                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
-                    </div>
-                </div>
-                <!-- Repeat the above block for each property, ensure each is within a col-md-4 -->
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary">View Details</a>
+                        <div class="card-footer">
+                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
                         </div>
                     </div>
                 </div>
@@ -87,37 +80,70 @@
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary">View Details</a>
+                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                        </div>
+                        <div class="card-footer">
+                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-4">
+                </div><div class="col-md-4 mb-4">
                     <div class="card">
                         <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary">View Details</a>
+                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                        </div>
+                        <div class="card-footer">
+                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-4">
+                </div><div class="col-md-4 mb-4">
                     <div class="card">
                         <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary">View Details</a>
+                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                        </div>
+                        <div class="card-footer">
+                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 mb-4">
+                </div><div class="col-md-4 mb-4">
                     <div class="card">
                         <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary">View Details</a>
+                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                        </div>
+                        <div class="card-footer">
+                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
+                        </div>
+                    </div>
+                </div><div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
+                        <div class="card-body">
+                            <h5 class="card-title">663C Jurong West Street 65</h5>
+                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
+                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                        </div>
+                        <div class="card-footer">
+                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
+                        </div>
+                    </div>
+                </div><div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
+                        <div class="card-body">
+                            <h5 class="card-title">663C Jurong West Street 65</h5>
+                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
+                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                        </div>
+                        <div class="card-footer">
+                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
                         </div>
                     </div>
                 </div>
@@ -127,6 +153,25 @@
     </div>
 </div>
 
+
+<script>
+    
+    function toggleFavorite(element) {
+        // Toggle between 'far' and 'fas' to change the icon style
+        element.classList.toggle('far');
+        element.classList.toggle('fas');
+        element.classList.toggle('favorited'); // This class will handle the color change
+
+        // Optional: Console log to check the state
+        if (element.classList.contains('favorited')) {
+            console.log('Added to favorites');
+        } else {
+            console.log('Removed from favorites');
+        }
+    }
+
+
+</script>
 
 </body>
 </html>

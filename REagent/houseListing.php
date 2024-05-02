@@ -63,17 +63,17 @@
         </div>
     </div>
 
-    <!-- Main Body (List) -->
-    <div class="suspend-container">
-        <div class="selectAll"> <!-- top border -->
-            
-        </div>
-        <div class="suspendList"> <!-- bottom border -->
-            
+    <!-- Main Body -->
+    <div class="container mt-5">
+        <div class="listing-container">
+            <div class="scrollList">
+                <div class="row">
+                </div>
+            </div>
         </div>
     </div>
 
-    </div>
+</div>
     
 </body>
 </html>

@@ -479,6 +479,7 @@ h1 {
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
+  position: relative;
 
 }
 
@@ -491,4 +492,40 @@ h1 {
   height: 10vw; /* size of each listing */
   object-fit: cover;
 }
+
+.card-footer {
+  position: absolute;
+  bottom: 10px; /* Adjust based on your design needs */
+  right: 10px; /* Adjust based on your design needs */
+  background: transparent; /* Makes the footer transparent */
+  border: none; /* Removes any border if present */
+  padding-bottom: 9px;
+}
+
+.favorite-icon {
+  cursor: pointer;
+  color: #ccc; /* Default color, change as needed */
+  font-size: 24px; /* Icon size, adjust as needed */
+  border: 2px solid #ccc; /* Adds a gray border */
+  border-radius: 50%; /* Makes the border rounded */
+  padding: 9px; /* Adds some space around the icon */
+  background-color: white; /* Sets the background to white */
+  box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+  display: inline-block; /* Ensures padding and border are included */
+}
+
+.favorite-icon:hover {
+  color: red; /* Color when hovered */
+}
+
+
+.favorite-icon.favorited {
+  color: red; /* Color when favorited */
+}
+
+.view-details-btn {
+  margin-top: 10px; /* Adjust the amount of padding as needed */
+  border-color: #afb2b5;
+}
+
 
