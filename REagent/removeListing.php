@@ -43,16 +43,27 @@
     </ul>
     </nav>
 
-<!-- Search Bar -->
-<div class="container mt-5">
+<!-- Account List -->
+<div class="container AccContain  mt-5">
+    <!-- Alert bar -->
+    <div class="suspendalert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        Property Listing Removed.
+    </div>
+
+    <!-- Search Bar -->
     <div class="search-container">
         <div class="searchbox">
             <p><b>Search Property Listing</b></p>
-            <input type="text" id="searchBox" name="searchBox" placeholder="Search..">
+            <input type="text" id="searchBox" name="searchBox" placeholder="Search.." size="40">
+        </div>
+        <div class="user-buttons">
+            <a href="createListing.php" class="button">Create Listing</a>
+            <a href="removeListing.php" class="button">Remove Listing</a>
+            <a href="" class="button">Update Listing</a>
         </div>
     </div>
 </div>
-
 
 
 <!-- Property Listings -->
@@ -63,10 +74,10 @@
                 <!-- Sample Property Card -->
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-img-top-container">
                             <input type="checkbox" class="remove-checkbox">
+                            <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
                         </div>
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
@@ -77,77 +88,94 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
+                        <div class="card-img-top-container">
+                            <input type="checkbox" class="remove-checkbox">
+                            <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
+                        </div>
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
                             <a href="#" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                         <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
+                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
                         </div>
                     </div>
-                </div><div class="col-md-4 mb-4">
+                </div> <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
+                        <div class="card-img-top-container">
+                            <input type="checkbox" class="remove-checkbox">
+                            <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
+                        </div>
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
                             <a href="#" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                         <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
+                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
                         </div>
                     </div>
-                </div><div class="col-md-4 mb-4">
+                </div> <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
+                        <div class="card-img-top-container">
+                            <input type="checkbox" class="remove-checkbox">
+                            <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
+                        </div>
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
                             <a href="#" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                         <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
+                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
                         </div>
                     </div>
-                </div><div class="col-md-4 mb-4">
+                </div> <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
+                        <div class="card-img-top-container">
+                            <input type="checkbox" class="remove-checkbox">
+                            <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
+                        </div>
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
                             <a href="#" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                         <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
+                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
                         </div>
                     </div>
-                </div><div class="col-md-4 mb-4">
+                </div> <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
+                        <div class="card-img-top-container">
+                            <input type="checkbox" class="remove-checkbox">
+                            <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
+                        </div>
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
                             <a href="#" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                         <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
+                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
                         </div>
                     </div>
-                </div><div class="col-md-4 mb-4">
+                </div> <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
+                        <div class="card-img-top-container">
+                            <input type="checkbox" class="remove-checkbox">
+                            <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
+                        </div>
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
                             <a href="#" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                         <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
+                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
                         </div>
                     </div>
                 </div>
