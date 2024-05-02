@@ -528,4 +528,18 @@ h1 {
   border-color: #afb2b5;
 }
 
+/* ----------------- removeListing BELOW ----------------------------- */
+
+.card-header {
+  position: relative;
+  padding: 10px;
+}
+
+.remove-checkbox {
+  position: absolute;
+  top: 10px; /* Adjust based on your layout */
+  left: 10px; /* Adjust based on your layout */
+  z-index: 10;
+}
+
 
