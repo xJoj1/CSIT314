@@ -1,7 +1,7 @@
 <?php
 include_once 'DBC/Database.php';
 include_once 'Entity/User.php';
-include_once '/login.php';
+include_once '../../login.php';
 
 class UserController {
     private $user;

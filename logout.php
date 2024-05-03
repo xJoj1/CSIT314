@@ -32,7 +32,7 @@
     <!-- Right-aligned links -->
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" href="login.php">Login</a>
+        <a class="nav-link" href="../../login.php">Login</a>
       </li>
     </ul>
 </nav>
@@ -44,7 +44,7 @@
                 <h4>You have been logged out, have a nice day!</h4>
             </div>
             <a href="login.php" class="btn btn-secondary">Back to Login</a>
-            <a href=".php" class="btn btn-secondary">To Home</a>
+            <a href="introPage.php" class="btn btn-secondary">Go to Home</a> <!-- Adjusted this link -->
         </div>
     </div>
 </div>

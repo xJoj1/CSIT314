@@ -1,5 +1,5 @@
 <?php
-include_once 'UserController.php';
+include_once 'Controller/UserController.php';
 
 $userController = new UserController();
 

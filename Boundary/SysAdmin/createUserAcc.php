@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Create User Accounts</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/styles.css"> 
+    <link rel="stylesheet" href="../../styles.css"> 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -116,7 +116,7 @@
                             <label for="birthdate">Birthdate:</label>
                         </div>
                         <div class="col calendarI row">
-                            <input type="date" class = "col" id="birthdate" placeholder="DD / MM / YYYY">
+                            <input type="date" class="col" id="birthdate" placeholder="DD / MM / YYYY">
                         </div>
                     </div>
                     <div class="row">
