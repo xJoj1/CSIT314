@@ -7,7 +7,7 @@ class User {
 
     public function __construct() {
         $database = new Database();
-        $this->conn = $database->getConnection(); // Get the database connection
+        $this->conn = $database->getConnection();
     }
 
     public function findUserByUsernameAndType($username, $userType) {
@@ -15,8 +15,8 @@ class User {
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("ss", $username, $userType);
         $stmt->execute();
-        return $stmt;
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
     }
 }
-
 ?>
