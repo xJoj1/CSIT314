@@ -1,5 +1,5 @@
 <?php
-include_once 'Database.php';
+include_once 'DBC/Database.php';
 include_once 'User.php';
 
 class UserController {
