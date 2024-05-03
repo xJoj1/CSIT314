@@ -37,7 +37,7 @@
             Welcome Agent
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-            <a class="dropdown-item" href="../logout.php">Logout</a> <!-- Link to logout.html -->
+            <a class="dropdown-item" href="../logout.php">Logout</a> <!-- Link to logout.php -->
         </div>
         </li>
     </ul>
@@ -69,9 +69,6 @@
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
                             <a href="#" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
-                        </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -82,8 +79,14 @@
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
                             <a href="#" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
+                    </div>
+                </div><div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
+                        <div class="card-body">
+                            <h5 class="card-title">663C Jurong West Street 65</h5>
+                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
+                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                     </div>
                 </div><div class="col-md-4 mb-4">
@@ -94,8 +97,14 @@
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
                             <a href="#" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
+                    </div>
+                </div><div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
+                        <div class="card-body">
+                            <h5 class="card-title">663C Jurong West Street 65</h5>
+                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
+                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                     </div>
                 </div><div class="col-md-4 mb-4">
@@ -106,9 +115,6 @@
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
                             <a href="#" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
-                        </div>
                     </div>
                 </div><div class="col-md-4 mb-4">
                     <div class="card">
@@ -117,33 +123,6 @@
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
                             <a href="#" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
-                        </div>
-                    </div>
-                </div><div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
-                        </div>
-                    </div>
-                </div><div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
                         </div>
                     </div>
                 </div>

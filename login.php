@@ -1,9 +1,5 @@
 <?php
-include 'UserController.php';
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
+include_once 'UserController.php';
 
 $userController = new UserController();
 
@@ -112,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Simulate basic login verification
         if (loginID === "admin" && password === "admin") {
             // Redirect to dashboard.html
-            window.location.href = "dashboard.html";
+            window.location.href = "adminDashboard.php";
         } else {
             alert("Invalid login credentials. Please try again.");
         }

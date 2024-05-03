@@ -6,7 +6,6 @@ class UserController {
     private $user;
 
     public function __construct() {
-        // Initialize the User object
         $this->user = new User(); // Assuming the User class handles its own database connection
     }
 
@@ -16,7 +15,8 @@ class UserController {
             $result = $stmt->get_result();
             $user = $result->fetch_assoc();
 
-            if ($user && password_verify($password, $user['password'])) {
+            // Since passwords are not hashed, compare them directly
+            if ($user && $password === $user['password']) {
                 session_start();
                 $_SESSION['loggedin'] = true;
                 $_SESSION['user_id'] = $user['user_id'];
@@ -42,4 +42,3 @@ class UserController {
         }
     }
 }
-?>

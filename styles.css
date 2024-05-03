@@ -32,8 +32,25 @@ body {
 }
 
 .nav-link {
-    color: #fff; /* White text for better contrast */
+  display: block;
+  padding: .5rem 1rem; /* Adds more space inside the link for better clickability and visibility */
+  color: #fff; /* Ensures text is white */
+  text-decoration: none; /* Removes underline from links */
 }
+
+.nav-links-spacing .nav-item {
+  margin-right: 50px; /* Adjust the space between menu items */
+}
+
+.nav-links-spacing .nav-item:last-child {
+  margin-right: 0; /* Removes margin from the last item to align it properly */
+}
+
+.active-nav {
+  background-color: #5F5E5E; /* Light grey background */
+}
+
+
 
 /* Login container specific styling */
 .login-container {

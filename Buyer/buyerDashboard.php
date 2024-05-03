@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Agent Dashboard</title>
+    <title>Buyer Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="../styles.css"> 
@@ -13,57 +13,54 @@
 </head>
 <body>
   
-    <!-- Navigation Bar (Logged In) -->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <!-- Brand -->
-    <a class="navbar-brand" href="REdashboard.php">Real Estate</a>
+   <!-- Navigation Bar (Logged In) -->
+   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" href="buyerDashboard.php">Real Estate</a>
 
-    <!-- Links -->
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-        <a class="nav-link" href="REdashboard.php">Home</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" href="houseListing.php">House Listing</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" href="viewRatingReview.php">Rating/Review</a>
-        </li>
-    </ul>
-    <!-- Right-aligned dropdown for admin options -->
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="adminMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Welcome Agent
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-            <a class="dropdown-item" href="../logout.php">Logout</a> <!-- Link to logout.php-->
+        <!-- Toggler/Collapsible Button -->
+        <button class="navbar-toggler" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto nav-links-spacing">
+                <li class="nav-item">
+                    <a class="nav-link active-nav" href="buyerDashboard.php">Property</a> <!-- 'active-nav' class added here -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mortgageCalculator.php">Mortgage Calculator</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="rateNreview.php">Rating/Review</a>
+                </li>
+            </ul>
+
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Welcome Buyer
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="../logout.php">Logout</a>
+                    </div>
+                </li>
+            </ul>
         </div>
-        </li>
-    </ul>
     </nav>
 
-<!-- Account List -->
-<div class="container AccContain  mt-5">
-    <!-- Alert bar -->
-    <div class="suspendalert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        Property Listing Removed.
-    </div>
-
-    <!-- Search Bar -->
+<!-- Search Bar -->
+<div class="container mt-5">
     <div class="search-container">
         <div class="searchbox">
             <p><b>Search Property Listing</b></p>
-            <input type="text" id="searchBox" name="searchBox" placeholder="Search.." size="40">
-        </div>
-        <div class="user-buttons">
-            <a href="createListing.php" class="button">Create Listing</a>
-            <a href="removeListing.php" class="button">Remove Listing</a>
-            <a href="" class="button">Update Listing</a>
+            <input type="text" id="searchBox" name="searchBox" placeholder="Search..">
         </div>
     </div>
 </div>
+
 
 
 <!-- Property Listings -->
@@ -74,87 +71,87 @@
                 <!-- Sample Property Card -->
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <div class="card-img-top-container">
-                            <input type="checkbox" class="remove-checkbox">
-                            <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        </div>
+                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
                             <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                        </div>
+                        <div class="card-footer">
+                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <div class="card-img-top-container">
-                            <input type="checkbox" class="remove-checkbox">
-                            <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        </div>
+                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
                             <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                        </div>
+                        <div class="card-footer">
+                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
                         </div>
                     </div>
-                </div> <div class="col-md-4 mb-4">
+                </div><div class="col-md-4 mb-4">
                     <div class="card">
-                        <div class="card-img-top-container">
-                            <input type="checkbox" class="remove-checkbox">
-                            <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        </div>
+                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
                             <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                        </div>
+                        <div class="card-footer">
+                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
                         </div>
                     </div>
-                </div> <div class="col-md-4 mb-4">
+                </div><div class="col-md-4 mb-4">
                     <div class="card">
-                        <div class="card-img-top-container">
-                            <input type="checkbox" class="remove-checkbox">
-                            <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        </div>
+                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
                             <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                        </div>
+                        <div class="card-footer">
+                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
                         </div>
                     </div>
-                </div> <div class="col-md-4 mb-4">
+                </div><div class="col-md-4 mb-4">
                     <div class="card">
-                        <div class="card-img-top-container">
-                            <input type="checkbox" class="remove-checkbox">
-                            <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        </div>
+                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
                             <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                        </div>
+                        <div class="card-footer">
+                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
                         </div>
                     </div>
-                </div> <div class="col-md-4 mb-4">
+                </div><div class="col-md-4 mb-4">
                     <div class="card">
-                        <div class="card-img-top-container">
-                            <input type="checkbox" class="remove-checkbox">
-                            <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        </div>
+                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
                             <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                        </div>
+                        <div class="card-footer">
+                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
                         </div>
                     </div>
-                </div> <div class="col-md-4 mb-4">
+                </div><div class="col-md-4 mb-4">
                     <div class="card">
-                        <div class="card-img-top-container">
-                            <input type="checkbox" class="remove-checkbox">
-                            <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        </div>
+                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
                             <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                        </div>
+                        <div class="card-footer">
+                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
                         </div>
                     </div>
                 </div>
@@ -180,24 +177,6 @@
             console.log('Removed from favorites');
         }
     }
-    fun
-    ction updateActionButtons() {
-    const checkboxes = document.querySelectorAll('.remove-checkbox');
-    const isAnyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-    
-    const removeButton = document.getElementById('remove-selected');
-    if (isAnyChecked) {
-        removeButton.disabled = false;
-    } else {
-        removeButton.disabled = true;
-    }
-}
-
-// Add event listeners to checkboxes
-document.querySelectorAll('.remove-checkbox').forEach(checkbox => {
-    checkbox.addEventListener('change', updateActionButtons);
-});
-
 
 
 </script>

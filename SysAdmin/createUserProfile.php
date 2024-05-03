@@ -57,22 +57,11 @@
               <div class="form-group2">
                   <div class="row">
                     <div class="col-3">
-                        <label for="name">Name:</label>
-                    </div>
-                    <div class="col">
-                        <input readonly type="text" id="name" value="Gary">
-                    </div>
-                </div>
-              </div>
-
-              <div class="form-group2">
-                  <div class="row">
-                    <div class="col-3">
-                        <label for="role">Role:</label>
+                        <label for="role">Name:</label>
                     </div>
                     <div class="col">
                         <!-- Value here should reflect database value-->
-                        <input readonly type="text" id="name" value="Buyer">
+                        <input type="text" id="name" value="Buyer">
                     </div>
                 </div>
               </div>
