@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Suspend Users</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../styles.css"> 
+    <link rel="stylesheet" href="/styles.css"> 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -23,15 +23,15 @@
         <a class="nav-link" href="adminDashboard.php">Home</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link" href="userAccounts.php">User Accounts</a>
-      </li>
-      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            User Profile
+            User Accounts
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-            <a class="dropdown-item" href="suspendedProfile.php">Suspended Profiles</a>
+            <a class="dropdown-item" href="suspendedAcc.php">Suspended Users</a>
         </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="userProfile.php">User Profiles</a>
       </li>
     </ul>
     <!-- Right-aligned dropdown for admin options -->
@@ -53,20 +53,20 @@
     <!-- Alert bar -->
     <div class="suspendalert">
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        Profile suspended successfully
+        User suspended successfully
     </div>
 
     <!-- Search Bar -->
     <div class="search-container">
         <div class="searchbox">
-            <p><b>Search User Profile</b></p>
+            <p><b>Search User Account</b></p>
             <input type="text" id="searchBox" name="searchBox" placeholder="Search.." size="40">
         </div>
         <div class="user-buttons">
-            <a href="createUserProfile.php" class="button">Create Profile</a>
-            <a href="editUserProfile.php" class="button">Edit Profile</a>
-            <a href="viewProfile.php" class="button">View Profile</a>
-            <a onclick="showSuspendConfirmation()" class="button">Suspend Profile</a>
+            <a href="createUserAcc.php" class="button">Create User</a>
+            <a href="editUserAcc.php" class="button">Edit User</a>
+            <a href="viewUser.php" class="button">View User</a>
+            <a onclick="showSuspendConfirmation()" class="button">Suspend User</a>
         </div>
     </div>
 
@@ -79,16 +79,28 @@
         </div>
         <div class="suspendList">
             <div class="checkbox">
-                <input class="chkbx" type="checkbox" id="John" name="checkbox1">
-                <p>John</p>
+                <input class="chkbx" type="checkbox" id="tuser1" name="checkbox1">
+                <p>Test User 1</p>
             </div>
             <div class="checkbox">
-                <input class="chkbx" type="checkbox" id="Ignatius" name="checkbox1">
-                <p>Ignatius</p>
+                <input class="chkbx" type="checkbox" id="tuser2" name="checkbox1">
+                <p>Test User 2</p>
             </div>
             <div class="checkbox">
-                <input class="chkbx" type="checkbox" id="Penny" name="checkbox1">
-                <p>Penny</p>
+                <input class="chkbx" type="checkbox" id="tuser3" name="checkbox1">
+                <p>Test User 3</p>
+            </div>
+            <div class="checkbox">
+                <input class="chkbx" type="checkbox" id="tuser4" name="checkbox1">
+                <p>Test User 4</p>
+            </div>
+            <div class="checkbox">
+                <input class="chkbx" type="checkbox" id="tuser5" name="checkbox1">
+                <p>Test User 5</p>
+            </div>
+            <div class="checkbox">
+                <input class="chkbx" type="checkbox" id="tuser6" name="checkbox1">
+                <p>Test User 6</p>
             </div>
         </div>
     </div>
@@ -96,12 +108,12 @@
     <!-- Suspend User Confirmation Page (Hidden for now)-->
     <div class="popup-msg">
         <div class="confirm-suspend mt-5">
-            <h1>User Profile Suspended</h1>
+            <h1>User Account Suspended</h1>
             <!-- logic to get data reflected here for suspended user types-->
-            <p><b>User 'John' is suspended</b></p>
+            <p><b>User 'Test user 1', 'Test user 3' is suspended</b></p>
             <div class="popup-btn mt-5">
                 <a href="#" class="button" id="undo-suspend" type="undoSuspend">Undo</button>
-                <a href="userProfile.php" class="button">Confirm</a>
+                <a href="userAccounts.php" class="button">Confirm</a>
             </div>
         </div>
     </div>
@@ -119,18 +131,12 @@
         confirmationPage.scrollIntoView();
     }
 
+    // Checking of all checkbox
     document.addEventListener('DOMContentLoaded', function () {
-        // Select the 'Select All' checkbox
-        var selectAll = document.getElementById('select-all-users');
-        
-        // Add a change event listener to the 'Select All' checkbox
-        selectAll.addEventListener('change', function (e) {
-        // Select all checkboxes with the 'chkbx' class
+        var selectAllCheckbox = document.getElementById('select-all-users');
+        selectAllCheckbox.addEventListener('change', function (e) {
         var allCheckboxes = document.querySelectorAll('.chkbx');
-        
-        // Loop through all checkboxes and set their 'checked' property
         allCheckboxes.forEach(function (checkbox) {
-            // Set the checked state to match the 'Select All' checked state
             checkbox.checked = e.target.checked;
         });
         });
