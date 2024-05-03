@@ -1,5 +1,5 @@
 <?php
-include 'Database.php';
+include_once 'Database.php';
 
 class User {
     private $conn;

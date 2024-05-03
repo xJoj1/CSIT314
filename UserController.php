@@ -1,6 +1,6 @@
 <?php
-include 'Database.php';
-include 'User.php';
+include_once 'Database.php';
+include_once 'User.php';
 
 class UserController {
     private $user;
@@ -11,29 +11,34 @@ class UserController {
     }
 
     public function loginUser($username, $password, $userType) {
-        $stmt = $this->user->findUserByUsernameAndType($username, $userType);
-        $result = $stmt->get_result();
-        $user = $result->fetch_assoc();
+        try {
+            $stmt = $this->user->findUserByUsernameAndType($username, $userType);
+            $result = $stmt->get_result();
+            $user = $result->fetch_assoc();
 
-        if ($user && password_verify($password, $user['password'])) {
-            session_start();
-            $_SESSION['loggedin'] = true;
-            $_SESSION['user_id'] = $user['user_id'];
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['user_type'] = $userType;
+            if ($user && password_verify($password, $user['password'])) {
+                session_start();
+                $_SESSION['loggedin'] = true;
+                $_SESSION['user_id'] = $user['user_id'];
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['user_type'] = $userType;
 
-            switch ($userType) {
-                case 'Admin':
-                    header("location: adminDashboard.php");
-                    break;
-                case 'Agent':
-                    header("location: REdashboard.php");
-                    break;
-                // Handle other user types with appropriate redirection
+                // Redirect based on user type
+                switch ($userType) {
+                    case 'Admin':
+                        header("location: adminDashboard.php");
+                        exit;
+                    case 'Agent':
+                        header("location: REdashboard.php");
+                        exit;
+                    // Add other cases as needed
+                }
+            } else {
+                throw new Exception("Invalid username or password.");
             }
-            exit;
-        } else {
-            return "Invalid username or password.";
+        } catch (Exception $e) {
+            // Optionally log the error and then return or handle it
+            return $e->getMessage(); // For debugging, might use a user-friendly message in production
         }
     }
 }
