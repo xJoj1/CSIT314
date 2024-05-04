@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Buyer Dashboard</title>
+    <title>MortgageCalculator</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="/CSIT314/styles.css"> 
@@ -12,9 +12,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-  
-   <!-- Navigation Bar (Logged In) -->
-   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <!-- Navigation Bar (Logged In) -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <!-- Brand -->
         <a class="navbar-brand" href="buyerDashboard.php">Real Estate</a>
 
@@ -27,16 +26,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto nav-links-spacing">
                 <li class="nav-item">
-                    <a class="nav-link active-nav" href="buyerDashboard.php">Property</a> <!-- 'active-nav' class added here -->
+                    <a class="nav-link" href="buyerDashboard.php">Property</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="mortgageCalculator.php">Mortgage Calculator</a>
+                    <a class="nav-link active-nav" href="mortgageCalculator.php">Mortgage Calculator</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="rateNreview.php">Rating/Review</a>
                 </li>
             </ul>
-
 
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
@@ -51,135 +49,86 @@
         </div>
     </nav>
 
-<!-- Search Bar -->
-<div class="container mt-5">
-    <div class="search-container">
-        <div class="searchbox">
-            <p><b>Search Property Listing</b></p>
-            <input type="text" id="searchBox" name="searchBox" placeholder="Search..">
-        </div>
-    </div>
-</div>
-
-
-
-<!-- Property Listings -->
-<div class="container mt-5">
-    <div class="listing-container">
-        <div class="scrollList">
-            <div class="row">
-                <!-- Sample Property Card -->
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+    <!-- Mortgage Calculator -->
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">Mortgage Calculator</div>
+            <div class="card-body">
+            <form id="mortgage-container" action="/Controller/mortgageCalculatorController.php" method="post">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="loanAmount">Loan Amount:</label>
                         </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
+                        <div class="col-sm-7">
+                            <input type="number" class="form-control" id="loanAmount" name="loanAmount" required>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="downPayment">Down Payment:</label>
                         </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
-                        </div>
-                    </div>
-                </div><div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
-                        </div>
-                    </div>
-                </div><div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
-                        </div>
-                    </div>
-                </div><div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
-                        </div>
-                    </div>
-                </div><div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
-                        </div>
-                    </div>
-                </div><div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
+                        <div class="col-sm-7">
+                            <input type="number" class="form-control" id="downPayment" name="downPayment" required>
                         </div>
                     </div>
                 </div>
-                <!-- Continue adding cards as needed -->
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="interestRate">Interest Rate (%):</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <input type="number" step="0.01" class="form-control" id="interestRate" name="interestRate" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="loanTerm">Loan Term (years):</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <input type="number" class="form-control" id="loanTerm" name="loanTerm" required>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Calculate Mortgage</button>
+            </form>
+            <p id="result">
+                <?php
+                if (isset($_GET['result'])) {
+                    echo htmlspecialchars($_GET['result']);
+                }
+                ?>
+            </p>
+
             </div>
         </div>
     </div>
-</div>
 
+    <script>
+        function calculateMortgage() {
+        var loanAmount = document.getElementById('loanAmount').value;
+        var downPayment = document.getElementById('downPayment').value;
+        var interestRate = document.getElementById('interestRate').value;
+        var loanTerm = document.getElementById('loanTerm').value;
 
-<script>
-    
-    function toggleFavorite(element) {
-        // Toggle between 'far' and 'fas' to change the icon style
-        element.classList.toggle('far');
-        element.classList.toggle('fas');
-        element.classList.toggle('favorited'); // This class will handle the color change
+        var monthlyInterest = (interestRate / 100) / 12;
+        var numberOfPayments = loanTerm * 12;
 
-        // Optional: Console log to check the state
-        if (element.classList.contains('favorited')) {
-            console.log('Added to favorites');
+        var monthlyPayment = (loanAmount - downPayment) * 
+            (monthlyInterest * Math.pow(1 + monthlyInterest, numberOfPayments)) /
+            (Math.pow(1 + monthlyInterest, numberOfPayments) - 1);
+
+        if (!isFinite(monthlyPayment)) {
+            document.getElementById('result').innerHTML = 'Please check your input values.';
         } else {
-            console.log('Removed from favorites');
+            document.getElementById('result').innerHTML = 'Monthly Payment: $' + monthlyPayment.toFixed(2);
         }
     }
-
-
-</script>
-
+    </script>
 </body>
 </html>
