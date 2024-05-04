@@ -26,7 +26,10 @@
             foreach ($idsToRemove as $id) {
                 $controller->removePropertyListing($id);
             }
-            echo "<div class='alert alert-success'>Selected listings have been removed.</div>";
+            echo "<div class='alert alert-success'> Selected listings have been removed. </div>";
+        }
+        else {
+            echo "<div class='alert alert-error'> Failed to remove listings. </div>";
         }
 
         // Fetching all listings to display
