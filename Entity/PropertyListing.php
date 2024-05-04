@@ -60,5 +60,16 @@ class PropertyListing {
             return false;
         }
     }
+
+    // this is used to check for duplicate !!
+    public function isDuplicate($address, $price, $area) {
+        $query = "SELECT id FROM " . $this->table . " WHERE address = ? AND price = ? AND size = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('sdi', $address, $price, $area);  // 'sdi' corresponds to string, double, integer types
+        $stmt->execute();
+        $stmt->store_result();
+
+        return $stmt->num_rows > 0;  // Returns true if a duplicate is found, false otherwise
+    }
 }
 ?>

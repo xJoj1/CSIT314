@@ -23,7 +23,7 @@
         <a class="nav-link" href="REdashboard.php">Home</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="houseListing.php">House Listing</a>
+        <a class="nav-link" href="viewPropertyListing.php">House Listing</a>
         </li>
         <li class="nav-item">
         <a class="nav-link" href="viewRatingReview.php">Rating/Review</a>
@@ -58,7 +58,7 @@
         </div>
         <div class="user-buttons">
             <a href="createListing.php" class="button">Create Listing</a>
-            <a href="removeListing.php" class="button">Remove Listing</a>
+            <a href="removePropertyListing.php" class="button">Remove Listing</a>
             <a href="" class="button">Update Listing</a>
         </div>
     </div>

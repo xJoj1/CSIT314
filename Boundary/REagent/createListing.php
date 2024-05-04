@@ -11,6 +11,24 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+    <?php
+    require_once '../../Controller/CreateListingController.php';
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $controller = new CreateListingController();
+        $formData = [
+            'price' => $_POST['price'] ?? null,
+            'beds' => $_POST['beds'] ?? null,
+            'baths' => $_POST['baths'] ?? null,
+            'area' => $_POST['area'] ?? null,
+            'address' => $_POST['address'] ?? null,
+            'description' => $_POST['description'] ?? null,
+            'image' => $_FILES['image']['name'] ?? null
+        ];
+        $result = $controller->createListing($formData);
+        echo "<script>alert('$result');</script>";
+    }
+    ?>
 
     <!-- Navigation Bar (Logged In) -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -32,7 +50,7 @@
                     Welcome Agent
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-                    <a class="dropdown-item" href="../../logout.php">Logout</a> <!-- Link to logout.php -->
+                    <a class="dropdown-item" href="../../logout.php">Logout</a>
                 </div>
             </li>
         </ul>
@@ -42,140 +60,55 @@
         <div class="create-container">
             <a href="houseListing.php" class="back-arrow">‹</a>
             <h2>Create Property Listing</h2>
-            <form id="propertyForm" onsubmit="return validateForm()" method="post" novalidate>
-            <div class="form-group">
-                    <div class="row">
-                        <div class="col-3">
-                            <label for="price">Price:</label>
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="price" placeholder="$150,000">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2">
-                            <label></label>
-                        </div>
-                        <div class="col">
-                            <div class="col" id="priceError" class="error-message"></div>
-                        </div>
-                    </div>
-            </div>
-
-        
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-3">
-                        <label for="beds">Bed:</label>
-                    </div>
-                    <div class="col-2">
-                        <select class="form-control" id="beds">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
-                    </div>
-                    
-                    <div class="col-1"></div>
-                    <div class="col-2">
-                        <label for="baths">Bath:</label>
-                    </div>
-                    <div class="col-2">
-                        <select class="form-control" id="baths">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
-                    </div>
+            <form id="propertyForm" onsubmit="return validateForm()" method="post" enctype="multipart/form-data" novalidate>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="text" class="form-control" id="price" name="price" placeholder="$150,000">
                 </div>
-            </div><br>
-
-
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-3">
-                        <label for="area">Area:</label>
-                    </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="area" placeholder="1000 sqft">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3">
-                            <label></label>
-                        </div>
-                        <div class="col">
-                            <div class="col" id="areaError" class="error-message"></div>
-                        </div>
+                
+                <div class="form-group">
+                    <label for="beds">Bed:</label>
+                    <select class="form-control" id="beds" name="beds">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-3">
-                        <label for="address">Address:</label>
-                    </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="address" placeholder="Sample Address Blk 123">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3">
-                            <label></label>
-                        </div>
-                        <div class="col">
-                            <div class="col" id="addressError" class="error-message"></div>
-                        </div>
+                <div class="form-group">
+                    <label for="baths">Bath:</label>
+                    <select class="form-control" id="baths" name="baths">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-3">
-                        <label for="description">Description:</label>
-                    </div>
-                        <div class="col">
-                            <textarea class="form-control" id="description" rows="3" placeholder="Description of the property"></textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3">
-                            <label></label>
-                        </div>
-                        <div class="col">
-                            <div class="col" id="descriptionError" class="error-message"></div>
-                        </div>
+                <div class="form-group">
+                    <label for="area">Area:</label>
+                    <input type="text" class="form-control" id="area" name="area" placeholder="1000 sqft">
                 </div>
-            </div>
 
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-3">
-                        <label for="image">Image:</label>
-                    </div>
-                        <div class="col">
-                        <input type="file" class="form-control-file" id="image">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3">
-                            <label></label>
-                        </div>
-                        <div class="col">
-                            <div class="col" id="imageError" class="error-message"></div>
-                        </div>
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Sample Address Blk 123">
                 </div>
-            </div>
 
-            <!-- Confirm button -->
-            <div class="form-group mt-5">
-                <div class="row">
-                    <div class="col-3 m-auto">
-                        <button type="submit" class="btn-primary btn-block">Confirm</button>
-                    </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Description of the property"></textarea>
                 </div>
-            </div>
 
+                <div class="form-group">
+                    <label for="image">Image:</label>
+                    <input type="file" class="form-control-file" id="image" name="image">
+                </div>
+
+                <!-- Confirm button -->
+                <div class="form-group mt-5">
+                    <button type="submit" class="btn btn-primary btn-block">Confirm</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -191,43 +124,41 @@
 
         // Validate Price
         if (!price) {
-            errorMessage += "Please enter the price.\n";
+            errorMessage += "Please enter the price.\\n";
             isValid = false;
         } else if (!/^\$?\d+(,\d{3})*(\.\d{1,2})?$/.test(price)) {
-            errorMessage += "Invalid price format. Use like $150,000.\n";
+            errorMessage += "Invalid price format. Use like $150,000.\\n";
             isValid = false;
         }
 
         // Validate Area
         if (!area) {
-            errorMessage += "Please enter the area.\n";
+            errorMessage += "Please enter the area.\\n";
             isValid = false;
-        } else if (!/^\d+$/.test(area.replace(/\s*sqft\s*/, ''))) { // Stripping 'sqft' and spaces for validation
-            errorMessage += "Area should be a numeric value indicating square feet.\n";
+        } else if (!/^\d+$/.test(area.replace(/\s*sqft\s*/, ''))) {
+            errorMessage += "Area should be a numeric value indicating square feet.\\n";
             isValid = false;
         }
 
         // Validate Address
         if (!address) {
-            errorMessage += "Please enter the address.\n";
+            errorMessage += "Please enter the address.\\n";
             isValid = false;
         }
 
         // Validate Description
         if (!description) {
-            errorMessage += "Please enter a description.\n";
+            errorMessage += "Please enter a description.\\n";
             isValid = false;
         }
 
         // Show error messages
         if (!isValid) {
-            alert("Validation Error:\n" + errorMessage);
+            alert("Validation Error:\\n" + errorMessage);
         }
 
         return isValid;
     }
-</script>
-
-
+    </script>
 </body>
 </html>
