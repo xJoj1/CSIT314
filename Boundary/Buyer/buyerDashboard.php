@@ -30,7 +30,7 @@
                     <a class="nav-link active-nav" href="buyerDashboard.php">Property</a> 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="mortgageCalculator.php">Mortgage Calculator</a>
+                    <a class="nav-link" href="mortgageCalculatorUI.php">Mortgage Calculator</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="rateNreview.php">Rating/Review</a>
