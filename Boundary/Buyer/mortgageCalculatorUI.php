@@ -111,24 +111,33 @@
 
     <script>
         function calculateMortgage() {
-        var loanAmount = document.getElementById('loanAmount').value;
-        var downPayment = document.getElementById('downPayment').value;
-        var interestRate = document.getElementById('interestRate').value;
-        var loanTerm = document.getElementById('loanTerm').value;
+            var loanAmount = document.getElementById('loanAmount').value;
+            var downPayment = document.getElementById('downPayment').value;
+            var interestRate = document.getElementById('interestRate').value;
+            var loanTerm = document.getElementById('loanTerm').value;
 
-        var monthlyInterest = (interestRate / 100) / 12;
-        var numberOfPayments = loanTerm * 12;
+            var monthlyInterest = (interestRate / 100) / 12;
+            var numberOfPayments = loanTerm * 12;
 
-        var monthlyPayment = (loanAmount - downPayment) * 
-            (monthlyInterest * Math.pow(1 + monthlyInterest, numberOfPayments)) /
-            (Math.pow(1 + monthlyInterest, numberOfPayments) - 1);
+            var monthlyPayment = (loanAmount - downPayment) * 
+                (monthlyInterest * Math.pow(1 + monthlyInterest, numberOfPayments)) /
+                (Math.pow(1 + monthlyInterest, numberOfPayments) - 1);
 
-        if (!isFinite(monthlyPayment)) {
-            document.getElementById('result').innerHTML = 'Please check your input values.';
-        } else {
+            if (!isFinite(monthlyPayment)) {
+                alertError('Please check your input values.');
+            } else {
+                displayResults(monthlyPayment);
+            }
+        }
+
+        function alertError(message) {
+            document.getElementById('result').innerHTML = message;
+        }
+
+        function displayResults(monthlyPayment) {
             document.getElementById('result').innerHTML = 'Monthly Payment: $' + monthlyPayment.toFixed(2);
         }
-    }
     </script>
+
 </body>
 </html>

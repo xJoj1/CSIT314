@@ -1,6 +1,5 @@
 <?php
-
-class MortgageCalculator {
+class MortgageCalculatorController {
     public function calculateMortgage($loanAmount, $downPayment, $interestRate, $loanTerm) {
         if ($loanAmount > 0 && $interestRate > 0 && $loanTerm > 0) {
             $loanPrincipal = $loanAmount - $downPayment;
@@ -23,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $loanTerm = isset($_POST['loanTerm']) ? intval($_POST['loanTerm']) : 0;
 
     // Create an instance of the calculator
-    $calculator = new MortgageCalculator();
+    $calculator = new MortgageCalculatorController();
     $result = $calculator->calculateMortgage($loanAmount, $downPayment, $interestRate, $loanTerm);
 
     // Redirect or handle the output as needed
