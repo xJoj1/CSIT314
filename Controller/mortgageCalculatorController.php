@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $calculator->calculateMortgage($loanAmount, $downPayment, $interestRate, $loanTerm);
 
     // Redirect or handle the output as needed
-    header("Location: /Boundary/Buyer/mortgageCalculator.php?result=" . urlencode($result));
+    header("Location: /Boundary/Buyer/mortgageCalculatorUI.php?result=" . urlencode($result));
     exit();
 }
 ?>
