@@ -11,7 +11,7 @@ class User {
     }
 
     public function findUserByUsernameAndType($username, $userType) {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE username = ? AND user_type = ?";
+        $query = "SELECT * FROM " . $this->table_name . " WHERE username = ? AND profile_type = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("ss", $username, $userType);
         $stmt->execute();

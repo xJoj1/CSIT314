@@ -15,7 +15,7 @@ class UserController {
             $_SESSION['loggedin'] = true;
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['username'];
-            $_SESSION['user_type'] = $userType;
+            $_SESSION['profile_type'] = $userType;
 
             switch ($userType) {
                 case 'Admin':
@@ -28,7 +28,7 @@ class UserController {
                     header("location: Boundary/Buyer/buyerDashboard.php");
                     exit;
                 case 'Seller':
-                    header("location: sellerDashboard.php");
+                    header("location: Boundary/Seller/sellerDashboard.php");
                     exit;
                 default:
                     return "Access Denied: Unknown user type.";

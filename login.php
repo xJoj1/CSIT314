@@ -10,12 +10,12 @@ $login_err = ""; // Initialize an error message variable
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['loginID'];
     $password = $_POST['password'];
-    $userType = $_POST['userType'];
+    $profileType = $_POST['userType'];
     
-    $login_err = $userController->loginUser($username, $password, $userType);
+    $login_err = $userController->loginUser($username, $password, $profileType);
 }
 
-include 'loginForm.php'; // Separate the HTML part into another file for better organization
+
 ?>
 
 <!DOCTYPE html>
