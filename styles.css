@@ -570,3 +570,30 @@ h1 {
   height: 10vw; /* size of each listing */
 }
 
+/* ----------------- mortgageCalculator BELOW ----------------------------- */
+
+.mortgage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  
+}
+
+.card-header, .card-body form button {
+  text-align: center; /* Center align text */
+  width: 100%; /* Full width */
+}
+
+.form-group input, .form-group label {
+  width: 100%; /* Ensure full width for inputs and labels */
+}
+
+/* Mortgage Calculator specific styling */
+#mortgage-container .row {
+  margin-bottom: 10px; /* Adds a bit of space below each form group */
+}
+
+.calculator-button {
+  text-align: center;
+}

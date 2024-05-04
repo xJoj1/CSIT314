@@ -164,6 +164,9 @@
     </div>
 </div>
 
+<!-- Button to remove lisitng -->
+<button id="unsuspendUser" type="unSuspendUser">Remove Listing</button>
+
 
 <script>
     
