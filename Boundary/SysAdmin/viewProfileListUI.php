@@ -95,33 +95,9 @@ $profiles = $controller->getAllProfiles();
             </form>
         </div>
     </div>
-
-    <!-- Suspend User Confirmation Page (Hidden for now)-->
-    <div class="popup-msg">
-        <div class="confirm-suspend mt-5">
-            <h1>User Profile Suspended</h1>
-            <!-- logic to get data reflected here for suspended user types-->
-            <p><b>User 'John' is suspended</b></p>
-            <div class="popup-btn mt-5">
-                <a href="#" class="button" id="undo-suspend" type="undoSuspend">Undo</button>
-                <a href="userProfile.php" class="button">Confirm</a>
-            </div>
-        </div>
-    </div>
 </div>
 
 <script>
-    function showSuspendConfirmation() {
-        // Get the confirmation page element
-        var confirmationPage = document.querySelector('.popup-msg');
-    
-        // Set the display property to 'block' to show it
-        confirmationPage.style.display = 'block';
-    
-        // Optionally, scroll to the confirmation page
-        confirmationPage.scrollIntoView();
-    }
-
     document.addEventListener('DOMContentLoaded', function () {
         // Select the 'Select All' checkbox
         var selectAll = document.getElementById('select-all-users');

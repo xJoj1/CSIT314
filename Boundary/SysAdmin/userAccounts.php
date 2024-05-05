@@ -66,7 +66,7 @@
             <a href="createUserAcc.php" class="button">Create User</a>
             <a href="editUserAcc.php" class="button">Edit User</a>
             <a href="viewUser.php" class="button">View User</a>
-            <a onclick="showSuspendConfirmation()" class="button">Suspend User</a>
+            <a href="suspendUserProfileUI.php" class="button">Suspend User</a>
         </div>
     </div>
 
@@ -120,17 +120,6 @@
 </div>
 
 <script>
-    function showSuspendConfirmation() {
-        // Get the confirmation page element
-        var confirmationPage = document.querySelector('.popup-msg');
-    
-        // Set the display property to 'block' to show it
-        confirmationPage.style.display = 'block';
-    
-        // Optionally, scroll to the confirmation page
-        confirmationPage.scrollIntoView();
-    }
-
     // Checking of all checkbox
     document.addEventListener('DOMContentLoaded', function () {
         var selectAllCheckbox = document.getElementById('select-all-users');
