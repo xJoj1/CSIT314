@@ -84,77 +84,89 @@ $profiles = $controller->getAllProfiles();
                 <a onclick="showSuspendConfirmation()" class="button">Suspend Profile</a>
             </div>
         </div>
-        <div class="suspendList">
-            <form id="profileSelectionForm">
-                <?php foreach ($profiles as $profile): ?>
-                    <div class="checkbox">
-                        <input class="chkbx" type="radio" name="profile_id" id="profile<?php echo $profile['profile_id']; ?>" value="<?php echo $profile['profile_id']; ?>">
-                        <label for="profile<?php echo $profile['profile_id']; ?>"><?php echo htmlspecialchars($profile['profile_type']); ?></label>
-                    </div>
-                <?php endforeach; ?>
-            </form>
+
+        <!-- Main Body (List) -->
+        <div class="suspend-container">
+            <div class="selectAll">
+                <input class="checkbox" type="checkbox" id="select-all-users" name="select-all-users">
+                <p><b>Select All Users</b></p>
+            </div>
+            <div class="suspendList">
+                <form id="profileSelectionForm">
+                    <?php foreach ($profiles as $profile): ?>
+                        <div class="checkbox">
+                            <input class="chkbx" type="checkbox" name="profile_id[]"
+                                id="profile<?php echo $profile['profile_id']; ?>"
+                                value="<?php echo $profile['profile_id']; ?>">
+                            <label
+                                for="profile<?php echo $profile['profile_id']; ?>"><?php echo htmlspecialchars($profile['profile_type']); ?></label>
+                        </div>
+                    <?php endforeach; ?>
+                </form>
+            </div>
         </div>
-    </div>
-</div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
 
-        var selectAllCheckbox = document.getElementById('select-all-users');
-        var profileCheckboxes = document.querySelectorAll('.chkbx');
+    <script>
 
-        selectAllCheckbox.addEventListener('change', function () {
+        document.addEventListener('DOMContentLoaded', function () {
 
-            profileCheckboxes.forEach(checkbox => checkbox.checked = this.checked);
+            var selectAllCheckbox = document.getElementById('select-all-users');
+            var profileCheckboxes = document.querySelectorAll('.chkbx');
 
-        });
+            selectAllCheckbox.addEventListener('change', function () {
 
-        profileCheckboxes.forEach(function (checkbox) {
+                profileCheckboxes.forEach(checkbox => checkbox.checked = this.checked);
 
-            checkbox.addEventListener('change', function () {
+            });
 
-                if (!this.checked) {
+            profileCheckboxes.forEach(function (checkbox) {
 
-                    selectAllCheckbox.checked = false;
+                checkbox.addEventListener('change', function () {
 
-                } else {
+                    if (!this.checked) {
 
-                    const allChecked = Array.from(profileCheckboxes).every(chk => chk.checked);
-                    selectAllCheckbox.checked = allChecked;
+                        selectAllCheckbox.checked = false;
 
-                }
+                    } else {
+
+                        const allChecked = Array.from(profileCheckboxes).every(chk => chk.checked);
+                        selectAllCheckbox.checked = allChecked;
+
+                    }
+
+                });
 
             });
 
         });
 
-    });
-
-    function editSelectedProfile() {
-        const selectedProfile = document.querySelector('input[name="profile_id"]:checked');
-        if (selectedProfile) {
-            window.location.href = 'editUserProfileUI.php?profile_id=' + selectedProfile.value;
-        } else {
-            alert('Please select a profile to edit.');
-        }
-    }
-
-    function viewSelectedProfile() {
-        const selectedProfiles = document.querySelectorAll('input[name="profile_id[]"]:checked');
-
-        if (selectedProfiles.length > 0) {
-
-            let profileIds = [];
-            selectedProfiles.forEach(profile => profileIds.push(profile.value));
-            window.location.href = 'viewUserProfile.php?profile_ids=' + profileIds.join(',');
-
-        } else {
-
-            alert('Please select at least one profile to view.');
-
+        function editSelectedProfile() {
+            const selectedProfile = document.querySelector('input[name="profile_id"]:checked');
+            if (selectedProfile) {
+                window.location.href = 'editUserProfileUI.php?profile_id=' + selectedProfile.value;
+            } else {
+                alert('Please select a profile to edit.');
+            }
         }
 
-    }
+        function viewSelectedProfile() {
+
+            const selectedProfiles = document.querySelectorAll('input[name="profile_id[]"]:checked');
+
+            if (selectedProfiles.length > 0) {
+
+                let profileIds = [];
+                selectedProfiles.forEach(profile => profileIds.push(profile.value));
+                window.location.href = 'viewUserProfile.php?profile_ids=' + profileIds.join(',');
+
+            } else {
+
+                alert('Please select at least one profile to view.');
+
+            }
+
+        }
 
     </script>
 
