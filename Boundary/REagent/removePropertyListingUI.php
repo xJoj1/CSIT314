@@ -18,7 +18,7 @@
         require_once '../../Controller/REagent/RemovePropertyListingController.php';
         
         $database = new Database();
-        $propertyListing = new PropertyListing($database);
+        $propertyListing = new PropertyListing($database); // entity
         $controller = new removePropertyListingController($propertyListing);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_ids'])) {
@@ -94,7 +94,7 @@
                 </div>
             </div>
 
-            <!-- Property Listings -->
+            Property Listings
             <div class="listing-container">
                 <div class="scrollList">
                     <div class="row">

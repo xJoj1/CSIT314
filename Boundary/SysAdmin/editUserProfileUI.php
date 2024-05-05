@@ -3,16 +3,16 @@ require_once '../../Controller/SysAdmin/EditUserProfileController.php';
 
 $controller = new EditUserProfileController();
 $profile = null;
+$message = '';
+
 if (isset($_GET['profile_id']) && !empty($_GET['profile_id'])) {
   $profileId = $_GET['profile_id'];
   $profile = $controller->getProfile($profileId);
   if ($profile === null) {
-      echo "Profile data is not available.";
-      exit; // Optionally handle this more gracefully
+      $message = "Profile data is not available.";
   }
 } else {
-  echo "No Profile ID provided.";
-  exit; // Optionally handle this more gracefully
+  $message = "No Profile ID provided.";
 }
 
 // Handle form submission
@@ -84,6 +84,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <div class="container mt-5">
     <div class="create-container">
+        <?php if ($message): ?>
+            <div class="alert alert-warning">
+                <?php echo $message; ?>
+            </div>
+        <?php endif; ?>
+        
         <?php if ($profile): ?>
         <a href="viewProfileListUI.php" class="back-arrow">‹</a>
           <h2>Edit User Profile</h2>

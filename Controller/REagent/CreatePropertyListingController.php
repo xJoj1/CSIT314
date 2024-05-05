@@ -20,10 +20,7 @@ class CreatePropertyListingController {
         $description = $formData['description'];
         $image = $formData['image'];  // This would be the path or image data
 
-        // Validate data
-        if (!$this->validateData($price, $beds, $baths, $area, $address, $description)) {
-            return "Validation failed. Please check input data.";
-        }
+     
 
         // Check for duplicate listings
         if ($this->propertyListing->isDuplicate($address, $price, $area)) {
@@ -38,11 +35,6 @@ class CreatePropertyListingController {
         } else {
             return "Failed to create listing.";
         }
-    }
-
-    private function validateData($price, $beds, $baths, $area, $address, $description) {
-        // Implement validation logic here
-        return true; // Simplified for example purposes
     }
 }
 ?>
