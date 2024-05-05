@@ -54,7 +54,7 @@
         <div class="card">
             <div class="card-header">Mortgage Calculator</div>
             <div class="card-body">
-            <form id="mortgage-container" action="/Controller/mortgageCalculatorController.php" method="post">
+            <form id="mortgage-container" action="/Controller/Buyer/mortgageCalculatorController.php" method="post">
                 <div class="form-group">
                     <div class="row">
                         <div class="col-3">
@@ -112,34 +112,26 @@
     </div>
 
     <script>
-        function calculateMortgage() {
-            var loanAmount = document.getElementById('loanAmount').value;
-            var downPayment = document.getElementById('downPayment').value;
-            var interestRate = document.getElementById('interestRate').value;
-            var loanTerm = document.getElementById('loanTerm').value;
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const status = urlParams.get('status');
+        const result = urlParams.get('result');
 
-            var monthlyInterest = (interestRate / 100) / 12;
-            var numberOfPayments = loanTerm * 12;
-
-            var monthlyPayment = (loanAmount - downPayment) * 
-                (monthlyInterest * Math.pow(1 + monthlyInterest, numberOfPayments)) /
-                (Math.pow(1 + monthlyInterest, numberOfPayments) - 1);
-
-            if (!isFinite(monthlyPayment)) {
-                alertError('Please check your input values.');
-            } else {
-                displayResults(monthlyPayment);
-            }
+        if (status === 'true') {
+            displayResults(parseFloat(result.replace('Monthly Payment: $', ''))); 
+        } else {
+            alertError(decodeURIComponent(result));
         }
+    }
 
-        function alertError(message) {
-            document.getElementById('result').innerHTML = message;
-        }
+    function alertError(message) {
+        document.getElementById('result').innerHTML = message;
+    }
 
-        function displayResults(monthlyPayment) {
-            document.getElementById('result').innerHTML = 'Monthly Payment: $' + monthlyPayment.toFixed(2);
-        }
-    </script>
+    function displayResults(monthlyPayment) {
+        document.getElementById('result').innerHTML = 'Monthly Payment: $' + monthlyPayment.toFixed(2);
+    }
+</script>
 
 </body>
 </html>

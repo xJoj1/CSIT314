@@ -1,14 +1,22 @@
 <?php
 class MortgageCalculatorController {
+    public $lastResult = null; // Property to hold the last calculated result
+
     public function calculateMortgage($loanAmount, $downPayment, $interestRate, $loanTerm) {
-        if ($loanAmount > 0 && $interestRate > 0 && $loanTerm > 0) {
+        if ($loanAmount > 0 && $interestRate > 0 && $loanTerm > 0 && $loanAmount >= $downPayment) {
             $loanPrincipal = $loanAmount - $downPayment;
+            if ($loanPrincipal <= 0) {
+                $this->lastResult = "Down payment must be less than the loan amount.";
+                return false;
+            }
             $monthlyInterest = ($interestRate / 100) / 12;
             $numberOfPayments = $loanTerm * 12;
             $monthlyPayment = $loanPrincipal * ($monthlyInterest * pow(1 + $monthlyInterest, $numberOfPayments)) / (pow(1 + $monthlyInterest, $numberOfPayments) - 1);
-            return "Monthly Payment: $" . round($monthlyPayment, 2);
+            $this->lastResult = "Monthly Payment: $" . round($monthlyPayment, 2);
+            return true;
         } else {
-            return "Please check your input values.";
+            $this->lastResult = "Please check your input values.";
+            return false;
         }
     }
 }
@@ -23,10 +31,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Create an instance of the calculator
     $calculator = new MortgageCalculatorController();
-    $result = $calculator->calculateMortgage($loanAmount, $downPayment, $interestRate, $loanTerm);
+    $status = $calculator->calculateMortgage($loanAmount, $downPayment, $interestRate, $loanTerm);
+    $result = urlencode($calculator->lastResult);
 
     // Redirect or handle the output as needed
-    header("Location: /Boundary/Buyer/mortgageCalculatorUI.php?result=" . urlencode($result));
+    header("Location: /Boundary/Buyer/mortgageCalculatorUI.php?status=$status&result=$result");
     exit();
 }
 ?>
