@@ -1,3 +1,35 @@
+<?php
+require_once '../../Controller/SysAdmin/EditUserProfileController.php';
+
+$controller = new EditUserProfileController();
+$profile = null;
+if (isset($_GET['profile_id']) && !empty($_GET['profile_id'])) {
+  $profileId = $_GET['profile_id'];
+  $profile = $controller->getProfile($profileId);
+  if ($profile === null) {
+      echo "Profile data is not available.";
+      exit; // Optionally handle this more gracefully
+  }
+} else {
+  echo "No Profile ID provided.";
+  exit; // Optionally handle this more gracefully
+}
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $profileId = $_POST['profile_id'];
+  $name = $_POST['profile_type'];
+  $description = $_POST['description'];
+
+  $success = $controller->updateProfile($profileId, $name, $description);
+  $message = $success ? "Profile updated successfully." : "Failed to update profile.";
+  if ($success) {
+      header("Location: viewProfileListUI.php"); // Redirect after update
+      exit;
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,48 +84,52 @@
 
 <div class="container mt-5">
     <div class="create-container">
-        <a href="userProfile.php" class="back-arrow">‹</a>
-        <h2>Edit User Profile</h2>
-        <form id="profileForm" onsubmit="return validateForm()">
-            <div class="form-group2">
-                <div class="row">
-                  <div class="col-3">
+        <?php if ($profile): ?>
+        <a href="viewProfileListUI.php" class="back-arrow">‹</a>
+          <h2>Edit User Profile</h2>
+          <form id="profileForm" onsubmit="return validateForm()" method="post">
+              <!-- Hidden field to store profile ID -->
+              <input type="hidden" name="profile_id" value="<?php echo $profile['profile_id']; ?>">
+              <div class="form-group2">
+                  <div class="row">
+                    <div class="col-3">
                       <label for="role">Name:</label>
-                  </div>
-                  <div class="col">
-                      <!-- Value here should reflect database value-->
-                      <input type="text" id="name" value="Buyer">
-                  </div>
+                    </div>
+                    <div class="col">
+                        <!-- Value here should reflect database value-->
+                      <input type="text" id="name" name="profile_type" value="<?php echo htmlspecialchars($profile['profile_type']); ?>">
+                    </div>
+                </div>
               </div>
-            </div>
 
-            <div class="form-group2">
-              <div class="row">
-                  <div class="col-3">
-                      <label for="description">Description:</label>
-                  </div>
-                  <div class="col">
-                      <textarea id="description" class="form-control"></textarea>
-                  </div>
+              <div class="form-group2">
+                <div class="row">
+                    <div class="col-3">
+                        <label for="description">Description:</label>
+                    </div>
+                    <div class="col">
+                      <textarea id="description" name="description" class="form-control"><?php echo htmlspecialchars($profile['description']); ?></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <label></label>
+                    </div>
+                    <div class="col">
+                        <div class="col" id="descriptionError" class="error-message"></div>
+                    </div>
+                </div>
+              </div>          
+            
+              <div class="form-group2 mt-5">
+                <div class="row">
+                    <div class="col-3 m-auto">
+                        <button type="submit" class="btn-primary btn-block">Confirm</button>
+                    </div>
+                </div>
               </div>
-              <div class="row">
-                  <div class="col-3">
-                      <label></label>
-                  </div>
-                  <div class="col">
-                      <div class="col" id="descriptionError" class="error-message"></div>
-                  </div>
-              </div>
-            </div>          
-          
-            <div class="form-group2 mt-5">
-              <div class="row">
-                  <div class="col-3 m-auto">
-                      <button type="submit" class="btn-primary btn-block">Confirm</button>
-                  </div>
-              </div>
-            </div>
-        </form>
+          </form>
+        <?php endif; ?>
     </div>
 </div>
 

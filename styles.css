@@ -132,7 +132,7 @@ label {
 }
 
 button {
-  width: 30%;
+  width: 20%;
   height: 70%;
   margin: auto 0;
   border-radius: 10px;
@@ -164,7 +164,7 @@ button {
 
 /* Create, Edit, View button */
 .user-buttons > .button {
-  padding: 5px 20px;
+  padding: 5px 10px;
   text-decoration: none;
   color: #ffffff;
   background-color: #6c757d; /* Default gray button color */

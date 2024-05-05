@@ -26,7 +26,7 @@
       <a class="nav-link" href="userAccounts.php">User Accounts</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="userProfile.php">User Profiles</a>
+      <a class="nav-link" href="viewProfileListUI.php">User Profiles</a>
     </li>
   </ul>
   <!-- Right-aligned dropdown for admin options -->
