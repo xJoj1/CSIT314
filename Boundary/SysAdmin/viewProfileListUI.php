@@ -71,7 +71,7 @@ $profiles = $controller->getAllProfiles();
         </div>
         <div class="user-buttons">
             <a href="createUserProfile.php" class="button">Create Profile</a>
-            <a href="editUserProfile.php" class="button">Edit Profile</a>
+            <button onclick="editSelectedProfile()" class="button">Edit Profile</button>
             <a href="viewProfile.php" class="button">View Profile</a>
             <a onclick="showSuspendConfirmation()" class="button">Suspend Profile</a>
         </div>
@@ -85,12 +85,14 @@ $profiles = $controller->getAllProfiles();
             <p><b>Select All Users</b></p>
         </div>
         <div class="suspendList">
-            <?php foreach ($profiles as $profile): ?>
-                <div class="checkbox">
-                    <input class="chkbx" type="checkbox" id="<?php echo htmlspecialchars($profile['profile_type']); ?>" name="checkbox">
-                    <p><?php echo htmlspecialchars($profile['profile_type']); ?></p>
-                </div>
-            <?php endforeach; ?>
+            <form id="profileSelectionForm">
+                <?php foreach ($profiles as $profile): ?>
+                    <div class="checkbox">
+                        <input class="chkbx" type="radio" name="profile_id" id="profile<?php echo $profile['profile_id']; ?>" value="<?php echo $profile['profile_id']; ?>">
+                        <label for="profile<?php echo $profile['profile_id']; ?>"><?php echo htmlspecialchars($profile['profile_type']); ?></label>
+                    </div>
+                <?php endforeach; ?>
+            </form>
         </div>
     </div>
 
@@ -125,17 +127,26 @@ $profiles = $controller->getAllProfiles();
         var selectAll = document.getElementById('select-all-users');
         
         // Add a change event listener to the 'Select All' checkbox
-        selectAll.addEventListener('change', function (e) {
-        // Select all checkboxes with the 'chkbx' class
-        var allCheckboxes = document.querySelectorAll('.chkbx');
-        
-        // Loop through all checkboxes and set their 'checked' property
-        allCheckboxes.forEach(function (checkbox) {
-            // Set the checked state to match the 'Select All' checked state
-            checkbox.checked = e.target.checked;
-        });
+            selectAll.addEventListener('change', function (e) {
+            // Select all checkboxes with the 'chkbx' class
+            var allCheckboxes = document.querySelectorAll('.chkbx');
+            
+            // Loop through all checkboxes and set their 'checked' property
+            allCheckboxes.forEach(function (checkbox) {
+                // Set the checked state to match the 'Select All' checked state
+                checkbox.checked = e.target.checked;
+            });
         });
     });
+
+    function editSelectedProfile() {
+        const selectedProfile = document.querySelector('input[name="profile_id"]:checked');
+        if (selectedProfile) {
+            window.location.href = 'editUserProfileUI.php?profile_id=' + selectedProfile.value;
+        } else {
+            alert('Please select a profile to edit.');
+        }
+    }
 </script>
 
 </body>
