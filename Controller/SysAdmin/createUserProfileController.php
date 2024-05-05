@@ -12,10 +12,10 @@ class createUserProfileController
         $this->userProfile = new UserProfile($database);
     }
 
-    public function createProfile($formData)
+    public function createProfile($profile)
     {
-        $profile_type = $formData['profile_type'];
-        $description = $formData['description'];
+        $profile_type = $profile['profile_type'];
+        $description = $profile['description'];
 
         // Validate data
         if (!$this->validateData($profile_type, $description)) {

@@ -25,12 +25,12 @@
     echo '</pre>';
 
     $controller = new createUserProfileController();
-    $formData = [
+    $profile = [
       'profile_type' => $_POST['profile_type'] ?? null,
       'description' => $_POST['description'] ?? null
     ];
 
-    $result = $controller->createProfile($formData);
+    $result = $controller->createProfile($profile);
 
     echo "<script>alert('$result'); window.location.href = 'viewProfileListUI.php';</script>";
 
