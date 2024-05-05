@@ -19,22 +19,21 @@
   require_once '../../Controller/SysAdmin/createUserProfileController.php';
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     echo '<pre>';
     print_r($_POST);
     echo '</pre>';
 
-    $controller = new createUserProfileController();
+    // Your existing form handling code follows...
+    $controller = new createUPController();
     $formData = [
       'profile_type' => $_POST['profile_type'] ?? null,
       'description' => $_POST['description'] ?? null
     ];
 
-    $result = $controller->createProfile($formData);
-
-    echo "<script>alert('$result'); window.location.href = 'viewProfileListUI.php';</script>";
-
+    $result = $controller->createUserProfile($formData);
+    // echo "<script>alert('" . $result . "');</script>";
   }
+
 
   ?>
 
@@ -79,7 +78,7 @@
 
   <div class="container mt-5">
     <div class="create-container">
-      <a href="viewProfileListUI.php" class="back-arrow">‹</a>
+      <a href="userProfile.php" class="back-arrow">‹</a>
       <h2>Create User Profile</h2>
       <form id="profileForm" onsubmit="return validateForm()" method="post" action="">
         <div class="form-group2">
@@ -124,27 +123,24 @@
     </div>
   </div>
 
+
   <script>
-
     function validateForm() {
-
       var userId = document.getElementById("description").value;
 
+      var isValid = true;
+
       if (userId === "") {
-
         document.getElementById("descriptionError").innerHTML = "Please enter a description";
-        return false;
-
+        isValid = false;
       } else {
-
         document.getElementById("descriptionError").innerHTML = "";
-        return true;
-
       }
 
+      return isValid;
     }
-
   </script>
+
 
 </body>
 

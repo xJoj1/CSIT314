@@ -2,7 +2,7 @@
 require_once '../../Entity/UserProfile.php';
 require_once '../../DBC/Database.php';
 
-class createUserProfileController
+class createUPController
 {
     private $userProfile;
 
@@ -12,7 +12,7 @@ class createUserProfileController
         $this->userProfile = new UserProfile($database);
     }
 
-    public function createProfile($formData)
+    public function createUserProfile($formData)
     {
         $profile_type = $formData['profile_type'];
         $description = $formData['description'];
@@ -28,7 +28,7 @@ class createUserProfileController
         }
 
         // Save profile if no duplicates
-        $result = $this->userProfile->createUserProfile($profile_type, $description);
+        $result = $this->userProfile->addUserProfile($profile_type, $description);
         if ($result) {
             return "Success";
         } else {
