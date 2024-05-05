@@ -1,9 +1,16 @@
+<?php
+require_once '../../Controller/SysAdmin/viewProfileListController.php'; // Adjust the path as needed
+
+$controller = new viewProfileListController();
+$profiles = $controller->getAllProfiles();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Suspend Users</title>
+    <title>View User Profiles</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../styles.css"> 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
@@ -78,18 +85,12 @@
             <p><b>Select All Users</b></p>
         </div>
         <div class="suspendList">
-            <div class="checkbox">
-                <input class="chkbx" type="checkbox" id="John" name="checkbox1">
-                <p>John</p>
-            </div>
-            <div class="checkbox">
-                <input class="chkbx" type="checkbox" id="Ignatius" name="checkbox1">
-                <p>Ignatius</p>
-            </div>
-            <div class="checkbox">
-                <input class="chkbx" type="checkbox" id="Penny" name="checkbox1">
-                <p>Penny</p>
-            </div>
+            <?php foreach ($profiles as $profile): ?>
+                <div class="checkbox">
+                    <input class="chkbx" type="checkbox" id="<?php echo htmlspecialchars($profile['profile_type']); ?>" name="checkbox">
+                    <p><?php echo htmlspecialchars($profile['profile_type']); ?></p>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 
