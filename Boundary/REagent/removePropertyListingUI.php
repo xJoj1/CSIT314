@@ -15,7 +15,7 @@
     <?php
         require_once '../../DBC/Database.php';
         require_once '../../Entity/PropertyListing.php';
-        require_once '../../Controller/RemovePropertyListingController.php';
+        require_once '../../Controller/REagent/RemovePropertyListingController.php';
         
         $database = new Database();
         $propertyListing = new PropertyListing($database);
@@ -88,9 +88,9 @@
                     <input type="text" id="searchBox" name="searchBox" placeholder="Search.." size="40">
                 </div>
                 <div class="user-buttons">
-                    <a href="createListing.php" class="button">Create Listing</a>
+                    <a href="createPropertyListingUI.php" class="button">Create Listing</a>
                     <button type="submit" class="button">Remove Listing</button>
-                    <a href="" class="button">Update Listing</a>
+                    <a href="" class="button">Edit Listing</a>
                 </div>
             </div>
 
