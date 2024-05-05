@@ -58,7 +58,7 @@
 
     <div class="container mt-5">
         <div class="create-container">
-            <a href="houseListing.php" class="back-arrow">‹</a>
+            <a href="viewPropertyListingUI.php" class="back-arrow">‹</a>
             <h2>Create Property Listing</h2>
             <form id="propertyForm" onsubmit="return validateForm()" method="post" enctype="multipart/form-data" novalidate>
                 <div class="form-group">
