@@ -79,7 +79,7 @@
 
   <div class="container mt-5">
     <div class="create-container">
-      <a href="userProfile.php" class="back-arrow">‹</a>
+      <a href="viewProfileListUI.php" class="back-arrow">‹</a>
       <h2>Create User Profile</h2>
       <form id="profileForm" onsubmit="return validateForm()" method="post" action="">
         <div class="form-group2">

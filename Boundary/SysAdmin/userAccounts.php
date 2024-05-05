@@ -104,19 +104,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Suspend User Confirmation Page (Hidden for now)-->
-    <div class="popup-msg">
-        <div class="confirm-suspend mt-5">
-            <h1>User Account Suspended</h1>
-            <!-- logic to get data reflected here for suspended user types-->
-            <p><b>User 'Test user 1', 'Test user 3' is suspended</b></p>
-            <div class="popup-btn mt-5">
-                <a href="#" class="button" id="undo-suspend" type="undoSuspend">Undo</button>
-                <a href="userAccounts.php" class="button">Confirm</a>
-            </div>
-        </div>
-    </div>
 </div>
 
 <script>

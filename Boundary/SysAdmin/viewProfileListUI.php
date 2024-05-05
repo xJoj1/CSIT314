@@ -81,7 +81,7 @@ $profiles = $controller->getAllProfiles();
                 <a href="createUserProfileUI.php" class="button">Create Profile</a>
                 <button onclick="editSelectedProfile()" class="button">Edit Profile</button>
                 <a href="#" class="button" onclick="viewSelectedProfile()">View Profile</a>
-                <a onclick="showSuspendConfirmation()" class="button">Suspend Profile</a>
+                <a href="#" class="button">Suspend Profile</a>
             </div>
         </div>
 
@@ -98,8 +98,7 @@ $profiles = $controller->getAllProfiles();
                             <input class="chkbx" type="checkbox" name="profile_id[]"
                                 id="profile<?php echo $profile['profile_id']; ?>"
                                 value="<?php echo $profile['profile_id']; ?>">
-                            <label
-                                for="profile<?php echo $profile['profile_id']; ?>"><?php echo htmlspecialchars($profile['profile_type']); ?></label>
+                            <label for="profile<?php echo $profile['profile_id']; ?>"><?php echo htmlspecialchars($profile['profile_type']); ?></label>
                         </div>
                     <?php endforeach; ?>
                 </form>
@@ -142,7 +141,7 @@ $profiles = $controller->getAllProfiles();
         });
 
         function editSelectedProfile() {
-            const selectedProfile = document.querySelector('input[name="profile_id"]:checked');
+            const selectedProfile = document.querySelector('input[name="profile_id[]"]:checked');
             if (selectedProfile) {
                 window.location.href = 'editUserProfileUI.php?profile_id=' + selectedProfile.value;
             } else {
