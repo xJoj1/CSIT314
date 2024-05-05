@@ -23,13 +23,18 @@
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_ids'])) {
             $idsToRemove = $_POST['remove_ids'];
+            $removalSuccess = true;
             foreach ($idsToRemove as $id) {
-                $controller->removePropertyListing($id);
+                $success = $controller->removePropertyListing($id);
+                if (!$success) {
+                    $removalSuccess = false; // Set to false if any removal fails
+                }
             }
-            echo "<div class='alert alert-success'> Selected listings have been removed. </div>";
-        }
-        else {
-            echo "<div class='alert alert-error'> Failed to remove listings. </div>";
+            if ($removalSuccess) {
+                echo "<div class='alert alert-success'>Selected listings have been removed.</div>";
+            } else {
+                echo "<div class='alert alert-danger'>Failed to remove listings.</div>";
+            }
         }
 
         // Fetching all listings to display
@@ -47,7 +52,7 @@
         <a class="nav-link" href="REdashboard.php">Home</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="houseListing.php">House Listing</a>
+        <a class="nav-link" href="viewPropertyListing.php">House Listing</a>
         </li>
         <li class="nav-item">
         <a class="nav-link" href="viewRatingReview.php">Rating/Review</a>
