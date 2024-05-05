@@ -25,9 +25,14 @@
     <li class="nav-item">
       <a class="nav-link" href="userAccounts.php">User Accounts</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="viewProfileListUI.php">User Profiles</a>
-    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">User Profiles</a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
+          <a class="dropdown-item" href="viewProfileListUI.php">All Profiles</a>
+          <a class="dropdown-item" href="suspendedProfile.php">Suspended Profiles</a>
+        </div>
+      </li>
   </ul>
   <!-- Right-aligned dropdown for admin options -->
   <ul class="navbar-nav ml-auto">
