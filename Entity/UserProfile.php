@@ -6,7 +6,8 @@ class UserProfile
     private $conn;
     private $table = 'user_profile';
 
-    public function __construct() {
+    public function __construct()
+    {
         $database = new Database();
         $this->conn = $database->getConnection();
 
@@ -18,13 +19,15 @@ class UserProfile
     }
 
     // This code block is for the main landing page which shows all profile types
-    public function getAllUserProfiles() {
+    public function getAllUserProfiles()
+    {
         $result = $this->conn->query("SELECT * FROM user_profile");
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     // This is used to retrieve the Id
-    public function getProfileById($profileId) {
+    public function getProfileById($profileId)
+    {
         $stmt = $this->conn->prepare("SELECT * FROM user_profile WHERE profile_id = ?");
         $stmt->bind_param("i", $profileId);
         $stmt->execute();
@@ -33,14 +36,15 @@ class UserProfile
     }
 
     // This is for edit function
-    public function updateProfile($profileId, $name, $description) {
+    public function updateProfile($profileId, $name, $description)
+    {
         $stmt = $this->conn->prepare("UPDATE user_profile SET profile_type = ?, description = ? WHERE profile_id = ?");
         $stmt->bind_param("ssi", $name, $description, $profileId);
         $stmt->execute();
         return $stmt->affected_rows > 0;
     }
 
-    public function addUserProfile($profile_type, $description) {
+    public function createUserProfile($profile_type, $description) {
 
         $query = "INSERT INTO " . $this->table . " (profile_type, description) VALUES (?, ?)";
         $stmt = $this->conn->prepare($query);
@@ -51,7 +55,7 @@ class UserProfile
             return true;
 
         } else {
-            
+
             error_log('SQL Error: ' . $stmt->error);
             return false;
 
