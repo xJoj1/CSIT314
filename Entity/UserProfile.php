@@ -40,7 +40,7 @@ class UserProfile
         return $stmt->affected_rows > 0;
     }
 
-    public function addUserProfile($profile_type, $description) {
+    public function createUserProfile($profile_type, $description) {
 
         $query = "INSERT INTO " . $this->table . " (profile_type, description) VALUES (?, ?)";
         $stmt = $this->conn->prepare($query);
