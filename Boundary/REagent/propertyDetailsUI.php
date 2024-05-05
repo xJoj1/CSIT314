@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Suspend Users</title>
+    <title>Property Details</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../styles.css"> 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
@@ -42,17 +42,10 @@
         </ul>
     </nav>
 
-<!-- Account List -->
+ <!-- Main Body -->
 <div class="container AccContain  mt-5">
-    <!-- Alert bar -->
-    <div class="suspendalert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        House Listing Created.
-    </div>
-
-    <!-- Main Body -->
     <!-- Property Listings -->
-        <div class="scrollProperty">
+        <div class="scrollProperty mt-5">
             <a href="viewPropertyListingUI.php" class="back-property">‹</a>
             <!-- Property Card in propertyDetailsUI.php -->
             <div class="card property-details-card">
@@ -65,31 +58,9 @@
                 <p class="detail-text">1000 sqft</p>
                 <p class="light-text">Sample Address Blk 123</p>
             </div>
-
-     
         </div>
+</div>
         
-
-
-
-<script>
-    
-    function toggleFavorite(element) {
-        // Toggle between 'far' and 'fas' to change the icon style
-        element.classList.toggle('far');
-        element.classList.toggle('fas');
-        element.classList.toggle('favorited'); // This class will handle the color change
-
-        // Optional: Console log to check the state
-        if (element.classList.contains('favorited')) {
-            console.log('Added to favorites');
-        } else {
-            console.log('Removed from favorites');
-        }
-    }
-
-
-</script>
     
 </body>
 </html>

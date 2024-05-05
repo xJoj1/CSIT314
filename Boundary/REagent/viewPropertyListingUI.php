@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Suspend Users</title>
+    <title>Property Listing</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../styles.css"> 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
@@ -76,7 +76,7 @@
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="propertyDetails.php" class="btn btn-primary view-details-btn">View Details</a>
+                            <a href="propertyDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="propertyDetails.php" class="btn btn-primary view-details-btn">View Details</a>
+                            <a href="propertyDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                     </div>
                 </div><div class="col-md-4 mb-4">
@@ -95,7 +95,7 @@
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="propertyDetails.php" class="btn btn-primary view-details-btn">View Details</a>
+                            <a href="propertyDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                     </div>
                 </div><div class="col-md-4 mb-4">
@@ -104,7 +104,7 @@
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="propertyDetails.php" class="btn btn-primary view-details-btn">View Details</a>
+                            <a href="propertyDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                     </div>
                 </div><div class="col-md-4 mb-4">
@@ -113,7 +113,7 @@
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="propertyDetails.php" class="btn btn-primary view-details-btn">View Details</a>
+                            <a href="propertyDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                     </div>
                 </div><div class="col-md-4 mb-4">
@@ -122,7 +122,7 @@
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="propertyDetails.php" class="btn btn-primary view-details-btn">View Details</a>
+                            <a href="propertyDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                     </div>
                 </div><div class="col-md-4 mb-4">
@@ -131,7 +131,7 @@
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="propertyDetails.php" class="btn btn-primary view-details-btn">View Details</a>
+                            <a href="propertyDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                     </div>
                 </div>
@@ -141,25 +141,6 @@
     </div>
 </div>
 
-
-<script>
-    
-    function toggleFavorite(element) {
-        // Toggle between 'far' and 'fas' to change the icon style
-        element.classList.toggle('far');
-        element.classList.toggle('fas');
-        element.classList.toggle('favorited'); // This class will handle the color change
-
-        // Optional: Console log to check the state
-        if (element.classList.contains('favorited')) {
-            console.log('Added to favorites');
-        } else {
-            console.log('Removed from favorites');
-        }
-    }
-
-
-</script>
     
 </body>
 </html>
