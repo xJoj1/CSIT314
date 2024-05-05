@@ -1,5 +1,5 @@
 <?php
-include_once '../../DBC/Database.php';
+include_once 'DBC/Database.php';
 
 class User {
     private $conn;
