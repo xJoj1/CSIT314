@@ -12,10 +12,10 @@
 </head>
 <body>
     <?php
-    require_once '../../Controller/REagent/CreateListingController.php';
+    require_once '../../Controller/REagent/CreatePropertyListingController.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $controller = new CreateListingController();
+        $controller = new CreatePropertyListingController();
         $formData = [
             'price' => $_POST['price'] ?? null,
             'beds' => $_POST['beds'] ?? null,

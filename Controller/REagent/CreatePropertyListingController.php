@@ -2,7 +2,7 @@
 require_once '../../Entity/PropertyListing.php';
 require_once '../../DBC/Database.php';
 
-class CreateListingController {
+class CreatePropertyListingController {
     private $propertyListing;
 
     public function __construct() {
