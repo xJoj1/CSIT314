@@ -16,7 +16,7 @@
 
   <?php
 
-  require_once '../../Controller/SysAdmin/createUPController.php';
+  require_once '../../Controller/SysAdmin/createUserProfileController.php';
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo '<pre>';
@@ -31,7 +31,7 @@
     ];
 
     $result = $controller->createUserProfile($formData);
-    echo "<script>alert('" . $result . "');</script>";
+    // echo "<script>alert('" . $result . "');</script>";
   }
 
 
