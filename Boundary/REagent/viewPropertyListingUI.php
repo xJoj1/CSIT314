@@ -11,6 +11,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+    <?php
+        require_once '../../Controller/REagent/viewPropertyListingController.php';
+        
+        $database = new Database();
+        $propertyListing = new PropertyListing($database);
+        $controller = new ViewPropertyListingController($propertyListing);
+        $listings = $controller->getAllListings();
+    ?>
 
     <!-- Navigation Bar (Logged In) -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -44,12 +52,6 @@
 
 <!-- Account List -->
 <div class="container AccContain  mt-5">
-    <!-- Alert bar -->
-    <div class="suspendalert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        House Listing Created.
-    </div>
-
     <!-- Search Bar -->
     <div class="search-container">
         <div class="searchbox">
@@ -63,82 +65,29 @@
         </div>
     </div>
 
-    <!-- Main Body -->
     <!-- Property Listings -->
-<div class="container mt-5">
-    <div class="listing-container">
-        <div class="scrollList">
-            <div class="row">
-                <!-- Sample Property Card -->
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="propertyDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
+        <div class="listing-container">
+            <div class="scrollList">
+                <div class="row">
+                    <?php foreach ($listings as $listing): ?>
+                        <!-- Sample Property Card -->
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <div class="card-img-top-container">
+                                    <img class="card-img-top" src="<?= $listing['image_url'] ?: 'placeholder-image.jpg'; ?>" alt="Property Image">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= $listing['address']; ?></h5>
+                                    <p class="card-text"><?= $listing['price']; ?> - <?= $listing['size']; ?> sqft <?= $listing['beds']; ?> bed <?= $listing['baths']; ?> bathroom</p>
+                                    <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="propertyDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                    </div>
-                </div><div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="propertyDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                    </div>
-                </div><div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="propertyDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                    </div>
-                </div><div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="propertyDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                    </div>
-                </div><div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="propertyDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                    </div>
-                </div><div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="propertyDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Continue adding cards as needed -->
+                    <?php endforeach; ?>
+                </div> 
             </div>
-        </div>
-    </div>
+        </div>  
+    </form>
 </div>
 
     

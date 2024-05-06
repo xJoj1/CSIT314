@@ -13,7 +13,7 @@
 </head>
 <body>
     <?php
-        require_once '../../Controller/REagent/RemovePropertyListingController.php';
+        require_once '../../Controller/REagent/removePropertyListingController.php';
         
         $database = new Database();
         $propertyListing = new PropertyListing($database); // entity
@@ -92,7 +92,7 @@
                 </div>
             </div>
 
-            Property Listings
+            <!-- Property Listings -->
             <div class="listing-container">
                 <div class="scrollList">
                     <div class="row">
@@ -107,7 +107,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title"><?= $listing['address']; ?></h5>
                                         <p class="card-text"><?= $listing['price']; ?> - <?= $listing['size']; ?> sqft <?= $listing['beds']; ?> bed <?= $listing['baths']; ?> bathroom</p>
-                                        <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                                        <a href="#" class=""></a>
                                     </div>
                                 </div>
                             </div>
