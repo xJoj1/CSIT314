@@ -14,9 +14,7 @@
     <?php
         require_once '../../Controller/REagent/viewPropertyListingController.php';
         
-        $database = new Database();
-        $propertyListing = new PropertyListing($database);
-        $controller = new ViewPropertyListingController($propertyListing);
+        $controller = new ViewPropertyListingController();
         $listings = $controller->getAllListings();
     ?>
 
@@ -79,7 +77,9 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $listing['address']; ?></h5>
                                     <p class="card-text"><?= $listing['price']; ?> - <?= $listing['size']; ?> sqft <?= $listing['beds']; ?> bed <?= $listing['baths']; ?> bathroom</p>
-                                    <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                                    <a href="../../Boundary/REagent/propertyDetailsUI.php?id=<?php echo $listing['id']; ?>"
+                                        class="btn btn-primary">View Details</a>
+
                                 </div>
                             </div>
                         </div>

@@ -11,6 +11,21 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+<?php
+    require_once '../../Controller/REagent/propertyDetailsController.php';
+    $controller = new PropertyDetailsController();
+    if (isset($_GET['id'])) {
+        $propertyId = $_GET['id'];
+        $property = $controller->getAllPropertyListings($propertyId);
+        if (!$property) {
+            header('Location: viewPropertyListing.php');
+            exit;
+        }
+    } else {
+        header('Location: viewAllProperty.php');
+        exit;
+    }
+    ?>
 
     <!-- Navigation Bar (Logged In) -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -43,23 +58,25 @@
     </nav>
 
  <!-- Main Body -->
-<div class="container AccContain  mt-5">
-    <!-- Property Listings -->
-        <div class="scrollProperty mt-5">
+ <div class="container AccContain mt-5">
+        <div class="scrollProperty">
             <a href="viewPropertyListingUI.php" class="back-property">‹</a>
-            <!-- Property Card in propertyDetailsUI.php -->
             <div class="card property-details-card">
-                <img class="card-img-top property-img" src="placeholder-image.jpg" alt="Property Image">
-            </div>
-            <div class="detail-container">
-                <p class="light-text">This delightful home offers the ideal blend of historic charm and modern convenience providing a cozy retreat in the heart of Tanjong Pagar.</p>
-                <h4><b>$150,000</b></h4>
-                <p class="detail-text">1 bed 1 bathroom</p>
-                <p class="detail-text">1000 sqft</p>
-                <p class="light-text">Sample Address Blk 123</p>
+                <img class="card-img-top property-img" src="<?php echo $property['image_url']; ?>" alt="Property Image">
+                <div class="detail-container">
+                    <p class="light-text"><?php echo $property['description']; ?></p>
+                    <h4><b><?php echo '$' . number_format($property['price']); ?></b></h4>
+                    <p class="detail-text"><?php echo $property['beds'] . ' bed ' . $property['baths'] . ' bathroom'; ?>
+                    </p>
+                    <p class="detail-text"><?php echo $property['size'] . ' sqft'; ?></p>
+                    <p class="light-text"><?php echo $property['address']; ?></p>
+                    <div class="card-footer">
+                        <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
+                    </div>
+                </div>
             </div>
         </div>
-</div>
+    </div>
         
     
 </body>
