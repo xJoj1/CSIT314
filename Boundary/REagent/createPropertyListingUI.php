@@ -38,7 +38,7 @@
                 <a class="nav-link" href="REdashboard.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="viewPropertyListing.php">House Listing</a>
+                <a class="nav-link" href="viewPropertyListingUI.php">House Listing</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="viewRatingReview.php">Rating/Review</a>
@@ -58,7 +58,7 @@
 
     <div class="container mt-5">
         <div class="create-container">
-            <a href="houseListing.php" class="back-arrow">‹</a>
+            <a href="viewPropertyListingUI.php" class="back-arrow">‹</a>
             <h2>Create Property Listing</h2>
             <form id="propertyForm" onsubmit="return validateForm()" method="post" enctype="multipart/form-data" novalidate>
                 <div class="form-group">

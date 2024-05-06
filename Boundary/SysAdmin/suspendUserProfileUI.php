@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>View Profile</title>
+    <title>View User Profiles</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../styles.css"> 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
@@ -48,32 +48,17 @@
     </ul>
 </nav>
 
-<!-- Container for View User Account -->
-<div class="container mt-5">
-  <div class="view-container"> 
-    <a href="userProfile.php" class="back-arrow">‹</a>
-    <h2 class="text-center mb-4">View User Profile</h2>
-    <table class="user-table mt-5"> 
-      <!-- Table content -->
-            <tr>
-                <th>Name:</th>
-                <td>Gary</td> <!-- db.value here-->
-            </tr>
-            <tr>
-                <th>Role:</th>
-                <td>Buyer</td> <!-- db.value here-->
-            </tr>
-            <tr>
-                <th>Description:</th>
-                <td class = "tdtxtview">
-                  <div class="txtview">
-                    Looking to buy a five room flat
-                    
-                  </div>
-                </td> <!-- db.value here-->
-            </tr>
-        </table>
+<!-- Account List -->
+<div class="container AccContain  mt-5">
+    <div class="suspend-profile">
+        <div class="confirm-suspend mt-5">
+            <h1>User Profile Suspended</h1>
+            <!-- logic to get data reflected here for suspended user types-->
+            <p><b>User 'John' is suspended</b></p>
+            <div class="popup-btn mt-5">
+                <a href="#" class="button" id="undo-suspend" type="undoSuspend">Undo</button>
+                <a href="viewProfileListUI.php" class="button">Confirm</a>
+            </div>
+        </div>
     </div>
 </div>
-</body>
-</html>

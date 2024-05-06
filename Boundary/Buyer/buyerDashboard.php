@@ -75,7 +75,7 @@
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                            <a href="buyerViewDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                         <div class="card-footer">
                             <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
@@ -88,7 +88,7 @@
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                            <a href="buyerViewDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                         <div class="card-footer">
                             <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
@@ -100,7 +100,7 @@
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                            <a href="buyerViewDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                         <div class="card-footer">
                             <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
@@ -112,7 +112,7 @@
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                            <a href="buyerViewDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                         <div class="card-footer">
                             <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
@@ -124,7 +124,7 @@
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                            <a href="buyerViewDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                         <div class="card-footer">
                             <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
@@ -136,7 +136,7 @@
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                            <a href="buyerViewDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                         <div class="card-footer">
                             <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
@@ -148,7 +148,7 @@
                         <div class="card-body">
                             <h5 class="card-title">663C Jurong West Street 65</h5>
                             <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
+                            <a href="buyerViewDetailsUI.php" class="btn btn-primary view-details-btn">View Details</a>
                         </div>
                         <div class="card-footer">
                             <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
