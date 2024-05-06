@@ -35,7 +35,7 @@ $profiles = $controller->getAllProfiles();
                 <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">User Accounts</a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-                    <a class="dropdown-item" href="userAccounts.php">All Users</a>
+                    <a class="dropdown-item" href="viewUserAccountListUI.php">All Users</a>
                     <a class="dropdown-item" href="suspendedAcc.php">Suspended Users</a>
                 </div>
             </li>
@@ -43,7 +43,6 @@ $profiles = $controller->getAllProfiles();
                 <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">User Profiles</a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-                    <a class="dropdown-item" href="viewProfileListUI.php">All Profiles</a>
                     <a class="dropdown-item" href="suspendedProfile.php">Suspended Profiles</a>
                 </div>
             </li>

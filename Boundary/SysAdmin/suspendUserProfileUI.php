@@ -23,7 +23,7 @@
         <a class="nav-link" href="adminDashboard.php">Home</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link" href="userAccounts.php">User Accounts</a>
+        <a class="nav-link" href="viewUserAccountListUI.php">User Accounts</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
