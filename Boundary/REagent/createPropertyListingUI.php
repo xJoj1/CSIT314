@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Create Property Listing</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/CSIT314/styles.css"> 
+    <link rel="stylesheet" href="/../styles.css"> 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -23,7 +23,7 @@
             'area' => $_POST['area'] ?? null,
             'address' => $_POST['address'] ?? null,
             'description' => $_POST['description'] ?? null,
-            'image' => $_FILES['image']['name'] ?? null
+            'image' => $_POST['image'] ?? null
         ];
         $result = $controller->createListing($formData);
         echo "<script>alert('$result');</script>";
@@ -100,8 +100,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="image">Image:</label>
-                    <input type="file" class="form-control-file" id="image" name="image">
+                    <label for="image">Image URL:</label>
+                    <input type="text" class="form-control" id="image" name="image" placeholder="Enter image URL">
                 </div>
 
                 <!-- Confirm button -->
@@ -118,6 +118,7 @@
         var area = document.getElementById("area").value;
         var address = document.getElementById("address").value;
         var description = document.getElementById("description").value;
+        var image = document.getElementById("image").value;
 
         var isValid = true;
         var errorMessage = "";
@@ -149,6 +150,11 @@
         // Validate Description
         if (!description) {
             errorMessage += "Please enter a description.\\n";
+            isValid = false;
+        }
+
+        if (!image) {
+            errorMessage += "Please enter the image URL.\\n";
             isValid = false;
         }
 
