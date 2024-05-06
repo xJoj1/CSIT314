@@ -36,7 +36,7 @@
         }
 
         // Fetching all listings to display
-        $listings = $propertyListing->getAllListings();
+        $listings = $controller->getAllListings();
     ?>
 
     <!-- Navigation Bar (Logged In) -->

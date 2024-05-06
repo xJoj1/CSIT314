@@ -8,6 +8,10 @@ class removePropertyListingController {
         $this->propertyListingModel = $propertyListingModel;
     }
 
+    public function getAllListings() {
+        return $this->propertyListingModel->getAllListings();
+    }
+
     public function removePropertyListing($propertyId) {
         $result = $this->propertyListingModel->removePropertyListing($propertyId);
         if ($result) {
