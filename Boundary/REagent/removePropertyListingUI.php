@@ -13,8 +13,6 @@
 </head>
 <body>
     <?php
-        require_once '../../DBC/Database.php';
-        require_once '../../Entity/PropertyListing.php';
         require_once '../../Controller/REagent/RemovePropertyListingController.php';
         
         $database = new Database();
@@ -52,7 +50,7 @@
         <a class="nav-link" href="REdashboard.php">Home</a>
         </li>
         <li class="nav-item">
-        <a class="nav-link" href="viewPropertyListing.php">House Listing</a>
+        <a class="nav-link" href="viewPropertyListingUI.php">House Listing</a>
         </li>
         <li class="nav-item">
         <a class="nav-link" href="viewRatingReview.php">Rating/Review</a>
