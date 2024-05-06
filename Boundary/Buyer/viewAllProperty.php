@@ -1,7 +1,7 @@
 <?php
-require_once '../../Controller/Buyer/buyerViewDetailsController.php';
+require_once '../../Controller/Buyer/viewAllPropertyController.php';
 
-$controller = new buyerViewDetailsController();
+$controller = new ViewAllPropertyController();
 $properties = $controller->getAllListings();
 
 ?>
