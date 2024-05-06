@@ -11,12 +11,15 @@ class User {
     }
 
     public function findUserByUsernameAndType($username, $userType) {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE username = ? AND profile_type = ?";
+        $query = "SELECT users.* FROM users 
+              JOIN user_profile ON users.ProfileID = user_profile.profile_id 
+              WHERE users.username = ? AND user_profile.profile_type = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("ss", $username, $userType);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result->fetch_assoc();
+        $user = $result->fetch_assoc();
+        return $user;
     }
 
     // This code block is for the main landing page which shows all accounts

@@ -12,6 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $profileType = $_POST['userType'];
     
+    // Debug output
+    error_log("Username: $username, Password: $password, UserType: $profileType");
+    
     $login_err = $userController->loginUser($username, $password, $profileType);
 }
 
