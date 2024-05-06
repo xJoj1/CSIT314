@@ -8,8 +8,8 @@ class viewAccountListController {
     public function __construct() {
         $this->userAccount = new User();
     }
-
-    public function getAllProfiles() {
+    
+    public function getAllAccounts() {
         return $this->userAccount->getAllUserAccounts();
     }
 }
