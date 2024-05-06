@@ -37,7 +37,7 @@
   
   } else {
     
-    header('Location: viewProfileListUI.php');
+    header('Location: viewUserProfileListUI.php');
     exit;
   
   }
@@ -89,7 +89,7 @@
   <!-- Container for View User Account -->
   <div class="container mt-5">
     <div class="view-container">
-      <a href="viewProfileListUI.php" class="back-arrow">‹</a>
+      <a href="viewUserProfileListUI.php" class="back-arrow">‹</a>
       <h2 class="text-center mb-4">View User Profiles</h2>
       <?php if (!empty($profiles)): ?>
         <?php foreach ($profiles as $profile): ?>
