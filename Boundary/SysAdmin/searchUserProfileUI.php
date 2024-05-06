@@ -72,9 +72,12 @@ $profiles = $controller->getAllProfiles();
         </div>
 
         <!-- Search Bar -->
-        <div class="search-container2">
-            <div class="user-buttons2">
-                <a href="searchUserProfileUI.php" class="button">Search Profile</a>
+        <div class="search-container">
+            <div class="searchbox">
+                <p><b>Search User Profile</b></p>
+                <input type="text" id="searchBox" name="searchBox" placeholder="Search.." size="40">
+            </div>
+            <div class="user-buttons">
                 <a href="createUserProfileUI.php" class="button">Create Profile</a>
                 <button onclick="editSelectedProfile()" class="button">Edit Profile</button>
                 <a href="#" class="button" onclick="viewSelectedProfile()">View Profile</a>
@@ -154,7 +157,7 @@ $profiles = $controller->getAllProfiles();
 
                 let profileIds = [];
                 selectedProfiles.forEach(profile => profileIds.push(profile.value));
-                window.location.href = 'viewUserProfile.php?profile_ids=' + profileIds.join(',');
+                window.location.href = 'viewUserProfileDetailUI.php?profile_ids=' + profileIds.join(',');
 
             } else {
 

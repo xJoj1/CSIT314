@@ -57,9 +57,12 @@
     </div>
 
     <!-- Search Bar -->
-    <div class="search-container2">
-        <div class="user-buttons2">
-            <a href="searchUserAccountUI.php" class="button">Search User</a>
+    <div class="search-container">
+        <div class="searchbox">
+            <p><b>Search User Account</b></p>
+            <input type="text" id="searchBox" name="searchBox" placeholder="Search.." size="40">
+        </div>
+        <div class="user-buttons">
             <a href="createUserAcc.php" class="button">Create User</a>
             <a href="editUserAcc.php" class="button">Edit User</a>
             <a href="viewUser.php" class="button">View User</a>
