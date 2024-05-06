@@ -157,7 +157,7 @@ $profiles = $controller->getAllProfiles();
 
                 let profileIds = [];
                 selectedProfiles.forEach(profile => profileIds.push(profile.value));
-                window.location.href = 'viewUserProfile.php?profile_ids=' + profileIds.join(',');
+                window.location.href = 'viewUserProfileDetailUI.php?profile_ids=' + profileIds.join(',');
 
             } else {
 

@@ -16,8 +16,8 @@
 
   <?php
   
-  require_once '../../Controller/SysAdmin/viewProfileListController.php';
-  $controller = new viewProfileListController();
+  require_once '../../Controller/SysAdmin/viewProfileDetailController.php';
+  $controller = new viewProfileDetailController();
   
   if (isset($_GET['profile_ids'])) {
     
