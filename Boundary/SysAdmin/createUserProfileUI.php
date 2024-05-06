@@ -18,23 +18,20 @@
 
   require_once '../../Controller/SysAdmin/createUserProfileController.php';
 
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    echo '<pre>';
-    print_r($_POST);
-    echo '</pre>';
-
-    $controller = new createUserProfileController();
-    $profile = [
-      'profile_type' => $_POST['profile_type'] ?? null,
-      'description' => $_POST['description'] ?? null
-    ];
-
-    $result = $controller->createProfile($profile);
-
-    echo "<script>alert('$result'); window.location.href = 'viewProfileListUI.php';</script>";
-
+  function handleFormSubmission() {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      $controller = new createUserProfileController();
+      $profile = [
+        'profile_type' => $_POST['profile_type'] ?? null,
+        'description' => $_POST['description'] ?? null
+      ];
+  
+      $result = $controller->createProfile($profile);
+      echo "<script>alert('$result'); window.location.href = 'viewProfileListUI.php';</script>";
+    }
   }
+  
+  handleFormSubmission();
 
   ?>
 

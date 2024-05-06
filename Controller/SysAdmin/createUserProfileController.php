@@ -17,11 +17,6 @@ class createUserProfileController
         $profile_type = $profile['profile_type'];
         $description = $profile['description'];
 
-        // Validate data
-        if (!$this->validateData($profile_type, $description)) {
-            return "Validation failed. Please check input data.";
-        }
-
         // Check for duplicate profiles
         if ($this->userProfile->isDuplicate($profile_type, $description)) {
             return "Duplicate user profile is not allowed.";
@@ -34,15 +29,6 @@ class createUserProfileController
         } else {
             return "Failed to create profile.";
         }
-    }
-
-
-    private function validateData($profile_type, $description)
-    {
-
-        // Implement validation logic here
-        return true; // Simplified for example purposes
-
     }
 
 }
