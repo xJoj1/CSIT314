@@ -1,3 +1,11 @@
+<?php
+require_once '../../Controller/Buyer/buyerViewDetailsController.php';
+
+$controller = new buyerViewDetailsController();
+$properties = $controller->getAllListings();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,102 +73,32 @@
 
 <!-- Property Listings -->
 <div class="container mt-5">
-    <div class="listing-container">
-        <div class="scrollList">
-            <div class="row">
-                <!-- Sample Property Card -->
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
-                        </div>
-                    </div>
+        <div class="listing-container">
+            <div class="scrollList">
+                <div class="row">
+                    <?php foreach ($properties as $property): ?>
+                            <div class="col-md-4 mb-4">
+                                <div class="card">
+                                    <img class="card-img-top" src="<?php echo $property['image_url']; ?>" alt="Property Image">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?php echo $property['address']; ?></h5>
+                                        <p class="card-text">
+                                            <?php echo '$' . number_format($property['price']) . ' - ' . $property['size'] . ' sqft ' . $property['beds'] . ' bed ' . $property['baths'] . ' bathroom'; ?>
+                                        </p>
+                                        <a href="buyerViewDetailsUI.php?id=<?php echo $property['id']; ?>"
+                                            class="btn btn-primary">View Details</a>
+                                    </div>
+                                    <div class="card-footer">
+                                        <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
+
+                                    </div>
+                                </div>
+                            </div>
+                    <?php endforeach; ?>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
-                        </div>
-                    </div>
-                </div><div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
-                        </div>
-                    </div>
-                </div><div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
-                        </div>
-                    </div>
-                </div><div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
-                        </div>
-                    </div>
-                </div><div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
-                        </div>
-                    </div>
-                </div><div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="placeholder-image.jpg" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title">663C Jurong West Street 65</h5>
-                            <p class="card-text">$550,000 - 1578 sqft 3 bed 2 bathroom</p>
-                            <a href="#" class="btn btn-primary view-details-btn">View Details</a>
-                        </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
-                        </div>
-                    </div>
-                </div>
-                <!-- Continue adding cards as needed -->
             </div>
         </div>
     </div>
-</div>
-
 
 <script>
     
@@ -178,6 +116,23 @@
         }
     }
 
+    function viewSelectedProperties() {
+
+            const selectedProperties = document.querySelectorAll('input[name="id[]"]:checked')
+
+            if (selectedProperties.length > 0) {
+
+                let propertyIds = [];
+                selectedProperties.forEach(property => propertyIds.push(property.value));
+                window.location.href = 'buyerViewDetailsUI.php?ids=' + propertyIds.join(',');
+
+            } else {
+
+                alert('Error.');
+
+            }
+
+        }
 
 </script>
 

@@ -6,8 +6,17 @@ class PropertyListing {
     private $table = 'propertylisting';
 
     // Constructor receives a Database instance and retrieves a database connection
-    public function __construct(Database $database) {
+    public function __construct() {
+
+        $database = new Database();
         $this->db = $database->getConnection();
+
+        if ($this->db->connect_error) {
+
+            die("Connection failed: " . $this->db->connect_error);
+
+        }
+
     }
 
     // Retrieves all property listings from the database
@@ -20,6 +29,17 @@ class PropertyListing {
         } else {
             return [];
         }
+    }
+
+    // view property details
+    public function getAllPropertyListings($propertyId) {
+
+        $stmt = $this->db->prepare("SELECT * FROM propertylisting WHERE id = ?");
+        $stmt->bind_param("i", $propertyId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+
     }
 
     // Add a new property listing (PLEASE CHANGE NAMING BASED ON BCE WHEN TALL TOUCH ON THIS)
