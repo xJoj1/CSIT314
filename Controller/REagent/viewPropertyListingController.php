@@ -17,10 +17,4 @@ class ViewPropertyListingController {
 
     }
 
-    public function getAllPropertyListings($propertyId) {
-
-        return $this->propertyListing->getAllPropertyListings($propertyId);
-
-    }
-
 }
