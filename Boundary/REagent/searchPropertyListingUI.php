@@ -51,9 +51,12 @@
 <!-- Account List -->
 <div class="container AccContain  mt-5">
     <!-- Search Bar -->
-    <div class="search-container2">
-        <div class="user-buttons2">
-            <a href="searchPropertyListingUI.php" class="button">Search Listing</a>
+    <div class="search-container">
+        <div class="searchbox">
+            <p><b>Search Property Listing</b></p>
+            <input type="text" id="searchBox" name="searchBox" placeholder="Search.." size="40">
+        </div>
+        <div class="user-buttons">
             <a href="createPropertyListingUI.php" class="button">Create Listing</a>
             <a href="removePropertyListingUI.php" class="button">Remove Listing</a>
             <a href="" class="button">Update Listing</a>
