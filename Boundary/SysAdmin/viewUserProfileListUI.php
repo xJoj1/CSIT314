@@ -31,13 +31,8 @@ $profiles = $controller->getAllProfiles();
             <li class="nav-item">
                 <a class="nav-link" href="adminDashboard.php">Home</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">User Accounts</a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-                    <a class="dropdown-item" href="viewUserAccountListUI.php">All Users</a>
-                    <a class="dropdown-item" href="suspendedAcc.php">Suspended Users</a>
-                </div>
+            <li class="nav-item">
+                <a class="nav-link" href="viewUserAccountListUI.php">User Accounts</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown"
@@ -94,7 +89,8 @@ $profiles = $controller->getAllProfiles();
                             <input class="chkbx" type="checkbox" name="profile_id[]"
                                 id="profile<?php echo $profile['profile_id']; ?>"
                                 value="<?php echo $profile['profile_id']; ?>">
-                            <label for="profile<?php echo $profile['profile_id']; ?>"><?php echo htmlspecialchars($profile['profile_type']); ?></label>
+                            <label
+                                for="profile<?php echo $profile['profile_id']; ?>"><?php echo htmlspecialchars($profile['profile_type']); ?></label>
                         </div>
                     <?php endforeach; ?>
                 </form>
@@ -102,68 +98,82 @@ $profiles = $controller->getAllProfiles();
         </div>
 
 
-    <script>
+        <script>
 
-        document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function () {
 
-            var selectAllCheckbox = document.getElementById('select-all-users');
-            var profileCheckboxes = document.querySelectorAll('.chkbx');
+                var selectAllCheckbox = document.getElementById('select-all-users');
+                var profileCheckboxes = document.querySelectorAll('.chkbx');
 
-            selectAllCheckbox.addEventListener('change', function () {
+                selectAllCheckbox.addEventListener('change', function () {
 
-                profileCheckboxes.forEach(checkbox => checkbox.checked = this.checked);
+                    profileCheckboxes.forEach(checkbox => checkbox.checked = this.checked);
 
-            });
+                });
 
-            profileCheckboxes.forEach(function (checkbox) {
+                profileCheckboxes.forEach(function (checkbox) {
 
-                checkbox.addEventListener('change', function () {
+                    checkbox.addEventListener('change', function () {
 
-                    if (!this.checked) {
+                        if (!this.checked) {
 
-                        selectAllCheckbox.checked = false;
+                            selectAllCheckbox.checked = false;
 
-                    } else {
+                        } else {
 
-                        const allChecked = Array.from(profileCheckboxes).every(chk => chk.checked);
-                        selectAllCheckbox.checked = allChecked;
+                            const allChecked = Array.from(profileCheckboxes).every(chk => chk.checked);
+                            selectAllCheckbox.checked = allChecked;
 
-                    }
+                        }
+
+                    });
 
                 });
 
             });
 
-        });
-
-        function editSelectedProfile() {
-            const selectedProfile = document.querySelector('input[name="profile_id[]"]:checked');
-            if (selectedProfile) {
-                window.location.href = 'editUserProfileUI.php?profile_id=' + selectedProfile.value;
-            } else {
-                alert('Please select a profile to edit.');
+            function editSelectedProfile() {
+                const selectedProfile = document.querySelector('input[name="profile_id[]"]:checked');
+                if (selectedProfile) {
+                    window.location.href = 'editUserProfileUI.php?profile_id=' + selectedProfile.value;
+                } else {
+                    alert('Please select a profile to edit.');
+                }
             }
-        }
 
-        function viewSelectedProfile() {
+            function viewSelectedProfile() {
 
-            const selectedProfiles = document.querySelectorAll('input[name="profile_id[]"]:checked');
-
-            if (selectedProfiles.length > 0) {
-
+                const profileEntries = document.querySelectorAll('.profile-entry');
                 let profileIds = [];
-                selectedProfiles.forEach(profile => profileIds.push(profile.value));
-                window.location.href = 'viewUserProfile.php?profile_ids=' + profileIds.join(',');
 
-            } else {
+                profileEntries.forEach(profile => {
 
-                alert('Please select at least one profile to view.');
+                    if (profile.style.display !== "none") {
+
+                        const checkbox = profile.querySelector('input[type="checkbox"]');
+
+                        if (checkbox.checked) {
+
+                            profileIds.push(checkbox.value);
+
+                        }
+                    }
+
+                });
+
+                if (profileIds.length > 0) {
+
+                    window.location.href = 'viewUserProfileDetailUI.php?profile_ids=' + profileIds.join(',');
+
+                } else {
+
+                    alert('Please select at least one profile to view.');
+
+                }
 
             }
 
-        }
-
-    </script>
+        </script>
 
 </body>
 

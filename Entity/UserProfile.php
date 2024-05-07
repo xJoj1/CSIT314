@@ -35,6 +35,16 @@ class UserProfile
         return $result->fetch_assoc();
     }
 
+    // This is used to retrieve the Id (For vicky code portion)
+    public function getUserProfile($profileId)
+    {
+        $stmt = $this->conn->prepare("SELECT * FROM user_profile WHERE profile_id = ?");
+        $stmt->bind_param("i", $profileId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+
     // This is for edit function
     public function updateProfile($profileId, $name, $description)
     {
@@ -71,6 +81,17 @@ class UserProfile
         $stmt->execute();
         $stmt->store_result();
         return $stmt->num_rows > 0;
+
+    }
+
+    public function searchUserProfile($searchTerm = '') {
+
+        $searchTerm = "%$searchTerm%";
+        $stmt = $this->conn->prepare("SELECT * FROM user_profile WHERE profile_type LIKE ? OR description LIKE ?");
+        $stmt->bind_param("ss", $searchTerm, $searchTerm);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
 
     }
 
