@@ -24,10 +24,13 @@
       <a class="nav-link" href="buyerDashboard.php">Property</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="mortgageCalculatorUI.php">Mortgage Calculator</a>
+        <a class="nav-link" href="viewAllProperty.php">Property</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="rateNreview.php">Rate and Review</a>
+        <a class="nav-link" href="mortgageCalculatorUI.php">Mortgage Calculator</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="rateNreview.php">Rating/Review</a>
     </li>
   </ul>
   <!-- Right-aligned dropdown for admin options -->
