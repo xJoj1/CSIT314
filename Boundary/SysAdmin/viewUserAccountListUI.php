@@ -30,16 +30,9 @@
             <a class="dropdown-item" href="suspendedAcc.php">Suspended Users</a>
         </div>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            User Profiles
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-            <a class="dropdown-item" href="viewUserProfileListUI.php">User Profiles</a>
-            <a class="dropdown-item" href="suspendedAcc.php">Suspended Users</a>
-        </div>
+      <li class="nav-item">
+        <a class="nav-link" href="viewUserProfileListUI.php">User Profiles</a>
       </li>
-      
     </ul>
     <!-- Right-aligned dropdown for admin options -->
     <ul class="navbar-nav ml-auto">
@@ -69,7 +62,7 @@
             <a href="searchUserAccountUI.php" class="button">Search User</a>
             <a href="createUserAcc.php" class="button">Create User</a>
             <a href="editUserAcc.php" class="button">Edit User</a>
-            <a href="viewUser.php" class="button">View User</a>
+            <a href="viewUserAccountDetailUI.php" class="button">View User</a>
             <a href="suspendUserProfileUI.php" class="button">Suspend User</a>
         </div>
     </div>

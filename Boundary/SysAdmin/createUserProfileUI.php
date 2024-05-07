@@ -18,19 +18,20 @@
 
   require_once '../../Controller/SysAdmin/createUserProfileController.php';
 
-  function handleFormSubmission() {
+  function handleFormSubmission()
+  {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $controller = new createUserProfileController();
       $profile = [
         'profile_type' => $_POST['profile_type'] ?? null,
         'description' => $_POST['description'] ?? null
       ];
-  
+
       $result = $controller->createProfile($profile);
-      echo "<script>alert('$result'); window.location.href = 'viewProfileListUI.php';</script>";
+      echo "<script>alert('$result'); window.location.href = 'viewUserProfileListUI.php';</script>";
     }
   }
-  
+
   handleFormSubmission();
 
   ?>
@@ -46,13 +47,11 @@
         <a class="nav-link" href="adminDashboard.php">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="userAccounts.php">User Accounts</a>
+        <a class="nav-link" href="viewUserAccountListUI.php">User Accounts</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          User Profile
-        </a>
+          aria-haspopup="true" aria-expanded="false">User Profiles</a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
           <a class="dropdown-item" href="suspendedProfile.php">Suspended Profiles</a>
         </div>
@@ -76,7 +75,7 @@
 
   <div class="container mt-5">
     <div class="create-container">
-      <a href="viewProfileListUI.php" class="back-arrow">‹</a>
+      <a href="viewUserProfileListUI.php" class="back-arrow">‹</a>
       <h2>Create User Profile</h2>
       <form id="profileForm" onsubmit="return validateForm()" method="post" action="">
         <div class="form-group2">
@@ -120,7 +119,7 @@
       </form>
     </div>
   </div>
-  
+
   <script>
 
     function validateForm() {

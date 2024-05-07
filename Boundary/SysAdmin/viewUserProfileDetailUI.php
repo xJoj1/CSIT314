@@ -15,34 +15,34 @@
 <body>
 
   <?php
-  
+
   require_once '../../Controller/SysAdmin/viewProfileDetailController.php';
   $controller = new viewProfileDetailController();
-  
+
   if (isset($_GET['profile_ids'])) {
-    
+
     $profileIds = explode(',', $_GET['profile_ids']);
     $profiles = [];
 
     foreach ($profileIds as $profileId) {
-      
-      $profile = $controller->getProfileById($profileId);
+
+      $profile = $controller->getUserProfile($profileId);
       if ($profile) {
-        
+
         $profiles[] = $profile;
-      
+
       }
-    
+
     }
-  
+
   } else {
-    
+
     header('Location: viewUserProfileListUI.php');
     exit;
-  
+
   }
- 
- ?>
+
+  ?>
 
   <!-- Navigation Bar (Logged In) -->
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -54,19 +54,13 @@
       <li class="nav-item">
         <a class="nav-link" href="adminDashboard.php">Home</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">User Accounts</a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-          <a class="dropdown-item" href="userAccounts.php">All Users</a>
-          <a class="dropdown-item" href="suspendedAcc.php">Suspended Users</a>
-        </div>
+      <li class="nav-item">
+        <a class="nav-link" href="viewUserAccountListUI.php">User Accounts</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">User Profiles</a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-          <a class="dropdown-item" href="viewProfileListUI.php">All Profiles</a>
           <a class="dropdown-item" href="suspendedProfile.php">Suspended Profiles</a>
         </div>
       </li>

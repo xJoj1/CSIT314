@@ -17,9 +17,9 @@ class viewProfileDetailController {
 
     }
 
-    public function getProfileById($profileId) {
+    public function getUserProfile($profileId) {
 
-        return $this->userProfile->getProfileById($profileId);
+        return $this->userProfile->getUserProfile($profileId);
 
     }
     

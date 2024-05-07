@@ -31,7 +31,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="viewProfileListUI.php">User Profiles</a>
+        <a class="nav-link" href="viewUserProfileListUI.php">User Profiles</a>
       </li>
     </ul>
     <!-- Right-aligned dropdown for admin options -->
@@ -51,7 +51,7 @@
 <!-- Container for View User Account -->
 <div class="container mt-5">
   <div class="view-container"> 
-    <a href="userAccounts.php" class="back-arrow">‹</a>
+    <a href="viewUserAccountListUI.php" class="back-arrow">‹</a>
     <h2 class="text-center mb-4">View User Account</h2>
     <table class="user-table mt-5"> 
       <!-- Table content -->

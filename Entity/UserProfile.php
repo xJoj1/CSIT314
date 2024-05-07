@@ -26,7 +26,7 @@ class UserProfile
     }
 
     // This is used to retrieve the Id
-    public function getProfileById($profileId)
+    public function getUserProfile($profileId)
     {
         $stmt = $this->conn->prepare("SELECT * FROM user_profile WHERE profile_id = ?");
         $stmt->bind_param("i", $profileId);
@@ -71,6 +71,17 @@ class UserProfile
         $stmt->execute();
         $stmt->store_result();
         return $stmt->num_rows > 0;
+
+    }
+
+    public function searchUserProfile($searchTerm = '') {
+
+        $searchTerm = "%$searchTerm%";
+        $stmt = $this->conn->prepare("SELECT * FROM user_profile WHERE profile_type LIKE ? OR description LIKE ?");
+        $stmt->bind_param("ss", $searchTerm, $searchTerm);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
 
     }
 

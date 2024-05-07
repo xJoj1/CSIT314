@@ -32,7 +32,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="viewProfileListUI.php">User Profiles</a>
+        <a class="nav-link" href="viewUserProfileListUI.php">User Profiles</a>
       </li>
     </ul>
     <!-- Right-aligned dropdown for admin options -->
