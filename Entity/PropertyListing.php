@@ -19,6 +19,8 @@ class PropertyListing {
 
     }
 
+    // FOR ALL EXISTING CODE, PLEASE DO NOT RENAME / REPLACE IT WITH YOUR OWN CODE BECAUSE IT MAY AFFECT OTHER WORKING FILES THANK YOU
+
     // Retrieves all property listings from the database
     public function getAllListings() {
         $query = "SELECT id, address, price, size, beds, baths, image_url, description, posted_date FROM " . $this->table;

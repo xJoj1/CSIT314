@@ -10,6 +10,8 @@ class User {
         $this->conn = $database->getConnection();
     }
 
+    // FOR ALL EXISTING CODE, PLEASE DO NOT RENAME / REPLACE IT WITH YOUR OWN CODE BECAUSE IT MAY AFFECT OTHER WORKING FILES THANK YOU
+
     public function findUserByUsernameAndType($username, $userType) {
         $query = "SELECT users.* FROM users 
               JOIN user_profile ON users.ProfileID = user_profile.profile_id 
