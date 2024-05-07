@@ -35,13 +35,16 @@ $properties = $controller->getAllListings();
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto nav-links-spacing">
                 <li class="nav-item">
-                    <a class="nav-link" href="buyerDashboard.php">Property</a> 
+                    <a class="nav-link" href="buyerDashboard.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="viewAllProperty.php">Property</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="mortgageCalculatorUI.php">Mortgage Calculator</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active-nav" href="rateNreview.php">Rating/Review</a>
+                    <a class="nav-link" href="rateNreview.php">Rating/Review</a>
                 </li>
             </ul>
 
@@ -58,83 +61,6 @@ $properties = $controller->getAllListings();
             </ul>
         </div>
     </nav>
-
-<!-- Search Bar -->
-<div class="container mt-5">
-    <div class="search-container">
-        <div class="searchbox">
-            <p><b>Search Property Listing</b></p>
-            <input type="text" id="searchBox" name="searchBox" placeholder="Search..">
-        </div>
-    </div>
-</div>
-
-
-
-<!-- Property Listings -->
-<div class="container mt-5">
-        <div class="listing-container">
-            <div class="scrollList">
-                <div class="row">
-                    <?php foreach ($properties as $property): ?>
-                            <div class="col-md-4 mb-4">
-                                <div class="card">
-                                    <img class="card-img-top" src="<?php echo $property['image_url']; ?>" alt="Property Image">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?php echo $property['address']; ?></h5>
-                                        <p class="card-text">
-                                            <?php echo '$' . number_format($property['price']) . ' - ' . $property['size'] . ' sqft ' . $property['beds'] . ' bed ' . $property['baths'] . ' bathroom'; ?>
-                                        </p>
-                                        <a href="buyerViewDetailsUI.php?id=<?php echo $property['id']; ?>"
-                                            class="btn btn-primary">View Details</a>
-                                    </div>
-                                    <div class="card-footer">
-                                        <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
-
-                                    </div>
-                                </div>
-                            </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </div>
-    </div>
-
-<script>
-    
-    function toggleFavorite(element) {
-        // Toggle between 'far' and 'fas' to change the icon style
-        element.classList.toggle('far');
-        element.classList.toggle('fas');
-        element.classList.toggle('favorited'); // This class will handle the color change
-
-        // Optional: Console log to check the state
-        if (element.classList.contains('favorited')) {
-            console.log('Added to favorites');
-        } else {
-            console.log('Removed from favorites');
-        }
-    }
-
-    function viewSelectedProperties() {
-
-            const selectedProperties = document.querySelectorAll('input[name="id[]"]:checked')
-
-            if (selectedProperties.length > 0) {
-
-                let propertyIds = [];
-                selectedProperties.forEach(property => propertyIds.push(property.value));
-                window.location.href = 'buyerViewDetailsUI.php?ids=' + propertyIds.join(',');
-
-            } else {
-
-                alert('Error.');
-
-            }
-
-        }
-
-</script>
 
 </body>
 </html>
