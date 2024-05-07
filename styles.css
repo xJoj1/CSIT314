@@ -682,6 +682,74 @@ h1 {
   margin-bottom: 10px; /* Maintains existing bottom margin */
 }
 
+/* ----------------- buyer filter BELOW ----------------------------- */
+
+.filter-sidebar {
+  background-color: #D9D9D9; /* Matches your general page background */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 250px; /* Set the width of the filter sidebar */
+  margin-right: 20px; /* Adds spacing between the sidebar and the next element */
+}
+
+.filter-sidebar h4 {
+  margin-bottom: 20px;
+  color: #333; /* Dark grey color for the title */
+}
+
+.filter-group {
+  margin-bottom: 5px;
+}
+
+
+.range-group {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.toggle-radio {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.form-range {
+  width: 100%; /* Ensures the slider takes up the full width of the sidebar */
+}
+
+.filter-button {
+  width: 100%; /* Makes the button take up the full width of the sidebar */
+  background-color: #333; /* Dark background for button */
+  color: white; /* White text color */
+}
+
+.form-range + output {
+  display: block;
+  text-align: center;
+}
+
+/* Search with filter */
+.search-container-with-filter {
+  background-color: #D9D9D9;
+  border: black 1px solid;
+  display: flex;
+  width: 100%;
+  height: 10%;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-bottom: 5%;
+}
+
+.search-container-with-filter input {
+  width: 30%;
+  padding: 5px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  
+}
+
+
+
 
 
 

@@ -21,7 +21,7 @@
   <!-- Links -->
   <ul class="navbar-nav mr-auto">
     <li class="nav-item">
-      <a class="nav-link" href="buyerDashboard.php">Home</a>
+      <a class="nav-link" href="buyerDashboard.php">Property</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="mortgageCalculatorUI.php">Mortgage Calculator</a>
