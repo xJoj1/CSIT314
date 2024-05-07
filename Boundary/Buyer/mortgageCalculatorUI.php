@@ -26,13 +26,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto nav-links-spacing">
                 <li class="nav-item">
-                    <a class="nav-link" href="buyerDashboard.php">Home</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="viewAllProperty.php">Property</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="mortgageCalculatorUI.php">Mortgage Calculator</a>
+                    <a class="nav-link active-nav" href="mortgageCalculatorUI.php">Mortgage Calculator</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="rateNreview.php">Rating/Review</a>

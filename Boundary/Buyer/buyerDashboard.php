@@ -6,7 +6,7 @@
     <title>Buyer Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" href="/CSIT314/styles.css"> 
+    <link rel="stylesheet" href="../../styles.css"> 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -20,9 +20,6 @@
 
   <!-- Links -->
   <ul class="navbar-nav mr-auto">
-    <li class="nav-item">
-      <a class="nav-link" href="buyerDashboard.php">Property</a>
-    </li>
     <li class="nav-item">
         <a class="nav-link" href="viewAllProperty.php">Property</a>
     </li>

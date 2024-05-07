@@ -80,16 +80,8 @@
 
  <!-- Search and Listings -->
 <div class="col-md-8 flexible-width">
-    <!-- Search Bar and Button Container -->
-    <div class="search-border">
-        <div class="search-container-with-filter">
-            <label for="searchBox"><b>Search Property Listing</b></label>
-            <input type="text" id="searchBox" name="searchBox" placeholder="Search.." class="form-control">
-        </div>
-        <!-- Button on the right -->
-        <div class="user-buttons">
-            <a href="savedPropertyUI.php" class="button">Saved Property</a>
-        </div>
+    <div class="save-property">
+        <h4><b>Saved Property</b></h4>
     </div>
     <!-- Property Listings -->
     <div class="listing-container">
@@ -111,8 +103,11 @@
             </div>
         </div>
     </div>
+     <!-- Back Button -->
+    <div class="user-buttons" style="justify-content: center; width: 100%; height:auto">
+        <a id="back" href="buyerNewProperty.php" class="btn btn-secondary" role="button">Back</a>
+    </div>
 </div>
-
 
 
     <script>
@@ -163,25 +158,16 @@
         console.log('Filtering properties:');
         console.log('Status New: ' + statusNew + ', Status Sold: ' + statusSold);
         console.log('Price Range: $' + prices[0] + ' to $' + prices[1]);
-
-        // Redirect based on the selected radio button
-        if (statusNew) {
-            window.location.href = 'buyerNewProperty.php';
-        } else if (statusSold) {
-            window.location.href = 'buyerSoldProperty.php';
-        }
+        // Implement your filtering logic here
     }
 
     function clearAllFilters() {
         document.querySelector('input[name="status"][value="new"]').checked = false;
         document.querySelector('input[name="status"][value="sold"]').checked = false;
         priceSlider.noUiSlider.reset();
-        console.log('Filters cleared, redirecting to buyerProperty.php');
-
-        // Redirect to buyerProperty.php to show all listings
-        window.location.href = 'buyerProperty.php';
+        console.log('Filters cleared');
+        // Logic to refresh the listings to show all items
     }
-
 </script>
 
 

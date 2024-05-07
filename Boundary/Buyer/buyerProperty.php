@@ -166,9 +166,9 @@
 
         // Redirect based on the selected radio button
         if (statusNew) {
-            window.location.href = 'buyerNewProperty.php';
+            window.location.href = 'BuyerNewProperty.php';
         } else if (statusSold) {
-            window.location.href = 'buyerSoldProperty.php';
+            window.location.href = 'BuyerSoldProperty.php';
         }
     }
 
