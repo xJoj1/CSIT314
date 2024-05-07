@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $success = $controller->updateProfile($profileId, $name, $description);
   $message = $success ? "Profile updated successfully." : "Failed to update profile.";
   if ($success) {
-    header("Location: viewProfileListUI.php"); // Redirect after update
+    header("Location: viewUserProfileListUI.php"); // Redirect after update
     exit;
   }
 }
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <?php endif; ?>
 
       <?php if ($profile): ?>
-        <a href="viewProfileListUI.php" class="back-arrow">‹</a>
+        <a href="viewUserProfileListUI.php" class="back-arrow">‹</a>
         <h2>Edit User Profile</h2>
         <form id="profileForm" onsubmit="return validateForm()" method="post">
           <!-- Hidden field to store profile ID -->

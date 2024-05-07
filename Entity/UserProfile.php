@@ -26,6 +26,16 @@ class UserProfile
     }
 
     // This is used to retrieve the Id
+    public function getProfileById($profileId)
+    {
+        $stmt = $this->conn->prepare("SELECT * FROM user_profile WHERE profile_id = ?");
+        $stmt->bind_param("i", $profileId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+
+    // This is used to retrieve the Id (For vicky code portion)
     public function getUserProfile($profileId)
     {
         $stmt = $this->conn->prepare("SELECT * FROM user_profile WHERE profile_id = ?");
