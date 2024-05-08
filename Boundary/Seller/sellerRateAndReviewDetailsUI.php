@@ -60,16 +60,61 @@
   <!-- Property Listings -->
   <div class="listing-container">
     <div class="scrollRateAndReview">
-        
-
-        
-
+        <form id="reviewForm">
+            <div class="star-rating">
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+            </div>
+            <textarea class="review-text" placeholder="Write a review..." wrap="soft" required></textarea>
+            <div id="errorMessage" style="color: red; display: none;">Please select a rating.</div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
     </div>
   </div>
+  <div class="back-center">
+    <button type="button" class="back-btn" onclick="window.location.href='sellerRateAndReviewUI.php'">Back</button>
+  </div>
 </div>
-
-
-
-
 </body>
 </html>
+
+<script>
+document.querySelectorAll('.star-rating .star').forEach((star, index) => {
+  star.addEventListener('click', () => {
+    updateStars(index);
+  });
+});
+
+function updateStars(index) {
+  const stars = document.querySelectorAll('.star-rating .star');
+  stars.forEach((star, i) => {
+    if (i <= index) {
+      star.classList.add('rated');
+    } else {
+      star.classList.remove('rated');
+    }
+  });
+}
+
+document.querySelector('.submit-btn').addEventListener('click', function() {
+  const rating = document.querySelectorAll('.star-rating .star.rated').length;
+  const review = document.querySelector('.review-text').value;
+  console.log('Rating:', rating, 'Review:', review);
+});
+
+document.getElementById('reviewForm').addEventListener('submit', function(event) {
+    const ratedCount = document.querySelectorAll('.star-rating .star.rated').length;
+    const errorMessage = document.getElementById('errorMessage');
+    if (ratedCount === 0) {
+        errorMessage.style.display = 'block';
+        event.preventDefault(); // Prevent form submission
+    } else {
+        errorMessage.style.display = 'none';
+    }
+});
+
+
+</script>
