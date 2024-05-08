@@ -18,6 +18,8 @@ class UserProfile
         }
     }
 
+    // FOR ALL EXISTING CODE, PLEASE DO NOT RENAME / REPLACE IT WITH YOUR OWN CODE BECAUSE IT MAY AFFECT OTHER WORKING FILES THANK YOU
+
     // This code block is for the main landing page which shows all profile types
     public function getAllUserProfiles()
     {
