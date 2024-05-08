@@ -31,11 +31,11 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
                 <a class="dropdown-item" href="sellerViewListingUI.php">Listed Property</a>
                 <a class="dropdown-item" href="sellerSoldPropertyUI.php">Sold Property</a>
-                <a class="dropdown-item" href="#">Engagement Metrics</a>
+                <a class="dropdown-item" href="sellerTrackEngagementUI.php">Engagement Metrics</a>
             </div>
         </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Rate/Review</a>
+      <a class="nav-link" href="sellerRateAndReviewUI.php">Rate/Review</a>
     </li>
   </ul>
   <!-- Right-aligned dropdown for admin options -->

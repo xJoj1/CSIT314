@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Properties</title>
+    <title>Rate & Review</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="../../styles.css"> 
@@ -53,29 +53,41 @@
   </ul>
 </nav>
 
-
-
  <!-- Search and Listings -->
  <div class="container AccContain  mt-5">
- <h1><b>Current Properties</b></h1>
+ <h1><b>Rate & Review</b></h1>
 
-    <!-- Property Listings -->
-    <div class="listing-container">
-        <div class="scrollList">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title"></h5>
-                            <p class="card-text"></p>
-                            <a href="sellerViewListingDetailsUI.php? id=" class="btn btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  <!-- Property Listings -->
+  <div class="listing-container">
+      <div class="scrollList">
+          <div class="row">
+
+              <div class="col-md-4 mb-4">
+                  <div class="card">
+                      <img class="card-img-top" src="" alt="Property Image">
+                      <div class="card-body">
+                          <h5 class="card-title"></h5>
+                          <p class="card-text"></p>
+                          <a href="sellerRateAndReviewDetailsUI.php? id=" class="btn btn-primary">Rate & Review</a>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-md-4 mb-4">
+                  <div class="card">
+                      <img class="card-img-top" src="" alt="Property Image">
+                      <div class="card-body">
+                          <h5 class="card-title"></h5>
+                          <p class="card-text"></p>
+                          <a href="sellerRateAndReviewDetailsUI.php? id=" class="btn btn-primary">Rate & Review</a>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </div>
+
 </div>
 
 

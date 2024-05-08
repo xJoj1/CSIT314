@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Properties</title>
+    <title>Track Engagement</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="../../styles.css"> 
@@ -53,29 +53,34 @@
   </ul>
 </nav>
 
-
-
  <!-- Search and Listings -->
  <div class="container AccContain  mt-5">
- <h1><b>Current Properties</b></h1>
+ <h1><b>Property Engagement Metrics</b></h1>
 
-    <!-- Property Listings -->
-    <div class="listing-container">
-        <div class="scrollList">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title"></h5>
-                            <p class="card-text"></p>
-                            <a href="sellerViewListingDetailsUI.php? id=" class="btn btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!-- Property Listings -->
+  <div class="listing-container">
+    <div class="engagementList">
+      <div class="checkbox">
+        <input class="chkbx" type="checkbox" id="property1" name="checkbox1">
+        <p>Property 1</p>
+        <span class="shortlist">Shortlisted: 7 times</span>
+        <span class="views">Views: 7</span>
+      </div>
+      <div class="checkbox">
+        <input class="chkbx" type="checkbox" id="property2" name="checkbox1">
+        <p>Property 2</p>
+        <span class="shortlist">Shortlisted: 5 times</span>
+        <span class="views">Views: 5</span>
+      </div>
+      <div class="checkbox">
+        <input class="chkbx" type="checkbox" id="property3" name="checkbox1">
+        <p>Property 3</p>
+        <span class="shortlist">Shortlisted: 3 times</span>
+        <span class="views">Views: 20</span>
+      </div>
     </div>
+  </div>
+
 </div>
 
 
