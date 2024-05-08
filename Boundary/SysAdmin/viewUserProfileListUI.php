@@ -84,96 +84,103 @@ $profiles = $controller->getAllProfiles();
             </div>
             <div class="suspendList">
                 <form id="profileSelectionForm">
-                    <?php foreach ($profiles as $profile): ?>
-                        <div class="checkbox">
-                            <input class="chkbx" type="checkbox" name="profile_id[]"
-                                id="profile<?php echo $profile['profile_id']; ?>"
-                                value="<?php echo $profile['profile_id']; ?>">
-                            <label
-                                for="profile<?php echo $profile['profile_id']; ?>"><?php echo htmlspecialchars($profile['profile_type']); ?></label>
-                        </div>
-                    <?php endforeach; ?>
+                    <?php if (empty($profiles)): ?>
+                        <p>No user profiles found.</p>
+                    <?php else: ?>
+                        <?php foreach ($profiles as $profile): ?>
+                            <div class="checkbox profile-entry"
+                            data-profile-type= "<?php echo htmlspecialchars($profile['profile_type']); ?>">
+                                <input class="chkbx" type="checkbox" name="profile_id[]"
+                                    id="profile<?php echo $profile['profile_id']; ?>"
+                                    value="<?php echo $profile['profile_id']; ?>">
+                                <label for="profile<?php echo $profile['profile_id']; ?>">
+                                    <?php echo htmlspecialchars($profile['profile_type']); ?>
+                                </label>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </form>
             </div>
         </div>
+    </div>
 
 
-        <script>
+    <script>
 
-            document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function () {
 
-                var selectAllCheckbox = document.getElementById('select-all-users');
-                var profileCheckboxes = document.querySelectorAll('.chkbx');
+            var selectAllCheckbox = document.getElementById('select-all-users');
+            var profileCheckboxes = document.querySelectorAll('.chkbx');
 
-                selectAllCheckbox.addEventListener('change', function () {
+            selectAllCheckbox.addEventListener('change', function () {
 
-                    profileCheckboxes.forEach(checkbox => checkbox.checked = this.checked);
+                profileCheckboxes.forEach(checkbox => checkbox.checked = this.checked);
 
-                });
+            });
 
-                profileCheckboxes.forEach(function (checkbox) {
+            profileCheckboxes.forEach(function (checkbox) {
 
-                    checkbox.addEventListener('change', function () {
+                checkbox.addEventListener('change', function () {
 
-                        if (!this.checked) {
+                    if (!this.checked) {
 
-                            selectAllCheckbox.checked = false;
+                        selectAllCheckbox.checked = false;
 
-                        } else {
+                    } else {
 
-                            const allChecked = Array.from(profileCheckboxes).every(chk => chk.checked);
-                            selectAllCheckbox.checked = allChecked;
+                        const allChecked = Array.from(profileCheckboxes).every(chk => chk.checked);
+                        selectAllCheckbox.checked = allChecked;
 
-                        }
-
-                    });
+                    }
 
                 });
 
             });
 
-            function editSelectedProfile() {
-                const selectedProfile = document.querySelector('input[name="profile_id[]"]:checked');
-                if (selectedProfile) {
-                    window.location.href = 'editUserProfileUI.php?profile_id=' + selectedProfile.value;
-                } else {
-                    alert('Please select a profile to edit.');
-                }
+        });
+
+        function editSelectedProfile() {
+            const selectedProfile = document.querySelector('input[name="profile_id[]"]:checked');
+            if (selectedProfile) {
+                window.location.href = 'editUserProfileUI.php?profile_id=' + selectedProfile.value;
+            } else {
+                alert('Please select a profile to edit.');
             }
+        }
 
-            function viewSelectedProfile() {
+        function viewSelectedProfile() {
 
-                const profileEntries = document.querySelectorAll('.profile-entry');
-                let profileIds = [];
+            const profileEntries = document.querySelectorAll('.profile-entry');
+            let profileIds = [];
 
-                profileEntries.forEach(profile => {
+            profileEntries.forEach(profile => {
 
-                    if (profile.style.display !== "none") {
+                if (profile.style.display !== "none") {
 
-                        const checkbox = profile.querySelector('input[type="checkbox"]');
+                    const checkbox = profile.querySelector('input[type="checkbox"]');
 
-                        if (checkbox.checked) {
+                    if (checkbox.checked) {
 
-                            profileIds.push(checkbox.value);
+                        profileIds.push(checkbox.value);
 
-                        }
                     }
-
-                });
-
-                if (profileIds.length > 0) {
-
-                    window.location.href = 'viewUserProfileDetailUI.php?profile_ids=' + profileIds.join(',');
-
-                } else {
-
-                    alert('Please select at least one profile to view.');
-
                 }
+
+            });
+
+            if (profileIds.length > 0) {
+
+                window.location.href = 'viewUserProfileDetailUI.php?profile_ids=' + profileIds.join(',');
+
+            } else {
+
+                alert('Please select at least one profile to view.');
 
             }
 
-        </script>
+        }
+
+    </script>
 
 </body>
 
