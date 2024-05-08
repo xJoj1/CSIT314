@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Seller Dashboard</title>
+    <title>Properties</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" href="/CSIT314/styles.css"> 
+    <link rel="stylesheet" href="../../styles.css"> 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider/distribute/nouislider.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/nouislider/distribute/nouislider.min.js"></script>
 </head>
 <body>
   
@@ -29,7 +31,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
                 <a class="dropdown-item" href="sellerViewListingUI.php">Listed Property</a>
-                <a class="dropdown-item" href="sellerSoldProperty.php">Sold Property</a>
+                <a class="dropdown-item" href="sellerSoldPropertyUI.php">Sold Property</a>
                 <a class="dropdown-item" href="#">Engagement Metrics</a>
             </div>
         </li>
@@ -51,10 +53,39 @@
   </ul>
 </nav>
 
-<div class="container mt-5">
-    <h1>Seller Dashboard</h1>
-    <p>Welcome to your dashboard. Manage your tasks efficiently and effectively.</p>
+
+
+ <!-- Search and Listings -->
+ <div class="container AccContain  mt-5">
+ <h1><b>Current Properties</b></h1>
+    <!-- Search Bar -->
+    <div class="search-container">
+        <div class="searchbox">
+            <p><b>Search Property Listing</b></p>
+            <input type="text" id="searchBox" name="searchBox" placeholder="Maple Street, Landed etc." size="40">
+        </div>
+    </div>
+    <!-- Property Listings -->
+    <div class="listing-container">
+        <div class="scrollList">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img class="card-img-top" src="" alt="Property Image">
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <p class="card-text"></p>
+                            <a href="sellerViewListingDetailsUI.php? id=" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
 
 </body>
 </html>
