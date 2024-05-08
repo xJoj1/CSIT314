@@ -59,7 +59,7 @@
         <div class="user-buttons">
             <a href="createPropertyListingUI.php" class="button">Create Listing</a>
             <a href="removePropertyListingUI.php" class="button">Remove Listing</a>
-            <a href="" class="button">Update Listing</a>
+            <a href="updatePropertyListingUI.php" class="button">Update Listing</a>
         </div>
     </div>
 

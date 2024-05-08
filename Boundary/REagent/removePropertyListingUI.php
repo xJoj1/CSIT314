@@ -74,10 +74,8 @@
                     <p><b>Search Property Listing</b></p>
                     <input type="text" id="searchBox" name="searchBox" placeholder="Search.." size="40">
                 </div>
-                <div class="user-buttons">
-                    <a href="createPropertyListingUI.php" class="button">Create Listing</a>
+                <div class="user-buttons">  
                     <button type="submit" class="button">Remove Listing</button>
-                    <a href="" class="button">Edit Listing</a>
                 </div>
             </div>
 

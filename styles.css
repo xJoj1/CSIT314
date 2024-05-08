@@ -871,7 +871,8 @@ h1 {
 }
 
 .back-center {
-  text-align: center; /* Center-aligns the contents of the div */
+  text-align: center;
+  padding-bottom: 20px;
 }
 
 .back-btn {

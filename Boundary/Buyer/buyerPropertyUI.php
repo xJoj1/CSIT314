@@ -30,7 +30,7 @@
                     <a class="nav-link" href="mortgageCalculatorUI.php">Mortgage Calculator</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="rateNreview.php">Rating/Review</a>
+                    <a class="nav-link" href="buyerRateAndReviewUI.php.php">Rating/Review</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -55,9 +55,6 @@
                     <div class="row">
                         <div class="col-6">
                             <h5><b>Filter</b></h5>
-                        </div>
-                        <div class="col-3 text-right">
-                            <button class="btn btn-light clear-all" onclick="clearAllFilters()">Clear all</button>
                         </div>
                     </div>
                     <div class="filter-group">
@@ -172,15 +169,7 @@
         }
     }
 
-    function clearAllFilters() {
-        document.querySelector('input[name="status"][value="new"]').checked = false;
-        document.querySelector('input[name="status"][value="sold"]').checked = false;
-        priceSlider.noUiSlider.reset();
-        console.log('Filters cleared, redirecting to buyerPropertyUI.php');
 
-        // Redirect to buyerProperty.php to show all listings
-        window.location.href = 'buyerPropertyUI.php';
-    }
 
 </script>
 
