@@ -29,7 +29,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
                 <a class="dropdown-item" href="#">Listed Property</a>
-                <a class="dropdown-item" href="#">Sold Property</a>
+                <a class="dropdown-item" href="sellerSoldProperty.php">Sold Property</a>
                 <a class="dropdown-item" href="#">Engagement Metrics</a>
             </div>
         </li>
