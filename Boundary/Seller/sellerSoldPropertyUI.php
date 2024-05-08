@@ -59,12 +59,7 @@
  <div class="container AccContain  mt-5">
  <h1><b>Sold Properties</b></h1>
     <!-- Search Bar -->
-    <div class="search-container">
-        <div class="searchbox">
-            <p><b>Search Property Listing</b></p>
-            <input type="text" id="searchBox" name="searchBox" placeholder="Maple Street, Landed etc." size="40">
-        </div>
-    </div>
+
     <!-- Property Listings -->
     <div class="listing-container">
         <div class="scrollList">

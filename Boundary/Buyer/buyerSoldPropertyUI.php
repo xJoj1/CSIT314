@@ -56,16 +56,13 @@
                         <div class="col-6">
                             <h5><b>Filter</b></h5>
                         </div>
-                        <div class="col-3 text-right">
-                            <button class="btn btn-light clear-all" onclick="clearAllFilters()">Clear all</button>
-                        </div>
                     </div>
                     <div class="filter-group">
-                        <input type="radio" name="status" value="new" class="toggle-radio">
+                        <input type="radio" name="status" value="new" class="toggle-radio" disabled>
                         <label>New</label>
                     </div>
                     <div class="filter-group">
-                        <input type="radio" name="status" value="sold" class="toggle-radio">
+                        <input type="radio" name="status" value="sold" class="toggle-radio" checked disabled>
                         <label>Sold</label>
                     </div>  
                     <div class="range-group">
@@ -172,15 +169,7 @@
         }
     }
 
-    function clearAllFilters() {
-        document.querySelector('input[name="status"][value="new"]').checked = false;
-        document.querySelector('input[name="status"][value="sold"]').checked = false;
-        priceSlider.noUiSlider.reset();
-        console.log('Filters cleared, redirecting to buyerPropertyUI.php');
 
-        // Redirect to buyerProperty.php to show all listings
-        window.location.href = 'buyerPropertyUI.php';
-    }
 
 </script>
 
