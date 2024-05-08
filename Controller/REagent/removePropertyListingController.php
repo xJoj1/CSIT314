@@ -8,17 +8,31 @@ class removePropertyListingController {
         $this->propertyListingModel = $propertyListingModel;
     }
 
-    public function getAllListings() {
-        return $this->propertyListingModel->getAllListings();
+    public function removeProperty() {
+        $responseContent = "";
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_ids'])) {
+            $idsToRemove = $_POST['remove_ids'];
+            $removalSuccess = true;
+            foreach ($idsToRemove as $id) {
+                if (!$this->removePropertyListing($id)) {
+                    $removalSuccess = false; // Set to false if any removal fails
+                }
+            }
+            $responseContent .= $this->generateAlertHtml($removalSuccess);
+        }
+        return $responseContent;
     }
 
-    public function removePropertyListing($propertyId) {
-        $result = $this->propertyListingModel->removePropertyListing($propertyId);
-        if ($result) {
-            return "Property Listing Removed Successfully";
+    private function generateAlertHtml($success) {
+        if ($success) {
+            return "<div class='alert alert-success'>Selected listings have been removed.</div>";
         } else {
-            return "Error Removing Property Listing";
+            return "<div class='alert alert-danger'>Failed to remove listings.</div>";
         }
+    }
+
+    private function removePropertyListing($propertyId) {
+        return $this->propertyListingModel->removePropertyListing($propertyId);
     }
 }
 ?>
