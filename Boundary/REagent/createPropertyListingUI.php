@@ -13,25 +13,8 @@
 <body>
     <?php
     require_once '../../Controller/REagent/CreatePropertyListingController.php';
-
-    function initializeForm() {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $controller = new CreatePropertyListingController();
-            $formData = [
-                'price' => $_POST['price'] ?? null,
-                'beds' => $_POST['beds'] ?? null,
-                'baths' => $_POST['baths'] ?? null,
-                'area' => $_POST['area'] ?? null,
-                'address' => $_POST['address'] ?? null,
-                'description' => $_POST['description'] ?? null,
-                'image' => $_POST['image'] ?? null
-            ];
-            $result = $controller->createListing($formData);
-            echo "<script>alert('$result');</script>";
-        }
-    }
-
-    initializeForm();
+    $controller = new CreatePropertyListingController();
+    $controller->handleFormSubmission();
 
     ?>
 

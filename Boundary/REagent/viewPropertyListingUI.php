@@ -74,7 +74,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $listing['address']; ?></h5>
                                     <p class="card-text"><?= $listing['price']; ?> - <?= $listing['size']; ?> sqft <?= $listing['beds']; ?> bed <?= $listing['baths']; ?> bathroom</p>
-                                    <a href="../../Boundary/REagent/propertyDetailsUI.php?id=<?php echo $listing['id']; ?>"
+                                    <a href="../../Boundary/REagent/viewPropertyDetailsUI.php?id=<?php echo $listing['id']; ?>"
                                         class="btn btn-primary">View Details</a>
 
                                 </div>

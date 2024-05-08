@@ -11,20 +11,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<?php
-    require_once '../../Controller/REagent/propertyDetailsController.php';
-    $controller = new PropertyDetailsController();
-    if (isset($_GET['id'])) {
-        $propertyId = $_GET['id'];
-        $property = $controller->getAllPropertyListings($propertyId);
-        if (!$property) {
-            header('Location: viewPropertyListing.php');
-            exit;
-        }
-    } else {
-        header('Location: viewAllProperty.php');
-        exit;
-    }
+    <?php
+        require_once '../../Controller/REagent/viewPropertyDetailsController.php';
+        $controller = new PropertyDetailsController();
+        $property = $controller->handlePropertyRequest();
     ?>
 
     <!-- Navigation Bar (Logged In) -->
@@ -70,9 +60,6 @@
                     </p>
                     <p class="detail-text"><?php echo $property['size'] . ' sqft'; ?></p>
                     <p class="light-text"><?php echo $property['address']; ?></p>
-                    <div class="card-footer">
-                        <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i> <!-- Heart icon -->
-                    </div>
                 </div>
             </div>
         </div>

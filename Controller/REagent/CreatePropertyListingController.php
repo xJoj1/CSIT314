@@ -10,30 +10,27 @@ class CreatePropertyListingController {
         $this->propertyListing = new PropertyListing($database);
     }
 
-    public function createListing($formData) {
-        // Extract data from form data
-        $price = $formData['price'];
-        $beds = $formData['beds'];
-        $baths = $formData['baths'];
-        $area = $formData['area'];
-        $address = $formData['address'];
-        $description = $formData['description'];
-        $image = $formData['image'];  // This would be the path or image data
+    public function handleFormSubmission() {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $formData = [
+                'price' => $_POST['price'] ?? null,
+                'beds' => $_POST['beds'] ?? null,
+                'baths' => $_POST['baths'] ?? null,
+                'area' => $_POST['area'] ?? null,
+                'address' => $_POST['address'] ?? null,
+                'description' => $_POST['description'] ?? null,
+                'image' => $_POST['image'] ?? null  // Assuming image handling is done separately
+            ];
 
-     
+            if ($this->propertyListing->isDuplicate($formData['address'], $formData['price'], $formData['area'])) {
+                echo "<script>alert('Duplicate property listing is not allowed.'); window.history.back();</script>";
+                exit;
+            }
 
-        // Check for duplicate listings
-        if ($this->propertyListing->isDuplicate($address, $price, $area)) {
-            return "Duplicate property listing is not allowed.";
-        }
-
-        // Save listing
-        $result = $this->propertyListing->addListing($address, $price, $area, $beds, $baths, $image, $description, date('Y-m-d'));
-
-        if ($result) {
-            return "Success";
-        } else {
-            return "Failed to create listing.";
+            $result = $this->propertyListing->addListing($formData['address'], $formData['price'], $formData['area'], $formData['beds'], $formData['baths'], $formData['image'], $formData['description'], date('Y-m-d'));
+            $message = $result ? "Success" : "Failed to create listing.";
+            echo "<script>alert('$message'); window.location.href = 'viewPropertyListingUI.php';</script>";
+            exit;
         }
     }
 }
