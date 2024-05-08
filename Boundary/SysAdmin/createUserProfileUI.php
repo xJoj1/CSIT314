@@ -18,22 +18,9 @@
 
   require_once '../../Controller/SysAdmin/createUserProfileController.php';
 
-  function handleFormSubmission()
-  {
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      $controller = new createUserProfileController();
-      $profile = [
-        'profile_type' => $_POST['profile_type'] ?? null,
-        'description' => $_POST['description'] ?? null
-      ];
-
-      $result = $controller->createProfile($profile);
-      echo "<script>alert('$result'); window.location.href = 'viewUserProfileListUI.php';</script>";
-    }
-  }
-
-  handleFormSubmission();
-
+  $controller = new createUserProfileController();
+  $controller->createProfile();
+  
   ?>
 
   <!-- Navigation Bar (Logged In) -->

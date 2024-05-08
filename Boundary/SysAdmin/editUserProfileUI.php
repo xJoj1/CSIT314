@@ -1,33 +1,11 @@
 <?php
 require_once '../../Controller/SysAdmin/EditUserProfileController.php';
 
-$controller = new EditUserProfileController();
-$profile = null;
-$message = '';
-
-if (isset($_GET['profile_id']) && !empty($_GET['profile_id'])) {
-  $profileId = $_GET['profile_id'];
-  $profile = $controller->getProfile($profileId);
-  if ($profile === null) {
-    $message = "Profile data is not available.";
-  }
-} else {
-  $message = "No Profile ID provided.";
-}
-
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $profileId = $_POST['profile_id'];
-  $name = $_POST['profile_type'];
-  $description = $_POST['description'];
-
-  $success = $controller->updateProfile($profileId, $name, $description);
-  $message = $success ? "Profile updated successfully." : "Failed to update profile.";
-  if ($success) {
-    header("Location: viewUserProfileListUI.php"); // Redirect after update
-    exit;
-  }
-}
+require_once '../../Controller/SysAdmin/EditUserProfileController.php';
+  $controller = new EditUserProfileController();
+  $response = $controller->handleRequest();
+  $profile = $response['profile'] ?? null;
+  $message = $response['message'] ?? '';
 ?>
 
 <!DOCTYPE html>

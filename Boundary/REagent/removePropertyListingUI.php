@@ -14,7 +14,6 @@
 <body>
     <?php
         require_once '../../Controller/REagent/removePropertyListingController.php';
-        require_once '../../Controller/REagent/viewPropertyListingController.php';
         
         $propertyListing = new PropertyListing();
         $controller = new removePropertyListingController($propertyListing);
@@ -60,7 +59,12 @@
         Property Listing Removed.
     </div>
 
-    <?php $controller2 = new ViewPropertyListingController();?>
+    <!-- to include getAllProperty function from "viewPropertyListingController" -->
+    
+    <?php 
+        require_once '../../Controller/REagent/viewPropertyListingController.php';
+        $controller2 = new ViewPropertyListingController();
+    ?>
 
     <!-- Search Bar -->
     <div class="container mt-5">

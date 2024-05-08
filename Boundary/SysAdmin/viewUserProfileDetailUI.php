@@ -15,32 +15,9 @@
 <body>
 
   <?php
-
   require_once '../../Controller/SysAdmin/viewProfileDetailController.php';
   $controller = new viewProfileDetailController();
-
-  if (isset($_GET['profile_ids'])) {
-
-    $profileIds = explode(',', $_GET['profile_ids']);
-    $profiles = [];
-
-    foreach ($profileIds as $profileId) {
-
-      $profile = $controller->getUserProfile($profileId);
-      if ($profile) {
-
-        $profiles[] = $profile;
-
-      }
-
-    }
-
-  } else {
-
-    header('Location: viewUserProfileListUI.php');
-    exit;
-
-  }
+  $profiles = $controller->getProfiles();
 
   ?>
 

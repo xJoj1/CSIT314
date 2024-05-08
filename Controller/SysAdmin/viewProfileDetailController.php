@@ -11,10 +11,21 @@ class viewProfileDetailController {
 
     }
 
-    public function getAllProfiles() {
+    public function getProfiles() {
+        if (!isset($_GET['profile_ids'])) {
+            header('Location: viewUserProfileListUI.php'); // Redirect if no profile IDs are given
+            exit;
+        }
 
-        return $this->userProfile->getAllUserProfiles();
-
+        $profileIds = explode(',', $_GET['profile_ids']);
+        $profiles = [];
+        foreach ($profileIds as $profileId) {
+            $profile = $this->getUserProfile($profileId);
+            if ($profile) {
+                $profiles[] = $profile;
+            }
+        }
+        return $profiles;
     }
 
     public function getUserProfile($profileId) {
@@ -22,5 +33,6 @@ class viewProfileDetailController {
         return $this->userProfile->getUserProfile($profileId);
 
     }
+    
     
 }
