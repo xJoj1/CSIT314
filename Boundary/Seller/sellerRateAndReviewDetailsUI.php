@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Properties</title>
+    <title>Rate & Review Details</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="../../styles.css"> 
@@ -53,33 +53,68 @@
   </ul>
 </nav>
 
-
-
  <!-- Search and Listings -->
  <div class="container AccContain  mt-5">
- <h1><b>Current Properties</b></h1>
+ <h1><b>Rate & Review</b></h1>
 
-    <!-- Property Listings -->
-    <div class="listing-container">
-        <div class="scrollList">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title"></h5>
-                            <p class="card-text"></p>
-                            <a href="sellerViewListingDetailsUI.php? id=" class="btn btn-primary">View Details</a>
-                        </div>
-                    </div>
-                </div>
+  <!-- Property Listings -->
+  <div class="listing-container">
+    <div class="scrollRateAndReview">
+        <form id="reviewForm">
+            <div class="star-rating">
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
+                <span class="star">&#9733;</span>
             </div>
-        </div>
+            <textarea class="review-text" placeholder="Write a review..." wrap="soft" required></textarea>
+            <div id="errorMessage" style="color: red; display: none;">Please select a rating.</div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
     </div>
+  </div>
+  <div class="back-center">
+    <button type="button" class="back-btn" onclick="window.location.href='sellerRateAndReviewUI.php'">Back</button>
+  </div>
 </div>
-
-
-
-
 </body>
 </html>
+
+<script>
+document.querySelectorAll('.star-rating .star').forEach((star, index) => {
+  star.addEventListener('click', () => {
+    updateStars(index);
+  });
+});
+
+function updateStars(index) {
+  const stars = document.querySelectorAll('.star-rating .star');
+  stars.forEach((star, i) => {
+    if (i <= index) {
+      star.classList.add('rated');
+    } else {
+      star.classList.remove('rated');
+    }
+  });
+}
+
+document.querySelector('.submit-btn').addEventListener('click', function() {
+  const rating = document.querySelectorAll('.star-rating .star.rated').length;
+  const review = document.querySelector('.review-text').value;
+  console.log('Rating:', rating, 'Review:', review);
+});
+
+document.getElementById('reviewForm').addEventListener('submit', function(event) {
+    const ratedCount = document.querySelectorAll('.star-rating .star.rated').length;
+    const errorMessage = document.getElementById('errorMessage');
+    if (ratedCount === 0) {
+        errorMessage.style.display = 'block';
+        event.preventDefault(); // Prevent form submission
+    } else {
+        errorMessage.style.display = 'none';
+    }
+});
+
+
+</script>
