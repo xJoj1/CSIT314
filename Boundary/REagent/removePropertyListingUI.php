@@ -14,29 +14,12 @@
 <body>
     <?php
         require_once '../../Controller/REagent/removePropertyListingController.php';
+        require_once '../../Controller/REagent/viewPropertyListingController.php';
         
-        $database = new Database();
-        $propertyListing = new PropertyListing($database); // entity
+        $propertyListing = new PropertyListing();
         $controller = new removePropertyListingController($propertyListing);
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_ids'])) {
-            $idsToRemove = $_POST['remove_ids'];
-            $removalSuccess = true;
-            foreach ($idsToRemove as $id) {
-                $success = $controller->removePropertyListing($id);
-                if (!$success) {
-                    $removalSuccess = false; // Set to false if any removal fails
-                }
-            }
-            if ($removalSuccess) {
-                echo "<div class='alert alert-success'>Selected listings have been removed.</div>";
-            } else {
-                echo "<div class='alert alert-danger'>Failed to remove listings.</div>";
-            }
-        }
-
-        // Fetching all listings to display
-        $listings = $controller->getAllListings();
+        echo $controller->removeProperty();
     ?>
 
     <!-- Navigation Bar (Logged In) -->
@@ -77,6 +60,8 @@
         Property Listing Removed.
     </div>
 
+    <?php $controller2 = new ViewPropertyListingController();?>
+
     <!-- Search Bar -->
     <div class="container mt-5">
         <form method="POST" action=""> 
@@ -96,6 +81,8 @@
             <div class="listing-container">
                 <div class="scrollList">
                     <div class="row">
+                    <!-- Display all listings  -->
+                    <?php $listings = $controller2->getAllListings();?>
                         <?php foreach ($listings as $listing): ?>
                             <!-- Sample Property Card -->
                             <div class="col-md-4 mb-4">
@@ -126,6 +113,8 @@
             });
         });
     </script>
+
+    
 
 </body>
 </html>
