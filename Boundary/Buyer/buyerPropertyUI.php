@@ -166,9 +166,9 @@
 
         // Redirect based on the selected radio button
         if (statusNew) {
-            window.location.href = 'BuyerNewProperty.php';
+            window.location.href = 'BuyerNewPropertyUI.php';
         } else if (statusSold) {
-            window.location.href = 'BuyerSoldProperty.php';
+            window.location.href = 'BuyerSoldPropertyUI.php';
         }
     }
 
@@ -176,10 +176,10 @@
         document.querySelector('input[name="status"][value="new"]').checked = false;
         document.querySelector('input[name="status"][value="sold"]').checked = false;
         priceSlider.noUiSlider.reset();
-        console.log('Filters cleared, redirecting to buyerProperty.php');
+        console.log('Filters cleared, redirecting to buyerPropertyUI.php');
 
         // Redirect to buyerProperty.php to show all listings
-        window.location.href = 'buyerProperty.php';
+        window.location.href = 'buyerPropertyUI.php';
     }
 
 </script>

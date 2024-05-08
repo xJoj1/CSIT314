@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Seller Sold Property</title>
+    <title>View all Properties</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="../../styles.css"> 
@@ -17,7 +17,7 @@
   
    <!-- Navigation Bar (Logged In) -->
    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <a class="navbar-brand" href="sellerDashboard.php">Real Estate</a>
+        <a class="navbar-brand" href="buyerDashboard.php">Real Estate</a>
         <button class="navbar-toggler" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -46,16 +46,46 @@
         </div>
     </nav>
 
-
+    <!-- Main Content Area -->
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <!-- Filter Sidebar -->
+            <div class="col-md-3">
+                <div class="filter-sidebar">
+                    <div class="row">
+                        <div class="col-6">
+                            <h5><b>Filter</b></h5>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <input type="radio" name="status" value="new" class="toggle-radio" disabled checked>
+                        <label>New</label>
+                    </div>
+                    <div class="filter-group">
+                        <input type="radio" name="status" value="sold" class="toggle-radio" disabled>
+                        <label>Sold</label>
+                    </div>  
+                    <div class="range-group">
+                        <div class="price-range">
+                            <h5><b>Price Range</b></h5>
+                        </div>
+                        <div id="priceSlider"></div>
+                    </div>
+                    <button class="btn filter-button" onclick="applyFilters()">Apply Filters</button>
+                </div>
+            </div>
 
  <!-- Search and Listings -->
- <div class="container AccContain  mt-5">
- <h1><b>Sold Properties</b></h1>
-    <!-- Search Bar -->
-    <div class="search-container">
-        <div class="searchbox">
-            <p><b>Search Property Listing</b></p>
-            <input type="text" id="searchBox" name="searchBox" placeholder="Search.." size="40">
+<div class="col-md-8 flexible-width">
+    <!-- Search Bar and Button Container -->
+    <div class="search-border">
+        <div class="search-container-with-filter">
+            <label for="searchBox"><b>Search Property Listing</b></label>
+            <input type="text" id="searchBox" name="searchBox" placeholder="Search.." class="form-control">
+        </div>
+        <!-- Button on the right -->
+        <div class="user-buttons">
+            <a href="savedPropertyUI.php" class="button">Saved Property</a>
         </div>
     </div>
     <!-- Property Listings -->
@@ -133,22 +163,11 @@
 
         // Redirect based on the selected radio button
         if (statusNew) {
-            window.location.href = 'BuyerNewProperty.php';
+            window.location.href = 'buyerNewPropertyUI.php';
         } else if (statusSold) {
-            window.location.href = 'BuyerSoldProperty.php';
+            window.location.href = 'buyerSoldPropertyUI.php';
         }
     }
-
-    function clearAllFilters() {
-        document.querySelector('input[name="status"][value="new"]').checked = false;
-        document.querySelector('input[name="status"][value="sold"]').checked = false;
-        priceSlider.noUiSlider.reset();
-        console.log('Filters cleared, redirecting to buyerProperty.php');
-
-        // Redirect to buyerProperty.php to show all listings
-        window.location.href = 'buyerProperty.php';
-    }
-
 </script>
 
 
