@@ -1,7 +1,5 @@
 <?php
 require_once '../../Controller/SysAdmin/EditUserProfileController.php';
-
-require_once '../../Controller/SysAdmin/EditUserProfileController.php';
   $controller = new EditUserProfileController();
   $response = $controller->handleRequest();
   $profile = $response['profile'] ?? null;

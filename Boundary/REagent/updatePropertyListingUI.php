@@ -12,16 +12,15 @@
 </head>
 <body>
     <?php
-    require_once '../../Controller/REagent/UpdatePropertyListingController.php';
-
-    $controller = new UpdatePropertyListingController();
-    
-    try {
-        $propertyDetails = $controller->processRequest();
-    } catch (Exception $e) {
-        echo "<script>alert('" . $e->getMessage() . "'); window.location.href = 'viewPropertyListingUI.php';</script>";
-        exit;
-    }
+        require_once '../../Controller/REagent/UpdatePropertyListingController.php';
+        $controller = new UpdatePropertyListingController();
+        
+        try {
+            $propertyDetails = $controller->processRequest();
+        } catch (Exception $e) {
+            echo "<script>alert('" . $e->getMessage() . "'); window.location.href = 'viewPropertyListingUI.php';</script>";
+            exit;
+        }
     ?>
 
     <!-- Navigation Bar (Logged In) -->

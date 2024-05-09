@@ -95,5 +95,15 @@ class PropertyListing {
 
         return $stmt->num_rows > 0;  // Returns true if a duplicate is found, false otherwise
     }
+
+    // searching Property by address
+    public function searchByAddress($searchTerm = '') {
+        $searchTerm = "%$searchTerm%";
+        $stmt = $this->db->prepare("SELECT * FROM " . $this->table . " WHERE address LIKE ?");
+        $stmt->bind_param("s", $searchTerm);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
 ?>

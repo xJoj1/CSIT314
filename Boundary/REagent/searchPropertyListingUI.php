@@ -12,10 +12,9 @@
 </head>
 <body>
     <?php
-        require_once '../../Controller/REagent/viewPropertyListingController.php';
-        
-        $controller = new ViewPropertyListingController();
-        $listings = $controller->getAllListings();
+        require_once '../../Controller/REagent/searchPropertyListingController.php';
+        $controller = new searchPropertyListingController();
+        $listings = $controller->searchListings();
     ?>
 
     <!-- Navigation Bar (Logged In) -->
@@ -48,13 +47,20 @@
         </ul>
     </nav>
 
+    <!-- fetches property data -->
+    <?php
+        require_once '../../Controller/REagent/viewPropertyListingController.php';
+        $controller = new ViewPropertyListingController();
+        $listings = $controller->getAllListings();
+    ?>
+
 <!-- Account List -->
 <div class="container AccContain  mt-5">
     <!-- Search Bar -->
     <div class="search-container">
         <div class="searchbox">
             <p><b>Search Property Listing</b></p>
-            <input type="text" id="searchBox" name="searchBox" placeholder="Search.." size="40">
+            <input type="text" id="searchBox" name="searchBox" placeholder="Search.." onkeyup="filterProperties()" size="40">
         </div>
         <div class="user-buttons">
             <a href="createPropertyListingUI.php" class="button">Create Listing</a>
@@ -66,16 +72,16 @@
     <!-- Property Listings -->
         <div class="listing-container">
             <div class="scrollList">
-                <div class="row">
+                <div class="row" id="propertyListing">
                     <?php foreach ($listings as $listing): ?>
                         <!-- Sample Property Card -->
-                        <div class="col-md-4 mb-4">
+                        <div class="col-md-4 mb-4 property-card" data-address="<?= strtolower(htmlspecialchars($listing['address'])); ?>">
                             <div class="card">
                                 <div class="card-img-top-container">
                                     <img class="card-img-top" src="<?= $listing['image_url'] ?: 'placeholder-image.jpg'; ?>" alt="Property Image">
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title"><?= $listing['address']; ?></h5>
+                                    <h5 class="card-title"><?= htmlspecialchars($listing['address']); ?></h5>
                                     <p class="card-text"><?= $listing['price']; ?> - <?= $listing['size']; ?> sqft <?= $listing['beds']; ?> bed <?= $listing['baths']; ?> bathroom</p>
                                     <a href="../../Boundary/REagent/propertyDetailsUI.php?id=<?php echo $listing['id']; ?>"
                                         class="btn btn-primary">View Details</a>
@@ -87,9 +93,34 @@
                 </div> 
             </div>
         </div>  
-    </form>
-</div>
+    </div>
 
+    <script>
+        function filterProperties() {
+            var input = document.getElementById('searchBox').value.trim().toLowerCase();
+            var listings = document.querySelectorAll('.property-card');
+            var found = false;
+
+            listings.forEach(listing => {
+                const address = listing.getAttribute('data-address').toLowerCase();
+                if (address.includes(input)) {
+                    listing.style.display = '';
+                    found = true;
+                } else {
+                    listing.style.display = 'none';
+                }
+            });
+
+            // Show a message if no properties are found
+            const listingsContainer = document.getElementById('propertyListing');
+            if (!found && input) {
+                listingsContainer.innerHTML = '<div class="col-12"><p>No properties found.</p></div>';
+            } else if (!input) {
+                // This resets the view when the search box is cleared
+                window.location.reload(); // Refresh the page to reset the view
+            }
+        }
+    </script>
     
 </body>
 </html>
