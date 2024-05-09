@@ -22,5 +22,6 @@ class ViewAllPropertyController {
         return $this->propertyListing->getAllPropertyListings($propertyId);
 
     }
+    
 
 }

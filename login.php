@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="form-group">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-3" style="padding-bottom:130px;">
                         <label for="password">Password:</label>
                     </div>
                     <div class="col">

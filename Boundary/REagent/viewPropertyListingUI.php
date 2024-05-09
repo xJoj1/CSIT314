@@ -13,7 +13,6 @@
 <body>
     <?php
         require_once '../../Controller/REagent/viewPropertyListingController.php';
-        
         $controller = new ViewPropertyListingController();
         $listings = $controller->getAllListings();
     ?>
