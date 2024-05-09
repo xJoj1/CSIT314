@@ -14,6 +14,12 @@
     <script src="https://cdn.jsdelivr.net/npm/nouislider/distribute/nouislider.min.js"></script>
 </head>
 <body>
+<?php
+  require_once '../../Controller/Seller/sellerSoldPropertyController.php';
+  $controller = new SellerSoldPropertyController();
+  $soldProperties = $controller->getSoldProperties();
+?>
+
   
 <!-- Navigation Bar (Logged In) -->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -60,24 +66,25 @@
  <h1><b>Sold Properties</b></h1>
     <!-- Search Bar -->
 
-    <!-- Property Listings -->
-    <div class="listing-container">
-        <div class="scrollList">
-            <div class="row">
+<!-- Property Listings -->
+<div class="listing-container">
+    <div class="scrollList">
+        <div class="row">
+            <?php foreach ($soldProperties as $property): ?>
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img class="card-img-top" src="" alt="Property Image">
+                        <img class="card-img-top" src="<?php echo $property['image_url']; ?>" alt="Property Image">
                         <div class="card-body">
-                            <h5 class="card-title"></h5>
-                            <p class="card-text"></p>
-                            <a href="sellerSoldDetailsUI.php? id=" class="btn btn-primary">View Details</a>
+                            <h5 class="card-title"><?php echo $property['address']; ?></h5>
+                            <p class="card-text">$<?php echo number_format($property['price']); ?></p>
+                            <a href="sellerSoldDetailsUI.php?id=<?php echo $property['id']; ?>" class="btn btn-primary">View Details</a>
                         </div>
+                      </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
 

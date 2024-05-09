@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sold Property Details</title>
+    <title>Seller Sold Property Details</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="../../styles.css">
@@ -14,6 +14,13 @@
 </head>
 
 <body>
+<?php
+  require_once '../../Controller/Seller/sellerSoldDetailsController.php';
+  $controller = new SellerSoldDetailsController();
+  $propertyId = $_GET['id'] ?? null;
+  $property = $controller->handlePropertyRequest($propertyId);
+?>
+
 <!-- Navigation Bar (Logged In) -->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <!-- Brand -->
@@ -52,23 +59,25 @@
   </ul>
 </nav>
 
-    <div class="container AccContain mt-5">
-        <div class="scrollProperty">
-            <a href="sellerSoldPropertyUI.php" class="back-property">‹</a>
+<div class="container AccContain mt-5">
+    <div class="scrollProperty">
+        <?php if (!$property): ?>
+            <p>Property not found.</p>
+        <?php else: ?>
+            <a href="sellerSoldPropertyUI.php" class="back-property">‹ Back to Sold Properties</a>
             <div class="card property-details-card">
                 <img class="card-img-top property-img" src="<?php echo $property['image_url']; ?>" alt="Property Image">
                 <div class="detail-container">
                     <p class="light-text"><?php echo $property['description']; ?></p>
-                    <h4><b><?php echo '$' . number_format($property['price']); ?></b></h4>
-                    <p class="detail-text"><?php echo $property['beds'] . ' bed ' . $property['baths'] . ' bathroom'; ?>
-                    </p>
+                    <h4><b>$<?php echo number_format($property['price']); ?></b></h4>
+                    <p class="detail-text"><?php echo $property['beds'] . ' bed, ' . $property['baths'] . ' bathroom'; ?></p>
                     <p class="detail-text"><?php echo $property['size'] . ' sqft'; ?></p>
                     <p class="light-text"><?php echo $property['address']; ?></p>
                 </div>
             </div>
-        </div>
+        <?php endif; ?>
     </div>
+</div>
 
 </body>
-
 </html>
