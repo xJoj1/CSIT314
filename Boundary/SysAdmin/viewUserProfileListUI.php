@@ -2,7 +2,14 @@
 require_once '../../Controller/SysAdmin/viewProfileListController.php'; // Adjust the path as needed
 
 $controller = new viewProfileListController();
-$profiles = $controller->getAllProfiles();
+$profiles = $controller->getAllActiveProfiles();
+
+if (isset($_GET['message'])) {
+    $safeMessage = htmlspecialchars($_GET['message']);
+    echo "<div class='alert alert-success'>$safeMessage</div>";
+    echo "<script>setTimeout(function() { window.location.href = 'viewUserProfileListUI.php'; }, 3000);</script>";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +79,7 @@ $profiles = $controller->getAllProfiles();
                 <a href="createUserProfileUI.php" class="button">Create Profile</a>
                 <button onclick="editSelectedProfile()" class="button">Edit Profile</button>
                 <a href="#" class="button" onclick="viewSelectedProfile()">View Profile</a>
-                <a href="#" class="button">Suspend Profile</a>
+                <a href="#" class="button suspend" id="suspendButton" onclick="suspendSelectedProfiles()" disabled>Suspend Profile</a>
             </div>
         </div>
 
@@ -108,77 +115,101 @@ $profiles = $controller->getAllProfiles();
     <script>
 
         document.addEventListener('DOMContentLoaded', function () {
+            const suspendButton = document.querySelector('.button.suspend'); // The suspend button
+            const checkboxes = document.querySelectorAll('.chkbx'); // All checkboxes for profiles
 
-            var selectAllCheckbox = document.getElementById('select-all-users');
-            var profileCheckboxes = document.querySelectorAll('.chkbx');
+            // Function to update the suspend button's disabled state
+            function updateSuspendButtonState() {
+                let anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+                suspendButton.disabled = !anyChecked; // Disable if none are checked
+            }
 
-            selectAllCheckbox.addEventListener('change', function () {
+            // Initial check to possibly disable on page load
+            updateSuspendButtonState();
 
-                profileCheckboxes.forEach(checkbox => checkbox.checked = this.checked);
-
-            });
-
-            profileCheckboxes.forEach(function (checkbox) {
-
+            // Attach change event to all checkboxes
+            checkboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', function () {
-
-                    if (!this.checked) {
-
-                        selectAllCheckbox.checked = false;
-
-                    } else {
-
-                        const allChecked = Array.from(profileCheckboxes).every(chk => chk.checked);
-                        selectAllCheckbox.checked = allChecked;
-
-                    }
-
+                    updateSuspendButtonState();
                 });
-
             });
 
-        });
+            // Function for selecting all checkboxes
+            document.getElementById('select-all-users').addEventListener('change', function () {
+                checkboxes.forEach(checkbox => checkbox.checked = this.checked);
+                updateSuspendButtonState(); // Update button state when all selections change
+                    });
+                });
 
         function editSelectedProfile() {
             const selectedProfile = document.querySelector('input[name="profile_id[]"]:checked');
             if (selectedProfile) {
-                window.location.href = 'editUserProfileUI.php?profile_id=' + selectedProfile.value;
-            } else {
-                alert('Please select a profile to edit.');
+                    window.location.href = 'editUserProfileUI.php?profile_id=' + selectedProfile.value;
+                } else {
+                    alert('Please select a profile to edit.');
+                }
             }
-        }
 
         function viewSelectedProfile() {
-
-            const profileEntries = document.querySelectorAll('.profile-entry');
-            let profileIds = [];
-
-            profileEntries.forEach(profile => {
-
-                if (profile.style.display !== "none") {
-
-                    const checkbox = profile.querySelector('input[type="checkbox"]');
-
-                    if (checkbox.checked) {
-
-                        profileIds.push(checkbox.value);
-
-                    }
+            const selectedProfiles = document.querySelectorAll('input[name="profile_id[]"]:checked');
+            if (selectedProfiles.length > 0) {
+                let profileIds = [];
+                selectedProfiles.forEach(profile => profileIds.push(profile.value));
+                window.location.href = 'viewUserProfile.php?profile_ids=' + profileIds.join(',');
+                } else {
+                    alert('Please select at least one profile to view.');
                 }
-
-            });
-
-            if (profileIds.length > 0) {
-
-                window.location.href = 'viewUserProfileDetailUI.php?profile_ids=' + profileIds.join(',');
-
-            } else {
-
-                alert('Please select at least one profile to view.');
-
             }
 
+            function suspendProfile() {
+                const selectedProfiles = document.querySelectorAll('input[name="profile_id[]"]:checked');
+                if (selectedProfiles.length > 0) {
+                    let profileIds = [];
+                    selectedProfiles.forEach(profile => profileIds.push(profile.value));
+                    window.location.href = 'suspendUserProfileUI.php?profile_ids=' + profileIds.join(',');
+                } else {
+                    alert('Please select at least one profile to suspend.');
+                }
+            }
+
+            function updateSuspendButtonState() {
+            let anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+            suspendButton.disabled = !anyChecked; // Disable if none are checked
         }
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                updateSuspendButtonState();
+            });
+        });
+
+        document.getElementById('select-all-users').addEventListener('change', function() {
+            checkboxes.forEach(checkbox => checkbox.checked = this.checked);
+            updateSuspendButtonState(); // Update button state when all selections change
+        });
+
+        function suspendSelectedProfiles() {
+            let selectedProfiles = [];
+            document.querySelectorAll('input[name="profile_id[]"]:checked').forEach(function(checkbox) {
+                let profileId = checkbox.value;
+                let profileType = checkbox.closest('.profile-entry').getAttribute('data-profile-type');
+                selectedProfiles.push({
+                    profileId: profileId,
+                    profileType: profileType
+                });
+            });
+            if (selectedProfiles.length > 0) {
+                let profile = selectedProfiles[0]; // Taking the first selected profile for action
+                suspendProfileWithName(profile.profileType, profile.profileId);
+            } else {
+                alert('Please select at least one profile to suspend.');
+            }
+        }
+
+        function suspendProfileWithName(profileType, profileId) {
+            window.location.href = "suspendUserProfileUI.php?profileName=" + encodeURIComponent(profileType) + "&profileId=" + encodeURIComponent(profileId);
+        }
+    
 
     </script>
 

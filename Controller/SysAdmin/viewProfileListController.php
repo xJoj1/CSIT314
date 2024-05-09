@@ -13,6 +13,10 @@ class viewProfileListController {
         return $this->userProfile->getAllUserProfiles();
     }
 
+    public function getAllActiveProfiles(){
+        return $this->userProfile->getAllActiveProfiles();
+    }
+
     public function getUserProfile($profileId) {
 
         return $this->userProfile->getUserProfile($profileId);
