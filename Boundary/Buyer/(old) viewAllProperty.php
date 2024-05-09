@@ -86,7 +86,7 @@ $properties = $controller->getAllListings();
                                     <p class="card-text">
                                         <?php echo '$' . number_format($property['price']) . ' - ' . $property['size'] . ' sqft ' . $property['beds'] . ' bed ' . $property['baths'] . ' bathroom'; ?>
                                     </p>
-                                    <a href="buyerViewDetailsUI.php?id=<?php echo $property['id']; ?>"
+                                    <a href="(old) viewPropertyDetailsUI.php?id=<?php echo $property['id']; ?>"
                                         class="btn btn-primary">View Details</a>
                                 </div>
                                 <div class="card-footer">

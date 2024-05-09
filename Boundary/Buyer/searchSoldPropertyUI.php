@@ -58,11 +58,11 @@
                         </div>
                     </div>
                     <div class="filter-group">
-                        <input type="radio" name="status" value="new" class="toggle-radio" disabled checked>
+                        <input type="radio" name="status" value="new" class="toggle-radio">
                         <label>New</label>
                     </div>
                     <div class="filter-group">
-                        <input type="radio" name="status" value="sold" class="toggle-radio" disabled>
+                        <input type="radio" name="status" value="sold" class="toggle-radio" checked >
                         <label>Sold</label>
                     </div>  
                     <div class="range-group">
@@ -78,6 +78,7 @@
  <!-- Search and Listings -->
 <div class="col-md-8 flexible-width">
     <!-- Search Bar and Button Container -->
+    <h1> View Sold Properties </h1>
     <div class="search-border">
         <div class="search-container-with-filter">
             <label for="searchBox"><b>Search Property Listing</b></label>
@@ -85,7 +86,7 @@
         </div>
         <!-- Button on the right -->
         <div class="user-buttons">
-            <a href="savedPropertyUI.php" class="button">Saved Property</a>
+            <a href="savedSoldPropertyUI.php" class="button">Saved Property</a>
         </div>
     </div>
     <!-- Property Listings -->
@@ -163,11 +164,14 @@
 
         // Redirect based on the selected radio button
         if (statusNew) {
-            window.location.href = 'buyerNewPropertyUI.php';
+            window.location.href = 'viewNewPropertyUI.php';
         } else if (statusSold) {
-            window.location.href = 'buyerSoldPropertyUI.php';
+            window.location.href = 'viewSoldPropertyUI.php';
         }
     }
+
+
+
 </script>
 
 

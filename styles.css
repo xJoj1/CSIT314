@@ -161,8 +161,16 @@ button {
   margin: 2% 5%;
 }
 
+.user-buttons3 {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: space-between;
+  margin: 2% 5%;
+}
+
 /* Create, Edit, View button */
-.user-buttons2 > .button {
+.user-buttons2 > .button, .user-buttons3 > .button {
   width: 15%;
   padding: 5px 10px;
   text-decoration: none;

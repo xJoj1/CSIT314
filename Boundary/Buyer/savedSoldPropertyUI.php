@@ -56,24 +56,15 @@
                         <div class="col-6">
                             <h5><b>Filter</b></h5>
                         </div>
-                        <div class="col-3 text-right">
-                            <button class="btn btn-light clear-all" onclick="clearAllFilters()">Clear all</button>
-                        </div>
                     </div>
                     <div class="filter-group">
                         <input type="radio" name="status" value="new" class="toggle-radio">
                         <label>New</label>
                     </div>
                     <div class="filter-group">
-                        <input type="radio" name="status" value="sold" class="toggle-radio">
+                        <input type="radio" name="status" value="sold" class="toggle-radio" checked>
                         <label>Sold</label>
                     </div>  
-                    <div class="range-group">
-                        <div class="price-range">
-                            <h5><b>Price Range</b></h5>
-                        </div>
-                        <div id="priceSlider"></div>
-                    </div>
                     <button class="btn filter-button" onclick="applyFilters()">Apply Filters</button>
                 </div>
             </div>
@@ -81,7 +72,7 @@
  <!-- Search and Listings -->
 <div class="col-md-8 flexible-width">
     <div class="save-property">
-        <h4><b>Saved Property</b></h4>
+        <h4><b>Saved Sold Property</b></h4>
     </div>
     <!-- Property Listings -->
     <div class="listing-container">
@@ -105,7 +96,7 @@
     </div>
      <!-- Back Button -->
     <div class="user-buttons" style="justify-content: center; width: 100%; height:auto">
-        <a id="back" href="buyerNewProperty.php" class="btn btn-secondary" role="button">Back</a>
+        <a id="back" href="viewSoldPropertyUI.php" class="btn btn-secondary" role="button">Back</a>
     </div>
 </div>
 
@@ -154,11 +145,15 @@
     function applyFilters() {
         var statusNew = document.querySelector('input[name="status"][value="new"]').checked;
         var statusSold = document.querySelector('input[name="status"][value="sold"]').checked;
-        var prices = priceSlider.noUiSlider.get();
         console.log('Filtering properties:');
         console.log('Status New: ' + statusNew + ', Status Sold: ' + statusSold);
-        console.log('Price Range: $' + prices[0] + ' to $' + prices[1]);
         // Implement your filtering logic here
+        // Redirect based on the selected radio button
+        if (statusNew) {
+            window.location.href = 'savedNewPropertyUI.php';
+        } else if (statusSold) {
+            window.location.href = 'savedSoldPropertyUI.php';
+        }
     }
 
     function clearAllFilters() {

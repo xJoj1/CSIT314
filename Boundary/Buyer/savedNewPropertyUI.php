@@ -58,35 +58,21 @@
                         </div>
                     </div>
                     <div class="filter-group">
-                        <input type="radio" name="status" value="new" class="toggle-radio" disabled>
+                        <input type="radio" name="status" value="new" class="toggle-radio" checked>
                         <label>New</label>
                     </div>
                     <div class="filter-group">
-                        <input type="radio" name="status" value="sold" class="toggle-radio" checked disabled>
+                        <input type="radio" name="status" value="sold" class="toggle-radio">
                         <label>Sold</label>
                     </div>  
-                    <div class="range-group">
-                        <div class="price-range">
-                            <h5><b>Price Range</b></h5>
-                        </div>
-                        <div id="priceSlider"></div>
-                    </div>
                     <button class="btn filter-button" onclick="applyFilters()">Apply Filters</button>
                 </div>
             </div>
 
  <!-- Search and Listings -->
 <div class="col-md-8 flexible-width">
-    <!-- Search Bar and Button Container -->
-    <div class="search-border">
-        <div class="search-container-with-filter">
-            <label for="searchBox"><b>Search Property Listing</b></label>
-            <input type="text" id="searchBox" name="searchBox" placeholder="Search.." class="form-control">
-        </div>
-        <!-- Button on the right -->
-        <div class="user-buttons">
-            <a href="savedPropertyUI.php" class="button">Saved Property</a>
-        </div>
+    <div class="save-property">
+        <h4><b>Saved New Property</b></h4>
     </div>
     <!-- Property Listings -->
     <div class="listing-container">
@@ -108,8 +94,11 @@
             </div>
         </div>
     </div>
+     <!-- Back Button -->
+    <div class="user-buttons" style="justify-content: center; width: 100%; height:auto">
+        <a id="back" href="viewNewPropertyUI.php" class="btn btn-secondary" role="button">Back</a>
+    </div>
 </div>
-
 
 
     <script>
@@ -156,21 +145,25 @@
     function applyFilters() {
         var statusNew = document.querySelector('input[name="status"][value="new"]').checked;
         var statusSold = document.querySelector('input[name="status"][value="sold"]').checked;
-        var prices = priceSlider.noUiSlider.get();
         console.log('Filtering properties:');
         console.log('Status New: ' + statusNew + ', Status Sold: ' + statusSold);
-        console.log('Price Range: $' + prices[0] + ' to $' + prices[1]);
+        // Implement your filtering logic here
 
         // Redirect based on the selected radio button
         if (statusNew) {
-            window.location.href = 'buyerNewPropertyUI.php';
+            window.location.href = 'savedNewPropertyUI.php';
         } else if (statusSold) {
-            window.location.href = 'buyerSoldPropertyUI.php';
+            window.location.href = 'savedSoldPropertyUI.php';
         }
     }
 
-
-
+    function clearAllFilters() {
+        document.querySelector('input[name="status"][value="new"]').checked = false;
+        document.querySelector('input[name="status"][value="sold"]').checked = false;
+        priceSlider.noUiSlider.reset();
+        console.log('Filters cleared');
+        // Logic to refresh the listings to show all items
+    }
 </script>
 
 
