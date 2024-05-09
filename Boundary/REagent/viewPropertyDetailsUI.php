@@ -56,8 +56,7 @@
                 <div class="detail-container">
                     <p class="light-text"><?php echo $property['description']; ?></p>
                     <h4><b><?php echo '$' . number_format($property['price']); ?></b></h4>
-                    <p class="detail-text"><?php echo $property['beds'] . ' bed ' . $property['baths'] . ' bathroom'; ?>
-                    </p>
+                    <p class="detail-text"><?php echo $property['beds'] . ' bed ' . $property['baths'] . ' bathroom'; ?></p>
                     <p class="detail-text"><?php echo $property['size'] . ' sqft'; ?></p>
                     <p class="light-text"><?php echo $property['address']; ?></p>
                 </div>
