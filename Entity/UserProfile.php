@@ -119,4 +119,19 @@ class UserProfile
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getAllInActiveProfiles()
+    {
+        $sql = "SELECT * FROM user_profile WHERE status = 'inactive'";
+        $result = $this->conn->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function unsuspendUserProfile($profileId)
+    {
+        $stmt = $this->conn->prepare("UPDATE " . $this->table . " SET status = 'active' WHERE profile_id = ?");
+        $stmt->bind_param("i", $profileId);
+        $stmt->execute();
+        return $stmt->affected_rows > 0;
+    }
+
 }
