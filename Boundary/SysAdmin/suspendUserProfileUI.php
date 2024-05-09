@@ -1,3 +1,29 @@
+<?php
+require_once '../../Controller/SysAdmin/SuspendUserProfileController.php';
+
+$controller = new SuspendUserProfileController();
+$message = '';
+$profileFound = false;
+
+// Handling POST request to suspend the profile
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirm'])) {
+    $profileId = $_POST['profileId']; // Hidden field to keep profile ID on POST
+    $result = $controller->suspendUserProfile($profileId);
+    $message = $result ? "Profile suspended successfully." : "Failed to suspend profile.";
+    header("Location: viewUserProfileListUI.php?message=" . urlencode($message));
+    exit();
+}
+
+// Get profile details for confirmation
+if (isset($_GET['profileName'], $_GET['profileId'])) {
+    $profileName = htmlspecialchars($_GET['profileName']);
+    $profileId = htmlspecialchars($_GET['profileId']);
+    $profile = $controller->getProfileById($profileId); // Fetch profile data
+    $profileFound = !empty($profile);
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,15 +75,21 @@
 </nav>
 
 <!-- Account List -->
-<div class="container AccContain  mt-5">
+<div class="container AccContain mt-5">
     <div class="suspend-profile">
         <div class="confirm-suspend mt-5">
-            <h1>User Profile Suspended</h1>
-            <!-- logic to get data reflected here for suspended user types-->
-            <p><b>User 'John' is suspended</b></p>
+            <h1>Suspend User Profile</h1>
+            <?php if ($profileFound): ?>
+                <p><b>Are you sure you want to suspend the profile: <?= $profileName ?>?</b></p>
+                <form method="POST">
+                    <input type="hidden" name="profileId" value="<?= $profileId ?>">
+                    <button type="submit" name="confirm" class="btn btn-danger">Confirm</button>
+                </form>
+            <?php else: ?>
+                <div class="alert alert-warning">Profile not found.</div>
+            <?php endif; ?>
             <div class="popup-btn mt-5">
-                <a href="#" class="button" id="undo-suspend" type="undoSuspend">Undo</button>
-                <a href="viewProfileListUI.php" class="button">Confirm</a>
+                <a href="viewUserProfileListUI.php" class="button">Undo</a>
             </div>
         </div>
     </div>

@@ -94,7 +94,29 @@ class UserProfile
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
 
+    public function suspendUserProfile($profileId)
+    {
+        $stmt = $this->conn->prepare("UPDATE " . $this->table . " SET status = 'inactive' WHERE profile_id = ?");
+        $stmt->bind_param("i", $profileId);
+        $stmt->execute();
+        return $stmt->affected_rows > 0;
+    }
+
+    public function updateProfileStatus($profileId, $status)
+    {
+        $stmt = $this->conn->prepare("UPDATE user_profile SET status = ? WHERE profile_id = ?");
+        $stmt->bind_param("si", $status, $profileId);
+        $stmt->execute();
+        return $stmt->affected_rows > 0; // Returns true if the profile was updated
+    }
+
+    public function getAllActiveProfiles()
+    {
+        $sql = "SELECT * FROM user_profile WHERE status = 'active'";
+        $result = $this->conn->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
 }
