@@ -95,5 +95,17 @@ class PropertyListing {
 
         return $stmt->num_rows > 0;  // Returns true if a duplicate is found, false otherwise
     }
+
+    // for seller sold property
+    public function getSoldListings() {
+        $query = "SELECT * FROM " . $this->table . " WHERE status = 'sold'";
+        $result = $this->db->query($query);
+    
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return [];
+        }
+    }
 }
 ?>
