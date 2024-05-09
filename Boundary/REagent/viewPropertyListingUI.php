@@ -50,17 +50,18 @@
 
 <!-- Account List -->
 <div class="container AccContain  mt-5">
-    <!-- Search Bar -->
-    <div class="search-container2">
-        <div class="user-buttons2">
-            <a href="searchPropertyListingUI.php" class="button">Search Listing</a>
-            <a href="createPropertyListingUI.php" class="button">Create Listing</a>
-            <a href="removePropertyListingUI.php" class="button">Remove Listing</a>
-            <a href="updatePropertyListingUI.php" class="button">Update Listing</a>
+    <form action="updatePropertyListingUI.php" method="GET">
+        <!-- Search Bar -->
+        <div class="search-container2">
+            <div class="user-buttons2">
+                <a href="searchPropertyListingUI.php" class="button">Search Listing</a>
+                <a href="createPropertyListingUI.php" class="button">Create Listing</a>
+                <a href="removePropertyListingUI.php" class="button">Remove Listing</a>
+                <button type="submit" class="button" id="updateListingButton">Update Listing</button>
+            </div>
         </div>
-    </div>
 
-    <!-- Property Listings -->
+        <!-- Property Listings -->
         <div class="listing-container">
             <div class="scrollList">
                 <div class="row">
@@ -69,6 +70,7 @@
                         <div class="col-md-4 mb-4">
                             <div class="card">
                                 <div class="card-img-top-container">
+                                    <input type="checkbox" name="property_id" value="<?= $listing['id']; ?>" class="remove-checkbox">
                                     <img class="card-img-top" src="<?= $listing['image_url'] ?: 'placeholder-image.jpg'; ?>" alt="Property Image">
                                 </div>
                                 <div class="card-body">
@@ -76,7 +78,6 @@
                                     <p class="card-text"><?= $listing['price']; ?> - <?= $listing['size']; ?> sqft <?= $listing['beds']; ?> bed <?= $listing['baths']; ?> bathroom</p>
                                     <a href="../../Boundary/REagent/viewPropertyDetailsUI.php?id=<?php echo $listing['id']; ?>"
                                         class="btn btn-primary">View Details</a>
-
                                 </div>
                             </div>
                         </div>
@@ -86,6 +87,28 @@
         </div>  
     </form>
 </div>
+
+    <script>
+        document.getElementById('updateListingButton').addEventListener('click', function() {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"][name="property_id"]'); // Ensure this selector matches your actual checkbox inputs
+            var anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+            if (!anyChecked) {
+                alert('Please select at least one property to update.');
+                event.preventDefault(); // Prevent the form from being submitted
+            } else {
+                document.querySelector('form').submit(); // This submits the first form on the page, ensure it targets correctly
+            }
+        });
+
+        // Additional script to disable/enable the Update Listing button based on checkbox state
+        document.querySelectorAll('input[type="checkbox"][name="property_id"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const anyChecked = Array.from(document.querySelectorAll('input[type="checkbox"][name="remove_ids[]"]')).some(c => c.checked);
+                document.getElementById('updateListingButton').disabled = !anyChecked;
+            });
+        });
+    </script>
+    
 
     
 </body>

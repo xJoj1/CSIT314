@@ -70,11 +70,7 @@
     <div class="container mt-5">
         <form method="POST" action=""> 
             <div class="search-container">
-                <div class="searchbox">
-                    <p><b>Search Property Listing</b></p>
-                    <input type="text" id="searchBox" name="searchBox" placeholder="Search.." size="40">
-                </div>
-                <div class="user-buttons">  
+                <div class="user-buttons3">  
                     <button type="submit" class="button">Remove Listing</button>
                 </div>
             </div>

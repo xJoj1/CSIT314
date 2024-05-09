@@ -592,7 +592,7 @@ h1 {
   padding: 10px;
 }
 
-.remove-checkbox {
+.remove-checkbox{
   position: absolute;
   top: 20px; /* Adjust based on your layout */
   left: 20px; /* Adjust based on your layout */
