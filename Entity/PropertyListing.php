@@ -21,6 +21,13 @@ class PropertyListing {
 
     // FOR ALL EXISTING CODE, PLEASE DO NOT RENAME / REPLACE IT WITH YOUR OWN CODE BECAUSE IT MAY AFFECT OTHER WORKING FILES THANK YOU
 
+    public function getListingById($id) {
+        $stmt = $this->db->prepare("SELECT * FROM propertylisting WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
+
     // Retrieves all property listings from the database
     public function getAllListings() {
         $query = "SELECT id, address, price, size, beds, baths, image_url, description, posted_date FROM " . $this->table;
@@ -59,15 +66,10 @@ class PropertyListing {
 
     // Update an existing listing (PLEASE CHANGE NAMING BASED ON BCE WHEN TALL TOUCH ON THIS)
     public function updateListing($id, $address, $price, $size, $beds, $baths, $image_url, $description, $posted_date) {
-        $query = "UPDATE " . $this->table . " SET address=?, price=?, size=?, beds=?, baths=?, image_url=?, description=?, posted_date=? WHERE id=?";
+        $query = "UPDATE propertylisting SET address=?, price=?, size=?, beds=?, baths=?, image_url=?, description=?, posted_date=? WHERE id=?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('sdiidsssi', $address, $price, $size, $beds, $baths, $image_url, $description, $posted_date, $id);
-
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+        return $stmt->execute();
     }
 
     // Deletes a property listing from the database based on an ID

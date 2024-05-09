@@ -12,10 +12,16 @@
 </head>
 <body>
     <?php
-    require_once '../../Controller/REagent/CreatePropertyListingController.php';
-    $controller = new CreatePropertyListingController();
-    $controller->handleFormSubmission();
+    require_once '../../Controller/REagent/UpdatePropertyListingController.php';
 
+    $controller = new UpdatePropertyListingController();
+    
+    try {
+        $propertyDetails = $controller->processRequest();
+    } catch (Exception $e) {
+        echo "<script>alert('" . $e->getMessage() . "'); window.location.href = 'viewPropertyListingUI.php';</script>";
+        exit;
+    }
     ?>
 
     <!-- Navigation Bar (Logged In) -->
@@ -51,47 +57,47 @@
             <form id="propertyForm" onsubmit="return validateForm()" method="post" enctype="multipart/form-data" novalidate>
                 <div class="form-group">
                     <label for="price">Price:</label>
-                    <input type="text" class="form-control" id="price" name="price" placeholder="$150,000">
+                    <input type="text" class="form-control" id="price" name="price" value="<?= htmlspecialchars($propertyDetails['price']); ?>">
                 </div>
                 
                 <div class="form-group">
                     <label for="beds">Bed:</label>
                     <select class="form-control" id="beds" name="beds">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
+                        <!-- Dynamically select the option based on the value -->
+                        <option value="1" <?= $propertyDetails['beds'] == 1 ? 'selected' : ''; ?>>1</option>
+                        <option value="2" <?= $propertyDetails['beds'] == 2 ? 'selected' : ''; ?>>2</option>
+                        <option value="3" <?= $propertyDetails['beds'] == 3 ? 'selected' : ''; ?>>3</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="baths">Bath:</label>
                     <select class="form-control" id="baths" name="baths">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
+                        <option value="1" <?= $propertyDetails['baths'] == 1 ? 'selected' : ''; ?>>1</option>
+                        <option value="2" <?= $propertyDetails['baths'] == 2 ? 'selected' : ''; ?>>2</option>
+                        <option value="3" <?= $propertyDetails['baths'] == 3 ? 'selected' : ''; ?>>3</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="area">Area:</label>
-                    <input type="text" class="form-control" id="area" name="area" placeholder="1000 sqft">
-                </div>
+                    <input type="text" class="form-control" id="area" name="area" value="<?= htmlspecialchars($propertyDetails['size']); ?>">
 
                 <div class="form-group">
                     <label for="address">Address:</label>
-                    <input type="text" class="form-control" id="address" name="address" placeholder="Sample Address Blk 123">
+                    <input type="text" class="form-control" id="address" name="address" value="<?= htmlspecialchars($propertyDetails['address']); ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="description">Description:</label>
-                    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Description of the property"></textarea>
+                    <textarea class="form-control" id="description" name="description" rows="3"><?= htmlspecialchars($propertyDetails['description']); ?></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="image">Image URL:</label>
-                    <input type="text" class="form-control" id="image" name="image" placeholder="Enter image URL">
+                    <input type="text" class="form-control" id="image" name="image" value="<?= htmlspecialchars($propertyDetails['image_url']); ?>">
                 </div>
-
+                <input type="hidden" name="property_id" value="<?= $propertyDetails['id']; ?>">
                 <!-- Confirm button -->
                 <div class="form-group mt-5">
                     <button type="submit" class="btn btn-primary btn-block">Confirm</button>
