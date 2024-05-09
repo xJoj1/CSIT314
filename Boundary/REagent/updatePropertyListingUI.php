@@ -82,6 +82,7 @@
                 <div class="form-group">
                     <label for="area">Area:</label>
                     <input type="text" class="form-control" id="area" name="area" value="<?= htmlspecialchars($propertyDetails['size']); ?>">
+                </div>
 
                 <div class="form-group">
                     <label for="address">Address:</label>
