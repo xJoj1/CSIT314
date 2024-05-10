@@ -118,6 +118,17 @@ class PropertyListing {
         }
     }
 
+    // search sold property
+    public function searchSoldPropertiesByAddress($searchTerm) {
+        $searchTerm = "%" . $searchTerm . "%";
+        $query = "SELECT * FROM " . $this->table . " WHERE status = 'sold' AND address LIKE ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("s", $searchTerm);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     // for seller to retrieve active listing
     public function getActiveListings() {
         $query = "SELECT id, address, price, size, beds, baths, image_url, description, posted_date FROM " . $this->table . " WHERE status = 'active'";

@@ -14,6 +14,11 @@
     <script src="https://cdn.jsdelivr.net/npm/nouislider/distribute/nouislider.min.js"></script>
 </head>
 <body>
+    <?php
+        require_once '../../Controller/Buyer/searchNewPropertyController.php';
+        $controller = new searchNewPropertyController();
+        $listings = $controller->searchListings();
+    ?>
   
    <!-- Navigation Bar (Logged In) -->
    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -46,6 +51,12 @@
         </div>
     </nav>
 
+    <?php
+        require_once '../../Controller/REagent/viewPropertyListingController.php';
+        $controller = new ViewPropertyListingController();
+        $listings = $controller->getAllListings();
+    ?>
+
     <!-- Main Content Area -->
     <div class="container-fluid mt-5">
         <div class="row">
@@ -75,41 +86,45 @@
                 </div>
             </div>
 
- <!-- Search and Listings -->
-<div class="col-md-8 flexible-width">
-    <h1> View New Properties </h1>
-    <!-- Search Bar and Button Container -->
-    <div class="search-border">
-        <div class="search-container-with-filter">
-            <label for="searchBox"><b>Search Property Listing</b></label>
-            <input type="text" id="searchBox" name="searchBox" placeholder="Search.." class="form-control">
+    <!-- Search and Listings -->
+    <div class="col-md-8 flexible-width">
+        <h1> View New Properties </h1>
+        <!-- Search Bar and Button Container -->
+        <div class="search-border">
+            <div class="search-container-with-filter">
+                <label for="searchBox"><b>Search Property Listing</b></label>
+                <input type="text" id="searchBox" name="searchBox" placeholder="Search.." onkeyup="filterProperties()" class="form-control">
+            </div>
+            <!-- Button on the right -->
+            <div class="user-buttons">
+                <a href="savedNewPropertyUI.php" class="button">Saved Property</a>
+            </div>
         </div>
-        <!-- Button on the right -->
-        <div class="user-buttons">
-            <a href="savedNewPropertyUI.php" class="button">Saved Property</a>
-        </div>
-    </div>
-    <!-- Property Listings -->
-    <div class="listing-container">
-        <div class="scrollList">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title"></h5>
-                            <p class="card-text"></p>
-                            <a href="buyerViewDetailsUI.php?id=" class="btn btn-primary">View Details</a>
+        <!-- Property Listings -->
+        <div class="listing-container">
+            <div class="scrollList">
+                <div class="row" id="propertyListing">
+                    <?php foreach ($listings as $listing): ?>
+                        <div class="col-md-4 mb-4 property-card" data-address="<?= strtolower(htmlspecialchars($listing['address'])); ?>">
+                            <div class="card">
+                                <div class="card-img-top-container">
+                                    <img class="card-img-top" src="<?= $listing['image_url'] ?: 'placeholder-image.jpg'; ?>" alt="Property Image">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= htmlspecialchars($listing['address']); ?></h5>
+                                    <p class="card-text"><?= $listing['price']; ?> - <?= $listing['size']; ?> sqft <?= $listing['beds']; ?> bed <?= $listing['baths']; ?> bathroom</p>
+                                    <a href="buyerViewDetailsUI.php?id=" class="btn btn-primary">View Details</a>
+                                </div>
+                                <div class="card-footer">
+                                    <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
 
@@ -167,6 +182,31 @@
             window.location.href = 'viewNewPropertyUI.php';
         } else if (statusSold) {
             window.location.href = 'viewSoldPropertyUI.php';
+        }
+    }
+
+    function filterProperties() {
+        var input = document.getElementById('searchBox').value.trim().toLowerCase();
+        var listings = document.querySelectorAll('.property-card');
+        var found = false;
+
+        listings.forEach(listing => {
+            const address = listing.getAttribute('data-address').toLowerCase();
+            if (address.includes(input)) {
+                listing.style.display = '';
+                found = true;
+            } else {
+                listing.style.display = 'none';
+            }
+        });
+
+        // Show a message if no properties are found
+        const listingsContainer = document.getElementById('propertyListing');
+        if (!found && input) {
+            listingsContainer.innerHTML = '<div class="col-12"><p>No properties found.</p></div>';
+        } else if (!input) {
+            // This resets the view when the search box is cleared
+            window.location.reload(); // Refresh the page to reset the view
         }
     }
 </script>

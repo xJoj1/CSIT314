@@ -14,6 +14,12 @@
     <script src="https://cdn.jsdelivr.net/npm/nouislider/distribute/nouislider.min.js"></script>
 </head>
 <body>
+
+    <?php
+        require_once '../../Controller/Buyer/searchSoldPropertyController.php';
+        $controller = new searchSoldPropertyController();
+        $listings = $controller->searchListings();
+    ?>
   
    <!-- Navigation Bar (Logged In) -->
    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -46,6 +52,12 @@
         </div>
     </nav>
 
+    <?php
+        require_once '../../Controller/Seller/sellerSoldPropertyController.php';
+        $controller = new SellerSoldPropertyController();
+        $soldProperties = $controller->getSoldProperties();
+    ?>
+
     <!-- Main Content Area -->
     <div class="container-fluid mt-5">
         <div class="row">
@@ -75,45 +87,46 @@
                 </div>
             </div>
 
- <!-- Search and Listings -->
-<div class="col-md-8 flexible-width">
-    <!-- Search Bar and Button Container -->
-    <h1> View Sold Properties </h1>
-    <div class="search-border">
-        <div class="search-container-with-filter">
-            <label for="searchBox"><b>Search Property Listing</b></label>
-            <input type="text" id="searchBox" name="searchBox" placeholder="Search.." class="form-control">
+    <!-- Search and Listings -->
+    <div class="col-md-8 flexible-width">
+        <!-- Search Bar and Button Container -->
+        <h1> View Sold Properties </h1>
+        <div class="search-border">
+            <div class="search-container-with-filter">
+                <label for="searchBox"><b>Search Property Listing</b></label>
+                <input type="text" id="searchBox" name="searchBox" placeholder="Search.." onkeyup="filterProperties()" class="form-control">
+            </div>
+            <!-- Button on the right -->
+            <div class="user-buttons">
+                <a href="savedSoldPropertyUI.php" class="button">Saved Property</a>
+            </div>
         </div>
-        <!-- Button on the right -->
-        <div class="user-buttons">
-            <a href="savedSoldPropertyUI.php" class="button">Saved Property</a>
-        </div>
-    </div>
-    <!-- Property Listings -->
-    <div class="listing-container">
-        <div class="scrollList">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title"></h5>
-                            <p class="card-text"></p>
-                            <a href="buyerViewDetailsUI.php?id=" class="btn btn-primary">View Details</a>
-                        </div>
-                        <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
+        <!-- Property Listings -->
+        <div class="listing-container">
+            <div class="scrollList">
+                <div class="row">
+                    <?php foreach ($soldProperties as $listing): ?>
+                        <div class="col-md-4 mb-4 property-card" data-address="<?= strtolower(htmlspecialchars($listing['address'])); ?>">
+                            <div class="card">
+                                <img class="card-img-top" src="<?php echo $listing['image_url']; ?>" alt="Property Image">
+                                <div class="card-body">
+                                <h5 class="card-title"><?= htmlspecialchars($listing['address']); ?></h5>
+                                <p class="card-text"><?= $listing['price']; ?> - <?= $listing['size']; ?> sqft <?= $listing['beds']; ?> bed <?= $listing['baths']; ?> bathroom</p>
+                                <a href="buyerViewDetailsUI.php?id=" class="btn btn-primary">View Details</a>
+                            </div>
+                            <div class="card-footer">
+                                <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
-</div>
 
 
 
-    <script>
+<script>
     function toggleFavorite(element) {
         element.classList.toggle('far');
         element.classList.toggle('fas');
@@ -170,7 +183,32 @@
         }
     }
 
+    function filterProperties() {
+        var input = document.getElementById('searchBox').value.trim().toLowerCase();
+        var listings = document.querySelectorAll('.property-card');
 
+        if (!input) {
+            window.location.reload(); // Refresh the page to reset the view when input is cleared
+            return;
+        }
+
+        var found = false;
+        listings.forEach(listing => {
+            const address = listing.getAttribute('data-address').toLowerCase();
+            if (address.includes(input)) {
+                listing.style.display = '';
+                found = true;
+            } else {
+                listing.style.display = 'none';
+            }
+        });
+
+        // Display a message if no properties are found
+        const listingsContainer = document.getElementById('propertyListing');
+        if (!found) {
+            listingsContainer.innerHTML = '<div class="col-12"><p>No properties found.</p></div>';
+        }
+    }
 
 </script>
 
