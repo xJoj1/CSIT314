@@ -139,5 +139,14 @@ class PropertyListing {
             error_log("Error incrementing views: " . $stmt->error);  // Log errors
         }
     }
+
+    public function getFilteredProperties($status, $minPrice, $maxPrice) {
+        $query = "SELECT * FROM propertylisting WHERE price BETWEEN ? AND ? AND status = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("dds", $minPrice, $maxPrice, $status);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
 ?>
