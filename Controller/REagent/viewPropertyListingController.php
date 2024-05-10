@@ -13,7 +13,7 @@ class ViewPropertyListingController {
 
     public function getAllListings() {
 
-        return $this->propertyListing->getAllListings();
+        return $this->propertyListing->getActiveListings();
 
     }
 
