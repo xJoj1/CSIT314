@@ -129,5 +129,15 @@ class PropertyListing {
             return [];
         }
     }
+
+    // view count for engagement metrics
+    public function incrementViews($propertyId) {
+        $query = "UPDATE " . $this->table . " SET views = views + 1 WHERE id = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $propertyId);
+        if (!$stmt->execute()) {
+            error_log("Error incrementing views: " . $stmt->error);  // Log errors
+        }
+    }
 }
 ?>

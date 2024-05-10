@@ -15,6 +15,13 @@ class SellerViewPropertyDetailsController {
         }
 
         $propertyId = $_GET['id'];
+
+        // Increment views if the increment_views parameter is set
+        if (isset($_GET['increment_views']) && $_GET['increment_views'] == 1) {
+            error_log("Incrementing views for ID: " . $propertyId);  // Debug log
+            $this->propertyListing->incrementViews($propertyId);
+        }
+
         $property = $this->getPropertyDetails($propertyId);
         if (!$property) {
             header('Location: sellerViewListingUI.php'); // Redirect if property not found
