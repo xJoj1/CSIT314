@@ -117,5 +117,17 @@ class PropertyListing {
             return [];
         }
     }
+
+    // for seller to retrieve active listing
+    public function getActiveListings() {
+        $query = "SELECT id, address, price, size, beds, baths, image_url, description, posted_date FROM " . $this->table . " WHERE status = 'active'";
+        $result = $this->db->query($query);
+    
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return [];
+        }
+    }
 }
 ?>

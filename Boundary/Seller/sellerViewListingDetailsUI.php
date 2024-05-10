@@ -14,7 +14,7 @@
 <body>
   
 <?php
-  require_once '../../Controller/Seller/sellerViewDetailsController.php';
+  require_once '../../Controller/Seller/sellerViewListingDetailsController.php';
   $controller = new SellerViewPropertyDetailsController();
   $property = $controller->handlePropertyRequest();
 

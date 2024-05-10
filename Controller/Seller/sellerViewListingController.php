@@ -9,8 +9,7 @@ class SellerViewListingController {
     }
 
     public function getAllListedProperties() {
-      
-        return $this->propertyListing->getAllListings();
+        return $this->propertyListing->getActiveListings(); // Now calling getActiveListings
     }
 }
 ?>

@@ -60,14 +60,14 @@
         <div class="scrollList">
             <div class="row">
             <?php if (empty($listings)): ?>
-                <p>No property listings found.</p>
+                <p>No active listings found.</p>
             <?php else: ?>
                 <?php foreach ($listings as $listing): ?>
                     <div class="col-md-4 mb-4">
                         <div class="card">
                             <img class="card-img-top" src="<?php echo $listing['image_url']; ?>" alt="Property Image">
                             <div class="card-body">
-                              <h5 class="card-title"><?= $listing['address']; ?></h5>
+                              <h5 class="card-title"><?= htmlspecialchars($listing['address']); ?></h5>
                               <p class="card-text"><?= $listing['price']; ?> - <?= $listing['size']; ?> sqft <?= $listing['beds']; ?> bed <?= $listing['baths']; ?> bathroom</p>
                               <a href="../../Boundary/Seller/sellerViewListingDetailsUI.php?id=<?php echo $listing['id']; ?>" 
                                   class="btn btn-primary">View Details</a>

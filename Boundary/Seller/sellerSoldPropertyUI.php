@@ -59,35 +59,33 @@
   </ul>
 </nav>
 
-
-
  <!-- Search and Listings -->
  <div class="container AccContain  mt-5">
  <h1><b>Sold Properties</b></h1>
-    <!-- Search Bar -->
-
 <!-- Property Listings -->
 <div class="listing-container">
     <div class="scrollList">
         <div class="row">
-            <?php foreach ($soldProperties as $property): ?>
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="<?php echo $property['image_url']; ?>" alt="Property Image">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $property['address']; ?></h5>
-                            <p class="card-text">$<?php echo number_format($property['price']); ?></p>
-                            <a href="sellerSoldDetailsUI.php?id=<?php echo $property['id']; ?>" class="btn btn-primary">View Details</a>
-                        </div>
-                      </div>
+        <?php if (empty($soldProperties)): ?>
+              <p>No sold listings found.</p>
+        <?php else: ?>
+          <?php foreach ($soldProperties as $listing): ?>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img class="card-img-top" src="<?php echo $listing['image_url']; ?>" alt="Property Image">
+                    <div class="card-body">
+                      <h5 class="card-title"><?= htmlspecialchars($listing['address']); ?></h5>
+                      <p class="card-text"><?= $listing['price']; ?> - <?= $listing['size']; ?> sqft <?= $listing['beds']; ?> bed <?= $listing['baths']; ?> bathroom</p>
+                      <a href="../../Boundary/Seller/sellerViewListingDetailsUI.php?id=<?php echo $listing['id']; ?>" 
+                          class="btn btn-primary">View Details</a>
                     </div>
                 </div>
             </div>
-        </div>
+          <?php endforeach; ?>
+        <?php endif; ?>
+      </div>
     </div>
-
-
-
+</div>
 
 </body>
 </html>
