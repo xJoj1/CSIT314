@@ -18,10 +18,10 @@
 <body>
 
     <?php
-    require_once '../../Entity/PropertyListing.php';
-    $propertyListing = new PropertyListing();
+    require_once '../../Controller/Buyer/viewNewPropertyController.php';
+    $controller = new viewNewPropertyController();
 
-    $properties = $propertyListing->getActiveListings();
+    $properties = $controller->getActiveProperties();
 
     if (!is_array($properties)) {
 
@@ -51,7 +51,8 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Welcome Buyer
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
@@ -107,16 +108,18 @@
                     <div class="listing-container">
                         <div class="scrollList">
                             <div class="row">
-                                <?php foreach ($properties as $property) : ?>
+                                <?php foreach ($properties as $property): ?>
                                     <div class="col-md-4 mb-4">
                                         <div class="card">
-                                            <img class="card-img-top" src="<?php echo $property['image_url']; ?>" alt="Property Image">
+                                            <img class="card-img-top" src="<?php echo $property['image_url']; ?>"
+                                                alt="Property Image">
                                             <div class="card-body">
                                                 <h5 class="card-title"><?php echo $property['address']; ?></h5>
                                                 <p class="card-text">
                                                     <?php echo '$' . number_format($property['price']) . ' - ' . $property['size'] . ' sqft ' . $property['beds'] . ' bed ' . $property['baths'] . ' bathroom'; ?>
                                                 </p>
-                                                <a href="viewPropertyDetailsUI.php?id=<?php echo $property['id']; ?>" class="btn btn-primary">View Details</a>
+                                                <a href="viewNewPropertyDetails.php?id=<?php echo $property['id']; ?>"
+                                                    class="btn btn-primary">View Details</a>
                                             </div>
                                             <div class="card-footer">
                                                 <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
@@ -144,7 +147,7 @@
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             var priceSlider = document.getElementById('priceSlider');
             noUiSlider.create(priceSlider, {
                 start: [100000, 500000],
@@ -156,16 +159,16 @@
                 step: 1000,
                 tooltips: [true, true],
                 format: {
-                    to: function(value) {
+                    to: function (value) {
                         return parseInt(value).toLocaleString();
                     },
-                    from: function(value) {
+                    from: function (value) {
                         return Number(value.replace(',', ''));
                     }
                 }
             });
 
-            document.getElementById('statusSold').addEventListener('change', function() {
+            document.getElementById('statusSold').addEventListener('change', function () {
 
                 if (this.checked) {
 
@@ -175,7 +178,7 @@
 
             });
 
-            document.getElementById('statusNew').addEventListener('change', function() {
+            document.getElementById('statusNew').addEventListener('change', function () {
 
                 if (this.checked) {
 
@@ -185,7 +188,7 @@
 
             });
 
-            priceSlider.noUiSlider.on('update', function(values, handle) {
+            priceSlider.noUiSlider.on('update', function (values, handle) {
                 var lowerPriceLabel = document.getElementById('lowerPriceLabel');
                 var upperPriceLabel = document.getElementById('upperPriceLabel');
                 lowerPriceLabel.innerHTML = values[0];

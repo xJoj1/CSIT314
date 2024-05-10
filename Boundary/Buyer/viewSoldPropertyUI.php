@@ -18,14 +18,13 @@
 <body>
 
     <?php
-    require_once '../../Entity/PropertyListing.php';
-    $propertyListing = new PropertyListing();
+    require_once '../../Controller/Buyer/viewSoldPropertyController.php';
+    $controller = new viewSoldPropertyController();
+    $soldProperties = $controller->getSoldProperties();
 
-    $properties = $propertyListing->getSoldListings();
+    if (!is_array($soldProperties)) {
 
-    if (!is_array($properties)) {
-
-        $properties = [];
+        $soldProperties = [];
     }
     ?>
 
@@ -49,7 +48,8 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Welcome Buyer
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
@@ -105,23 +105,26 @@
                     <div class="listing-container">
                         <div class="scrollList">
                             <div class="row">
-                                <?php foreach ($properties as $property) : ?>
-                                    <div class="col-md-4 mb-4">
-                                        <div class="card">
-                                            <img class="card-img-top" src="<?php echo $property['image_url']; ?>" alt="Property Image">
-                                            <div class="card-body">
-                                                <h5 class="card-title"><?php echo $property['address']; ?></h5>
-                                                <p class="card-text">
-                                                    <?php echo '$' . number_format($property['price']) . ' - ' . $property['size'] . ' sqft ' . $property['beds'] . ' bed ' . $property['baths'] . ' bathroom'; ?>
-                                                </p>
-                                                <a href="viewPropertyDetailsUI.php?id=<?php echo $property['id']; ?>" class="btn btn-primary">View Details</a>
-                                            </div>
-                                            <div class="card-footer">
-                                                <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
+                                <?php if (empty($soldProperties)): ?>
+                                    <p>No sold listings found.</p>
+                                <?php else: ?>
+                                    <?php foreach ($soldProperties as $listing): ?>
+                                        <div class="col-md-4 mb-4">
+                                            <div class="card">
+                                                <img class="card-img-top" src="<?php echo $listing['image_url']; ?>"
+                                                    alt="Property Image">
+                                                <div class="card-body">
+                                                    <h5 class="card-title"><?php echo $listing['address']; ?></h5>
+                                                    <p class="card-text">
+                                                        <?php echo '$' . number_format($listing['price']) . ' - ' . $listing['size'] . ' sqft ' . $listing['beds'] . ' bed ' . $listing['baths'] . ' bathroom'; ?>
+                                                    </p>
+                                                    <a href="viewSoldPropertyDetails.php?id=<?php echo $listing['id']; ?>"
+                                                        class="btn btn-primary">View Details</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <?php endforeach; ?>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -131,18 +134,8 @@
     </div>
 
     <script>
-        function toggleFavorite(element) {
-            element.classList.toggle('far');
-            element.classList.toggle('fas');
-            element.classList.toggle('favorited');
-            if (element.classList.contains('favorited')) {
-                console.log('Added to favorites');
-            } else {
-                console.log('Removed from favorites');
-            }
-        }
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             var priceSlider = document.getElementById('priceSlider');
             noUiSlider.create(priceSlider, {
                 start: [100000, 500000],
@@ -154,16 +147,16 @@
                 step: 1000,
                 tooltips: [true, true],
                 format: {
-                    to: function(value) {
+                    to: function (value) {
                         return parseInt(value).toLocaleString();
                     },
-                    from: function(value) {
+                    from: function (value) {
                         return Number(value.replace(',', ''));
                     }
                 }
             });
 
-            document.getElementById('statusSold').addEventListener('change', function() {
+            document.getElementById('statusSold').addEventListener('change', function () {
 
                 if (this.checked) {
 
@@ -173,7 +166,7 @@
 
             });
 
-            document.getElementById('statusNew').addEventListener('change', function() {
+            document.getElementById('statusNew').addEventListener('change', function () {
 
                 if (this.checked) {
 
@@ -183,7 +176,7 @@
 
             });
 
-            priceSlider.noUiSlider.on('update', function(values, handle) {
+            priceSlider.noUiSlider.on('update', function (values, handle) {
                 var lowerPriceLabel = document.getElementById('lowerPriceLabel');
                 var upperPriceLabel = document.getElementById('upperPriceLabel');
                 lowerPriceLabel.innerHTML = values[0];
