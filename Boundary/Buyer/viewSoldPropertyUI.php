@@ -101,31 +101,29 @@
                     </div>
                 </div>
                 <!-- Property Listings -->
-                <div class="container mt-5">
-                    <div class="listing-container">
-                        <div class="scrollList">
-                            <div class="row">
-                                <?php if (empty($soldProperties)): ?>
-                                    <p>No sold listings found.</p>
-                                <?php else: ?>
-                                    <?php foreach ($soldProperties as $listing): ?>
-                                        <div class="col-md-4 mb-4">
-                                            <div class="card">
-                                                <img class="card-img-top" src="<?php echo $listing['image_url']; ?>"
-                                                    alt="Property Image">
-                                                <div class="card-body">
-                                                    <h5 class="card-title"><?php echo $listing['address']; ?></h5>
-                                                    <p class="card-text">
-                                                        <?php echo '$' . number_format($listing['price']) . ' - ' . $listing['size'] . ' sqft ' . $listing['beds'] . ' bed ' . $listing['baths'] . ' bathroom'; ?>
-                                                    </p>
-                                                    <a href="viewSoldPropertyDetails.php?id=<?php echo $listing['id']; ?>"
-                                                        class="btn btn-primary">View Details</a>
-                                                </div>
+                <div class="listing-container">
+                    <div class="scrollList">
+                        <div class="row">
+                            <?php if (empty($soldProperties)): ?>
+                                <p>No sold listings found.</p>
+                            <?php else: ?>
+                                <?php foreach ($soldProperties as $listing): ?>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card">
+                                            <img class="card-img-top" src="<?php echo $listing['image_url']; ?>"
+                                                alt="Property Image">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><?php echo $listing['address']; ?></h5>
+                                                <p class="card-text">
+                                                    <?php echo '$' . number_format($listing['price']) . ' - ' . $listing['size'] . ' sqft ' . $listing['beds'] . ' bed ' . $listing['baths'] . ' bathroom'; ?>
+                                                </p>
+                                                <a href="viewSoldPropertyDetails.php?id=<?php echo $listing['id']; ?>"
+                                                    class="btn btn-primary">View Details</a>
                                             </div>
                                         </div>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
-                            </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

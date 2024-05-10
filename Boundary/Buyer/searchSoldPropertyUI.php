@@ -53,8 +53,8 @@
     </nav>
 
     <?php
-        require_once '../../Controller/Seller/sellerSoldPropertyController.php';
-        $controller = new SellerSoldPropertyController();
+        require_once '../../Controller/Buyer/viewSoldPropertyController.php';
+        $controller = new viewSoldPropertyController();
         $soldProperties = $controller->getSoldProperties();
     ?>
 
@@ -112,7 +112,7 @@
                                 <div class="card-body">
                                 <h5 class="card-title"><?= htmlspecialchars($listing['address']); ?></h5>
                                 <p class="card-text"><?= $listing['price']; ?> - <?= $listing['size']; ?> sqft <?= $listing['beds']; ?> bed <?= $listing['baths']; ?> bathroom</p>
-                                <a href="buyerViewDetailsUI.php?id=" class="btn btn-primary">View Details</a>
+                                <a href="viewSoldPropertyDetails.php?id=<?php echo $listing['id']; ?>" class="btn btn-primary">View Details</a>
                             </div>
                             <div class="card-footer">
                                 <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>

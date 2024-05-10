@@ -52,9 +52,9 @@
     </nav>
 
     <?php
-        require_once '../../Controller/REagent/viewPropertyListingController.php';
-        $controller = new ViewPropertyListingController();
-        $listings = $controller->getAllListings();
+        require_once '../../Controller/Buyer/viewNewPropertyController.php';
+        $controller = new viewNewPropertyController();
+        $properties = $controller->getActiveProperties();
     ?>
 
     <!-- Main Content Area -->
@@ -113,7 +113,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><?= htmlspecialchars($listing['address']); ?></h5>
                                     <p class="card-text"><?= $listing['price']; ?> - <?= $listing['size']; ?> sqft <?= $listing['beds']; ?> bed <?= $listing['baths']; ?> bathroom</p>
-                                    <a href="buyerViewDetailsUI.php?id=" class="btn btn-primary">View Details</a>
+                                    <a href="viewNewPropertyDetails.php?id=<?php echo $property['id']; ?>" class="btn btn-primary">View Details</a>
                                 </div>
                                 <div class="card-footer">
                                     <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>

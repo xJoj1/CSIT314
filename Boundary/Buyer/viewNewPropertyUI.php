@@ -104,30 +104,28 @@
                     </div>
                 </div>
                 <!-- Property Listings -->
-                <div class="container mt-5">
-                    <div class="listing-container">
-                        <div class="scrollList">
-                            <div class="row">
-                                <?php foreach ($properties as $property): ?>
-                                    <div class="col-md-4 mb-4">
-                                        <div class="card">
-                                            <img class="card-img-top" src="<?php echo $property['image_url']; ?>"
-                                                alt="Property Image">
-                                            <div class="card-body">
-                                                <h5 class="card-title"><?php echo $property['address']; ?></h5>
-                                                <p class="card-text">
-                                                    <?php echo '$' . number_format($property['price']) . ' - ' . $property['size'] . ' sqft ' . $property['beds'] . ' bed ' . $property['baths'] . ' bathroom'; ?>
-                                                </p>
-                                                <a href="viewNewPropertyDetails.php?id=<?php echo $property['id']; ?>"
-                                                    class="btn btn-primary">View Details</a>
-                                            </div>
-                                            <div class="card-footer">
-                                                <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
-                                            </div>
+                <div class="listing-container">
+                    <div class="scrollList">
+                        <div class="row">
+                            <?php foreach ($properties as $property): ?>
+                                <div class="col-md-4 mb-4">
+                                    <div class="card">
+                                        <img class="card-img-top" src="<?php echo $property['image_url']; ?>"
+                                            alt="Property Image">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?php echo $property['address']; ?></h5>
+                                            <p class="card-text">
+                                                <?php echo '$' . number_format($property['price']) . ' - ' . $property['size'] . ' sqft ' . $property['beds'] . ' bed ' . $property['baths'] . ' bathroom'; ?>
+                                            </p>
+                                            <a href="viewNewPropertyDetails.php?id=<?php echo $property['id']; ?>"
+                                                class="btn btn-primary">View Details</a>
+                                        </div>
+                                        <div class="card-footer">
+                                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
                                         </div>
                                     </div>
-                                <?php endforeach; ?>
-                            </div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
