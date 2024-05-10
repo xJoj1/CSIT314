@@ -24,15 +24,15 @@
       <a class="nav-link" href="sellerDashboard.php">Home</a>
     </li>
     <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Property Listing
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-                <a class="dropdown-item" href="sellerViewListingUI.php">Listed Property</a>
-                <a class="dropdown-item" href="sellerSoldPropertyUI.php">Sold Property</a>
-                <a class="dropdown-item" href="sellerTrackEngagementUI.php">Engagement Metrics</a>
-            </div>
-        </li>
+        <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Property Listing
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
+            <a class="dropdown-item" href="sellerViewListingUI.php">Listed Property</a>
+            <a class="dropdown-item" href="sellerSoldPropertyUI.php">Sold Property</a>
+            <a class="dropdown-item" href="sellerTrackEngagementUI.php">Engagement Metrics</a>
+        </div>
+    </li>
     <li class="nav-item">
       <a class="nav-link" href="sellerRateAndReviewUI.php">Rate/Review</a>
     </li>
