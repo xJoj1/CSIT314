@@ -14,28 +14,40 @@
     <script src="https://cdn.jsdelivr.net/npm/nouislider/distribute/nouislider.min.js"></script>
 </head>
 <body>
-
-<!-- Navigation Bar (Logged In) -->
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-  <!-- Brand -->
-  <a class="navbar-brand" href="buyerDashboard.php">Real Estate</a>
-
-  <!-- Links -->
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Property Listing
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-            <a class="dropdown-item" href="viewNewPropertyUI.php">New Property</a>
-            <a class="dropdown-item" href="viewSoldPropertyUI.php">Sold Property</a>
+    <?php
+        require_once '../../Controller/Buyer/buyerRateAndReviewUIController.php';
+        $controller = new BuyerRateAndReviewUIController();
+        $agents = $controller->getAgents();  // Fetch all agents
+    ?>
+   <!-- Navigation Bar (Logged In) -->
+   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand" href="buyerDashboard.php">Real Estate</a>
+        <button class="navbar-toggler" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto nav-links-spacing">
+                <li class="nav-item">
+                    <a class="nav-link active-nav" href="buyerDashboard.php">Property</a> 
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mortgageCalculatorUI.php">Mortgage Calculator</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="buyerRateAndReviewUI.php">Rating/Review</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Welcome Buyer
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="../../logout.php">Logout</a>
+                    </div>
+                </li>
+            </ul>
         </div>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="mortgageCalculatorUI.php">Mortgage Calculator</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active-nav" href="buyerRateAndReviewUI.php">Rating/Review</a>
     </li>
   </ul>
   <!-- Right-aligned dropdown for admin options -->
@@ -53,65 +65,30 @@
 </nav>
 
 
- <!-- Search and Listings -->
- <div class="container AccContain  mt-5">
- <h1><b>Rate & Review</b></h1>
+  <!-- Search and Listings -->
+  <div class="container AccContain  mt-5">
+ <h1><b>Rate & Review Agents</b></h1>
 
   <!-- Property Listings -->
   <div class="listing-container">
       <div class="scrollList">
-          <div class="row">
-
-              <div class="col-md-4 mb-4">
-                  <div class="card">
-                      <img class="card-img-top" src="" alt="Property Image">
-                      <div class="card-body">
-                          <h5 class="card-title"></h5>
-                          <p class="card-text"></p>
-                          <a href="buyerRateAndReviewDetailsUI.php? id=" class="btn btn-primary">Rate & Review</a>
-                          <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
+            <div class="row">
+            <?php foreach ($agents as $agent): ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img class="card-img-top" src="https://cdn.vectorstock.com/i/preview-1x/27/21/businessman-real-estate-agent-vector-38892721.jpg" alt="Agent Image">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $agent['Agent_name']; ?></h5>
+                            <p class="card-text"><?php echo $agent['Company']; ?></p>
+                            <p class="card-text">Experience: <?php echo $agent['Experience']; ?> Years</p>
+                            <a href="buyerRateAndReviewDetailsUI.php" class="btn btn-rate">Rate & Review</a>
                         </div>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="col-md-4 mb-4">
-                  <div class="card">
-                      <img class="card-img-top" src="" alt="Property Image">
-                      <div class="card-body">
-                          <h5 class="card-title"></h5>
-                          <p class="card-text"></p>
-                          <a href="buyerRateAndReviewDetailsUI.php? id=" class="btn btn-primary">Rate & Review</a>
-                          <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
-                        </div>
-                      </div>
-                  </div>
-              </div>
-
-          </div>
-      </div>
-  </div>
-
+                    </div>
+                </div>  
+            <?php endforeach; ?>
+        </div>
+    </div>
 </div>
-
-<script>
-
-  function toggleFavorite(element) {
-        element.classList.toggle('far');
-        element.classList.toggle('fas');
-        element.classList.toggle('favorited');
-        if (element.classList.contains('favorited')) {
-            console.log('Added to favorites');
-        } else {
-            console.log('Removed from favorites');
-        }
-    }
-</script>
-
-
-
 
 </body>
 </html>

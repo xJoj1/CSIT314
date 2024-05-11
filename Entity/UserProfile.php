@@ -5,6 +5,7 @@ class UserProfile
 {
     private $conn;
     private $table = 'user_profile';
+    private $agentTable = 'agent';
 
     public function __construct()
     {
@@ -132,6 +133,25 @@ class UserProfile
         $stmt->bind_param("i", $profileId);
         $stmt->execute();
         return $stmt->affected_rows > 0;
+    }
+
+    // New methods for handling agent data:
+    public function getAllAgents() {
+        $sql = "SELECT * FROM " . $this->agentTable;
+        $result = $this->conn->query($sql);
+        if ($result) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            die("Error retrieving agents: " . $this->conn->error);
+        }
+    }
+
+    public function getAgentById($agentId) {
+        $stmt = $this->conn->prepare("SELECT * FROM " . $this->agentTable . " WHERE agent_id = ?");
+        $stmt->bind_param("i", $agentId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
     }
 
 }

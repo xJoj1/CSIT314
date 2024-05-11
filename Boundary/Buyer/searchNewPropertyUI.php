@@ -55,6 +55,12 @@
         require_once '../../Controller/Buyer/viewNewPropertyController.php';
         $controller = new viewNewPropertyController();
         $properties = $controller->getActiveProperties();
+
+        if (!is_array($properties)) {
+
+            $properties = [];
+
+        }
     ?>
 
     <!-- Main Content Area -->
