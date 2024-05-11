@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2024 at 05:33 AM
+-- Generation Time: May 10, 2024 at 11:59 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -87,21 +87,20 @@ CREATE TABLE `propertylisting` (
   `status` enum('active','sold','pending','removed') DEFAULT 'active',
   `AgentID` int(11) DEFAULT NULL,
   `bookmark` tinyint(1) DEFAULT 0,
-  `views` int(11) DEFAULT 0,
-  `shortlist_count` int(11) DEFAULT 0
+  `views` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `propertylisting`
 --
 
-INSERT INTO `propertylisting` (`id`, `address`, `price`, `size`, `beds`, `baths`, `image_url`, `description`, `posted_date`, `status`, `AgentID`, `bookmark`, `views`, `shortlist_count`) VALUES
-(1, '1234 Maple Street, Anytown, ST 12345', 350000.00, 1500, 3, 2, 'https://img.freepik.com/premium-photo/3d-visualization-villa-dubai-modern-architecture-evening-illumination-facade_727625-88.jpg', 'Lovely three-bedroom home in a quiet neighborhood. Includes a newly renovated kitchen and spacious backyard.', '2024-05-01', 'active', NULL, 0, 6, 1),
-(2, '2500 Oak Lane, Rivertown, LM 67890', 20000.00, 2000, 2, 2, 'https://img.freepik.com/free-photo/luxury-pool-villa-spectacular-contemporary-design-digital-art-real-estate-home-house-property-ge_1258-150765.jpg?size=626&ext=jpg&ga=GA1.1.1957074624.1714807663&semt=sph', 'Beautiful four-bedroom home with panoramic river views, featuring a large deck and a master suite with a walk-in closet.', '2024-05-09', 'active', NULL, 0, 3, 0),
-(3, '500 Elm Street, Downtown, DS 89012', 485000.00, 1200, 2, 2, 'https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-169758.jpg?size=626&ext=jpg&ga=GA1.1.1957074624.1714807663&semt=sph', 'Modern two-bedroom apartment with a spacious open plan living area and state-of-the-art kitchen. Located in the heart of downtown, close to shopping, nightlife, and public transport.', '2024-05-04', 'active', NULL, 0, 0, 0),
-(27, 'a', 450000.00, 2000, 1, 1, 'https://img.freepik.com/free-photo/3d-rendering-house-model_23-2150799725.jpg?size=626&ext=jpg&ga=GA1.1.1957074624.1714807663&semt=sph', 'a', '2024-05-09', 'sold', NULL, 0, 1, 0),
-(28, 'b', 10000.00, 2500, 3, 2, 'https://img.freepik.com/free-photo/luxury-pool-villa-spectacular-contemporary-design-digital-art-real-estate-home-house-property-ge_1258-150762.jpg?size=626&ext=jpg&ga=GA1.1.1957074624.1714807663&semt=sph', 'b', '2024-05-09', 'sold', NULL, 0, 2, 0),
-(29, 'c', 333333.00, 3333, 2, 1, 'https://img.freepik.com/premium-photo/modern-house-exterior-minimal-style-with-white-concrete-wood_258219-572.jpg?size=626&ext=jpg&ga=GA1.1.1957074624.1714807663&semt=sph', 'c', '2024-05-09', 'sold', NULL, 0, 0, 0);
+INSERT INTO `propertylisting` (`id`, `address`, `price`, `size`, `beds`, `baths`, `image_url`, `description`, `posted_date`, `status`, `AgentID`, `bookmark`, `views`) VALUES
+(1, '1234 Maple Street, Anytown, ST 12345', 350000.00, 1500, 3, 2, 'https://img.freepik.com/premium-photo/3d-visualization-villa-dubai-modern-architecture-evening-illumination-facade_727625-88.jpg', 'Lovely three-bedroom home in a quiet neighborhood. Includes a newly renovated kitchen and spacious backyard.', '2024-05-01', 'active', NULL, 0, 0),
+(2, '2500 Oak Lane, Rivertown, LM 67890', 20000.00, 2000, 2, 2, 'https://img.freepik.com/free-photo/luxury-pool-villa-spectacular-contemporary-design-digital-art-real-estate-home-house-property-ge_1258-150765.jpg?size=626&ext=jpg&ga=GA1.1.1957074624.1714807663&semt=sph', 'Beautiful four-bedroom home with panoramic river views, featuring a large deck and a master suite with a walk-in closet.', '2024-05-09', 'active', NULL, 0, 0),
+(3, '500 Elm Street, Downtown, DS 89012', 485000.00, 1200, 2, 2, 'https://img.freepik.com/free-photo/design-house-modern-villa-with-open-plan-living-private-bedroom-wing-large-terrace-with-privacy_1258-169758.jpg?size=626&ext=jpg&ga=GA1.1.1957074624.1714807663&semt=sph', 'Modern two-bedroom apartment with a spacious open plan living area and state-of-the-art kitchen. Located in the heart of downtown, close to shopping, nightlife, and public transport.', '2024-05-04', 'active', NULL, 0, 0),
+(27, 'a', 450000.00, 2000, 1, 1, 'https://img.freepik.com/free-photo/3d-rendering-house-model_23-2150799725.jpg?size=626&ext=jpg&ga=GA1.1.1957074624.1714807663&semt=sph', 'a', '2024-05-09', 'sold', NULL, 0, 0),
+(28, 'b', 10000.00, 2500, 3, 2, 'https://img.freepik.com/free-photo/luxury-pool-villa-spectacular-contemporary-design-digital-art-real-estate-home-house-property-ge_1258-150762.jpg?size=626&ext=jpg&ga=GA1.1.1957074624.1714807663&semt=sph', 'b', '2024-05-09', 'sold', NULL, 0, 0),
+(29, 'c', 333333.00, 3333, 2, 1, 'https://img.freepik.com/premium-photo/modern-house-exterior-minimal-style-with-white-concrete-wood_258219-572.jpg?size=626&ext=jpg&ga=GA1.1.1957074624.1714807663&semt=sph', 'c', '2024-05-09', 'sold', NULL, 0, 0);
 
 -- --------------------------------------------------------
 

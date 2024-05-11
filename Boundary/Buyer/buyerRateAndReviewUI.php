@@ -14,37 +14,44 @@
     <script src="https://cdn.jsdelivr.net/npm/nouislider/distribute/nouislider.min.js"></script>
 </head>
 <body>
-  
-   <!-- Navigation Bar (Logged In) -->
-   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <a class="navbar-brand" href="buyerDashboard.php">Real Estate</a>
-        <button class="navbar-toggler" type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto nav-links-spacing">
-                <li class="nav-item">
-                    <a class="nav-link active-nav" href="buyerDashboard.php">Property</a> 
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="mortgageCalculatorUI.php">Mortgage Calculator</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="buyerRateAndReviewUI.php">Rating/Review</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Welcome Buyer
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="../../logout.php">Logout</a>
-                    </div>
-                </li>
-            </ul>
+
+<!-- Navigation Bar (Logged In) -->
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="buyerDashboard.php">Real Estate</a>
+
+  <!-- Links -->
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Property Listing
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
+            <a class="dropdown-item" href="viewNewPropertyUI.php">New Property</a>
+            <a class="dropdown-item" href="viewSoldPropertyUI.php">Sold Property</a>
         </div>
-    </nav>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="mortgageCalculatorUI.php">Mortgage Calculator</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active-nav" href="buyerRateAndReviewUI.php">Rating/Review</a>
+    </li>
+  </ul>
+  <!-- Right-aligned dropdown for admin options -->
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="adminMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Welcome Buyer
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
+        <a class="dropdown-item" href="#">Profile</a>
+        <a class="dropdown-item" href="../../logout.php">Logout</a> <!-- Link to logout.php -->
+      </div>
+    </li>
+  </ul>
+</nav>
+
 
  <!-- Search and Listings -->
  <div class="container AccContain  mt-5">
