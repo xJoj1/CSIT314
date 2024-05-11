@@ -59,7 +59,7 @@
 
  <!-- Search and Listings -->
  <div class="container AccContain  mt-5">
- <h1><b>Rate & Review</b></h1>
+ <h1><b>Rate & Review Agents</b></h1>
 
   <!-- Property Listings -->
   <div class="listing-container">

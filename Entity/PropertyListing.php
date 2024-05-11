@@ -105,7 +105,7 @@ class PropertyListing {
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
-    
+    // SELLER
     // for seller sold property
     public function getSoldListings() {
         $query = "SELECT * FROM " . $this->table . " WHERE status = 'sold'";

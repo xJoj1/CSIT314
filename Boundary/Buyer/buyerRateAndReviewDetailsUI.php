@@ -45,15 +45,6 @@
         }
     }
     ?>
-
-    <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            echo '<pre>';
-            var_dump($_POST);
-            echo '</pre>';
-            // rest of your code
-        }
-    ?>
   
    <!-- Navigation Bar (Logged In) -->
    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -84,7 +75,10 @@
                 </li>
             </ul>
         </div>
-    </nav>
+    </li>
+  </ul>
+</nav>
+
 
  <!-- Search and Listings -->
  <div class="container AccContain  mt-5">
