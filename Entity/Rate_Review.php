@@ -19,7 +19,7 @@ class Rate_Review {
     public function addRateReview($userType, $userID, $agentID, $rating, $review) {
         // Prepare the SQL statement
         $stmt = $this->db->prepare("INSERT INTO " . $this->table . " (UserType, UserID, AgentID, Rating, Review, ReviewDate) VALUES (?, ?, ?, ?, ?, NOW())");
-        $stmt->bind_param('siisi', $userType, $userID, $agentID, $rating, $review);
+        $stmt->bind_param('siiss', $userType, $userID, $agentID, $rating, $review);
 
         // Execute the statement and check for success
         if ($stmt->execute()) {
