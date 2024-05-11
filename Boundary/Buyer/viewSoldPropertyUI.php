@@ -13,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider/distribute/nouislider.min.css">
     <script src="https://cdn.jsdelivr.net/npm/nouislider/distribute/nouislider.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -25,6 +26,7 @@
     if (!is_array($soldProperties)) {
 
         $soldProperties = [];
+
     }
     ?>
 
@@ -49,9 +51,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Welcome Buyer
-                    </a>
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome Buyer</a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="../../logout.php">Logout</a>
                     </div>
@@ -82,17 +82,19 @@
                     <div class="range-group">
                         <div class="price-range">
                             <h5><b>Price Range</b></h5>
+                            <span id="lowerPriceLabel">100,000</span> - <span id="upperPriceLabel">999,999</span>
                         </div>
                         <div id="priceSlider"></div>
                     </div>
                     <button class="btn filter-button" onclick="applyFilters()">Apply Filters</button>
+                    <button class="btn filter-button" onclick="clearFilters()">Clear Filters</button>
                 </div>
             </div>
 
             <!-- Search and Listings -->
             <div class="col-md-8 flexible-width">
-                <!-- Search Bar and Button Container -->
                 <h1> View Sold Properties </h1>
+                <!-- Search Bar and Button Container -->
                 <div class="search-border">
                     <!-- Button on the right -->
                     <div class="user-buttons3">
@@ -100,6 +102,7 @@
                         <a href="savedSoldPropertyUI.php" class="button">Saved Property</a>
                     </div>
                 </div>
+
                 <!-- Property Listings -->
                 <div class="listing-container">
                     <div class="scrollList">
@@ -115,9 +118,11 @@
                                             <div class="card-body">
                                                 <h5 class="card-title"><?php echo $listing['address']; ?></h5>
                                                 <p class="card-text">
-                                                    <?php echo '$' . number_format($listing['price']) . ' - ' . $listing['size'] . ' sqft ' . $listing['beds'] . ' bed ' . $listing['baths'] . ' bathroom'; ?>
+                                                    <?php echo '$' . number_format($listing['price']) . ' - ' . $listing['size'] . ' sqft '; ?>
+                                                    <br>
+                                                    <?php echo $listing['beds'] . ' bed ' . $listing['baths'] . ' bathroom'; ?>
                                                 </p>
-                                                <a href="viewSoldPropertyDetails.php?id=<?php echo $listing['id']; ?>&increment_views=1"
+                                                <a href="viewSoldPropertyDetails.php?id=<?php echo $listing['id']; ?>"
                                                     class="btn btn-primary">View Details</a>
                                             </div>
                                             <div class="card-footer">
@@ -136,10 +141,21 @@
 
     <script>
 
+        function toggleFavorite(element) {
+            element.classList.toggle('far');
+            element.classList.toggle('fas');
+            element.classList.toggle('favorited');
+            if (element.classList.contains('favorited')) {
+                console.log('Added to favorites');
+            } else {
+                console.log('Removed from favorites');
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             var priceSlider = document.getElementById('priceSlider');
             noUiSlider.create(priceSlider, {
-                start: [100000, 500000],
+                start: [100000, 999999],
                 connect: true,
                 range: {
                     'min': 100000,
@@ -158,23 +174,15 @@
             });
 
             document.getElementById('statusSold').addEventListener('change', function () {
-
                 if (this.checked) {
-
                     window.location.href = 'viewSoldPropertyUI.php';
-
                 }
-
             });
 
             document.getElementById('statusNew').addEventListener('change', function () {
-
                 if (this.checked) {
-
                     window.location.href = 'viewNewPropertyUI.php';
-
                 }
-
             });
 
             priceSlider.noUiSlider.on('update', function (values, handle) {
@@ -186,22 +194,36 @@
         });
 
         function applyFilters() {
+            var priceSlider = document.getElementById('priceSlider').noUiSlider;
+            var prices = priceSlider.get();
             var statusNew = document.querySelector('input[name="status"][value="new"]').checked;
-            var statusSold = document.querySelector('input[name="status"][value="sold"]').checked;
-            var prices = priceSlider.noUiSlider.get();
-            console.log('Filtering properties:');
-            console.log('Status New: ' + statusNew + ', Status Sold: ' + statusSold);
-            console.log('Price Range: $' + prices[0] + ' to $' + prices[1]);
 
-            // Redirect based on the selected radio button
-            if (statusNew) {
-                window.location.href = 'viewNewPropertyUI.php';
-            } else if (statusSold) {
-                window.location.href = 'viewSoldPropertyUI.php';
-            }
+            $.ajax({
+                url: '../../Controller/buyer/viewSoldPropertyController.php',
+                type: 'POST',
+                data: {
+                    minPrice: parseFloat(prices[0].replace(',', '')),
+                    maxPrice: parseFloat(prices[1].replace(',', '')),
+                    status: statusSold ? 'sold' : 'active'
+                },
+                success: function (response) {
+                    $('.listing-container .scrollList .row').html(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error('AJAX error:', status, error);
+                    alert('Error retrieving filtered properties. Please check the console for more details.');
+                }
+            });
         }
-    </script>
 
+        function clearFilters() {
+            document.getElementById('statusSold').checked = true;
+            var priceSlider = document.getElementById('priceSlider').noUiSlider;
+            priceSlider.set([100000, 999999]);
+            applyFilters();
+        }
+
+    </script>
 
 </body>
 

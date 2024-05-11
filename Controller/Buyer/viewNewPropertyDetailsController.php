@@ -1,20 +1,17 @@
 <?php
 require_once '../../Entity/PropertyListing.php';
 
-class viewNewPropertyDetailsController
-{
+class viewNewPropertyDetailsController {
 
     private $propertyListing;
 
-    public function __construct()
-    {
+    public function __construct() {
 
         $this->propertyListing = new PropertyListing();
 
     }
 
-    public function handlePropertyRequest($id)
-    {
+    public function handlePropertyRequest($id) {
 
         if (empty($id)) {
 

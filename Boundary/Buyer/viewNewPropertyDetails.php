@@ -71,6 +71,9 @@
                         <p class="detail-text"><?php echo $property['size'] . ' sqft'; ?></p>
                         <p class="light-text"><?php echo $property['address']; ?></p>
                     </div>
+                    <div class="card-footer">
+                        <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
+                    </div>
                 </div>
             <?php endif; ?>
         </div>
