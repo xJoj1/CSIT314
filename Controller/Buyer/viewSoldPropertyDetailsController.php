@@ -1,24 +1,21 @@
 <?php
 require_once '../../Entity/PropertyListing.php';
 
-class viewSoldPropertyDetailsController
-{
-
+class viewSoldPropertyDetailsController {
+    
     private $propertyListing;
 
-    public function __construct()
-    {
+    public function __construct() {
 
         $this->propertyListing = new PropertyListing();
 
     }
 
-    public function handlePropertyRequest($id)
-    {
+    public function handlePropertyRequest($id) {
 
         if (empty($id)) {
 
-            header('Location: viewNewPropertyUI.php');
+            header('Location: viewSoldPropertyUI.php');
             exit;
 
         }

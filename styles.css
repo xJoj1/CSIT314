@@ -744,6 +744,7 @@ h1 {
   width: 100%; /* Makes the button take up the full width of the sidebar */
   background-color: #333; /* Dark background for button */
   color: white; /* White text color */
+  margin-bottom: 5%;
 }
 
 .form-range + output {
