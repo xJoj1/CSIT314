@@ -454,6 +454,17 @@ h1 {
   height: 100%;
 }
 
+/* button for seller rate and review */
+.btn-rate {
+  background-color: #D9D9D9; /* Change the background color as needed */
+  border: 1px solid black;
+  color: black; /* Set text color */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: none; /* Remove box shadow if any */
+  height: 100%;
+  margin-top: 15px;
+}
+
 /* Change the hover state as needed */
 .btn-primary:hover {
   background-color: #333333; /* Darker shade for hover state */

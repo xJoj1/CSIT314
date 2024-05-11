@@ -55,35 +55,34 @@
 
  <!-- Search and Listings -->
  <div class="container AccContain  mt-5">
- <h1><b>Rate & Review</b></h1>
+ <h1><b>Rate & Review Agents</b></h1>
 
   <!-- Property Listings -->
   <div class="listing-container">
       <div class="scrollList">
           <div class="row">
-
-              <div class="col-md-4 mb-4">
+          <div class="col-md-4 mb-4">
                   <div class="card">
-                      <img class="card-img-top" src="" alt="Property Image">
+                      <img class="card-img-top" src="" alt="Agent Image">
                       <div class="card-body">
-                          <h5 class="card-title"></h5>
-                          <p class="card-text"></p>
-                          <a href="sellerRateAndReviewDetailsUI.php? id=" class="btn btn-primary">Rate & Review</a>
+                          <h5 class="card-title">John Doe</h5>
+                          <p class="card-text">ABC Real Estate</p>
+                          <p class="card-text">Experience: 5 Years</p>
+                          <a href="sellerRateAndReviewDetailsUI.php? id=" class="btn btn-rate">Rate & Review</a>
                       </div>
                   </div>
               </div>
-
               <div class="col-md-4 mb-4">
                   <div class="card">
-                      <img class="card-img-top" src="" alt="Property Image">
+                      <img class="card-img-top" src="" alt="Agent Image">
                       <div class="card-body">
-                          <h5 class="card-title"></h5>
-                          <p class="card-text"></p>
-                          <a href="sellerRateAndReviewDetailsUI.php? id=" class="btn btn-primary">Rate & Review</a>
+                          <h5 class="card-title">Adam Lee</h5>
+                          <p class="card-text">XYZ Real Estate</p>
+                          <p class="card-text">Experience: 12 Years</p>
+                          <a href="sellerRateAndReviewDetailsUI.php? id=" class="btn btn-rate">Rate & Review</a>
                       </div>
                   </div>
               </div>
-
           </div>
       </div>
   </div>
