@@ -1,3 +1,28 @@
+<?php
+    require_once '../../Controller/Buyer/savedNewPropertyController.php';
+    $controller = new savedNewPropertyController();
+
+    $properties = $controller->getActiveAnd1Properties();
+
+    if (!is_array($properties)) {
+        $properties = [];
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['propertyId'], $_POST['bookmark'])) {
+        $propertyId = $_POST['propertyId'];
+        $bookmark = $_POST['bookmark'];  // This should be either '0' or '1' based on the form input
+    
+        // Call a method in the controller to update the bookmark status
+        $success = $controller->updateBookmarkStatus($propertyId, $bookmark);
+    
+        // Redirect back to avoid form resubmission issues
+        header('Location: savedNewPropertyUI.php');
+        exit;
+    }
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,26 +99,41 @@
     <div class="save-property">
         <h4><b>Saved New Property</b></h4>
     </div>
-    <!-- Property Listings -->
+
+
     <div class="listing-container">
-        <div class="scrollList">
-            <div class="row">
+    <div class="scrollList">
+        <div class="row">
+            <?php foreach ($properties as $property): ?>
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img class="card-img-top" src="" alt="Property Image">
+                        <img class="card-img-top" src="<?php echo $property['image_url']; ?>" alt="Property Image">
                         <div class="card-body">
-                            <h5 class="card-title"></h5>
-                            <p class="card-text"></p>
-                            <a href="buyerViewDetailsUI.php?id=" class="btn btn-primary">View Details</a>
+                            <h5 class="card-title"><?php echo $property['address']; ?></h5>
+                            <p class="card-text">
+                                <?php echo '$' . number_format($property['price']) . ' - ' . $property['size'] . ' sqft ' . $property['beds'] . ' bed ' . $property['baths'] . ' bathroom'; ?>
+                            </p>
+                            <a href="viewNewPropertyDetails.php?id=<?php echo $property['id']; ?>&increment_views=1" class="btn btn-primary">View Details</a>
                         </div>
                         <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
+                            <!-- Form for toggling the bookmark -->
+                            <form method="POST" action="savedNewPropertyUI.php">
+                                <input type="hidden" name="propertyId" value="<?php echo htmlspecialchars($property['id']); ?>">
+                                <input type="hidden" name="bookmark" value="<?php echo $property['bookmark'] == '1' ? '0' : '1'; ?>">
+                                <button type="submit" class="btn btn-link p-0">
+                                    <i class="fa-heart <?php echo $property['bookmark'] == '1' ? 'fas' : 'far'; ?> favorite-icon"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
+</div>
+
+
+
      <!-- Back Button -->
     <div class="user-buttons" style="justify-content: center; width: 100%; height:auto">
         <a id="back" href="viewNewPropertyUI.php" class="btn btn-secondary" role="button">Back</a>
@@ -105,12 +145,7 @@
     function toggleFavorite(element) {
         element.classList.toggle('far');
         element.classList.toggle('fas');
-        element.classList.toggle('favorited');
-        if (element.classList.contains('favorited')) {
-            console.log('Added to favorites');
-        } else {
-            console.log('Removed from favorites');
-        }
+      
     }
 
     document.addEventListener('DOMContentLoaded', function() {

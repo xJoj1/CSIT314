@@ -141,6 +141,30 @@ class PropertyListing {
         }
     }
 
+    public function getActiveAnd1Listings() {
+        $query = "SELECT id, address, price, size, beds, baths, image_url, description, posted_date FROM " . $this->table . " WHERE status = 'active' AND bookmark = 1 ";
+        $result = $this->db->query($query);
+    
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return [];
+        }
+    }
+
+    public function toggleBookmark($propertyId, $bookmark) {
+        $stmt = $this->db->prepare("UPDATE propertylisting SET bookmark = ? WHERE id = ?");
+        $stmt->bind_param("ii", $bookmark, $propertyId);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    
+    
+
     // view count for engagement metrics
     public function incrementViews($propertyId) {
         $query = "UPDATE " . $this->table . " SET views = views + 1 WHERE id = ?";
