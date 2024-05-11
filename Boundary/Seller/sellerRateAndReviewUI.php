@@ -17,7 +17,7 @@
     <?php
         require_once '../../Controller/Seller/sellerRateAndReviewUIController.php';
         $controller = new SellerRateAndReviewUIController();
-        $properties = $controller->getSoldListings();
+        $agents = $controller->getAgents();
     ?>
 <!-- Navigation Bar (Logged In) -->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -50,7 +50,6 @@
         Welcome Seller
       </a>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-        <a class="dropdown-item" href="#">Profile</a>
         <a class="dropdown-item" href="../../logout.php">Logout</a> <!-- Link to logout.php -->
       </div>
     </li>
@@ -65,30 +64,20 @@
   <div class="listing-container">
       <div class="scrollList">
           <div class="row">
-
-              <div class="col-md-4 mb-4">
-                  <div class="card">
-                      <img class="card-img-top" src="" alt="Agent Image">
-                      <div class="card-body">
-                          <h5 class="card-title">John Doe</h5>
-                          <p class="card-text">ABC Real Estate</p>
-                          <p class="card-text">Experience: 5 Years</p>
-                          <a href="sellerRateAndReviewDetailsUI.php" class="btn btn-rate">Rate & Review</a>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-4 mb-4">
-                  <div class="card">
-                      <img class="card-img-top" src="" alt="Agent Image">
-                      <div class="card-body">
-                          <h5 class="card-title">Adam Lee</h5>
-                          <p class="card-text">XYZ Real Estate</p>
-                          <p class="card-text">Experience: 12 Years</p>
-                          <a href="sellerRateAndReviewDetailsUI.php" class="btn btn-rate">Rate & Review</a>
-                      </div>
-                  </div>
-              </div>
-
+            <?php foreach ($agents as $agent): ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img class="card-img-top" src="https://cdn.vectorstock.com/i/preview-1x/27/21/businessman-real-estate-agent-vector-38892721.jpg" alt="Agent Image">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $agent['Agent_name']; ?></h5>
+                            <p class="card-text"><?php echo $agent['Company']; ?></p>
+                            <p class="card-text">Experience: <?php echo $agent['Experience']; ?> Years</p>
+                            <a href="sellerRateAndReviewDetailsUI.php" class="btn btn-rate">Rate & Review</a>
+                        </div>
+                    </div>
+                </div>  
+             <?php endforeach; ?>
+            </div>
           </div>
       </div>
   </div>
