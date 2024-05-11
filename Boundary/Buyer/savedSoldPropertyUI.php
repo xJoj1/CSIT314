@@ -16,7 +16,7 @@
         $success = $controller->updateBookmarkStatus($propertyId, $bookmark);
     
         // Redirect back to avoid form resubmission issues
-        header('Location: savedNewPropertyUI.php');
+        header('Location: savedSoldPropertyUI.php');
         exit;
     }
 ?>
@@ -122,7 +122,7 @@
                         </div>
                         <div class="card-footer">
                             <!-- Form for toggling the bookmark -->
-                        <form method="POST" action="savedSoldPropertyUI.php">
+                        <form method="POST" action=''>
                             <input type="hidden" name="propertyId" value="<?php echo htmlspecialchars($property['id']); ?>">
                             <input type="hidden" name="bookmark" value="<?php echo isset($property['bookmark']) ? ($property['bookmark'] == '1' ? '0' : '1') : '0'; ?>">
                             <button type="submit" class="btn btn-link p-0">
