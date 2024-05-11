@@ -117,7 +117,7 @@
                                             <p class="card-text">
                                                 <?php echo '$' . number_format($property['price']) . ' - ' . $property['size'] . ' sqft ' . $property['beds'] . ' bed ' . $property['baths'] . ' bathroom'; ?>
                                             </p>
-                                            <a href="viewNewPropertyDetails.php?id=<?php echo $property['id']; ?>"
+                                            <a href="viewNewPropertyDetails.php?id=<?php echo $property['id']; ?>&increment_views=1"
                                                 class="btn btn-primary">View Details</a>
                                         </div>
                                         <div class="card-footer">

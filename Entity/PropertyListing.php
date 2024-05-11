@@ -159,5 +159,18 @@ class PropertyListing {
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function getEngagementMetrics() {
+        $query = "SELECT id, address AS PropertyName, shortlist_count AS Shortlisted, views FROM propertylisting";
+        $result = $this->db->query($query);
+        if (!$result) {
+            die('MySQL query failed with error: ' . $this->db->error);
+        }
+        if ($result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return [];
+        }
+    }
 }
 ?>

@@ -14,77 +14,70 @@
     <script src="https://cdn.jsdelivr.net/npm/nouislider/distribute/nouislider.min.js"></script>
 </head>
 <body>
+  <?php
+    require_once '../../Controller/Seller/SellerTrackEngagementController.php';
+    $controller = new SellerTrackEngagementController();
+    $engagementMetrics = $controller->getEngagementMetrics();
+  ?>
   
-<!-- Navigation Bar (Logged In) -->
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-  <!-- Brand -->
-  <a class="navbar-brand" href="sellerDashboard.php">Real Estate</a>
+  <!-- Navigation Bar (Logged In) -->
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="sellerDashboard.php">Real Estate</a>
 
-  <!-- Links -->
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item">
-      <a class="nav-link" href="sellerDashboard.php">Home</a>
-    </li>
-    <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Property Listing
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-                <a class="dropdown-item" href="sellerViewListingUI.php">Listed Property</a>
-                <a class="dropdown-item" href="sellerSoldPropertyUI.php">Sold Property</a>
-                <a class="dropdown-item" href="sellerTrackEngagementUI.php">Engagement Metrics</a>
-            </div>
-        </li>
-    <li class="nav-item">
-      <a class="nav-link" href="sellerRateAndReviewUI.php">Rate/Review</a>
-    </li>
-  </ul>
-  <!-- Right-aligned dropdown for admin options -->
-  <ul class="navbar-nav ml-auto">
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="adminMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Welcome Seller
-      </a>
-      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-        <a class="dropdown-item" href="#">Profile</a>
-        <a class="dropdown-item" href="../../logout.php">Logout</a> <!-- Link to logout.php -->
-      </div>
-    </li>
-  </ul>
-</nav>
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="sellerDashboard.php">Home</a>
+      </li>
+      <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Property Listing
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
+                  <a class="dropdown-item" href="sellerViewListingUI.php">Listed Property</a>
+                  <a class="dropdown-item" href="sellerSoldPropertyUI.php">Sold Property</a>
+                  <a class="dropdown-item" href="sellerTrackEngagementUI.php">Engagement Metrics</a>
+              </div>
+          </li>
+      <li class="nav-item">
+        <a class="nav-link" href="sellerRateAndReviewUI.php">Rate/Review</a>
+      </li>
+    </ul>
+    <!-- Right-aligned dropdown for admin options -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="adminMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Welcome Seller
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
+          <a class="dropdown-item" href="#">Profile</a>
+          <a class="dropdown-item" href="../../logout.php">Logout</a> <!-- Link to logout.php -->
+        </div>
+      </li>
+    </ul>
+  </nav>
 
  <!-- Search and Listings -->
  <div class="container AccContain  mt-5">
- <h1><b>Property Engagement Metrics</b></h1>
+  <h1><b>Property Engagement Metrics</b></h1>
 
   <!-- Property Listings -->
   <div class="listing-container">
     <div class="engagementList">
-      <div class="checkbox">
-        <input class="chkbx" type="checkbox" id="property1" name="checkbox1">
-        <p>Property 1</p>
-        <span class="shortlist">Shortlisted: 7 times</span>
-        <span class="views">Views: 7</span>
-      </div>
-      <div class="checkbox">
-        <input class="chkbx" type="checkbox" id="property2" name="checkbox1">
-        <p>Property 2</p>
-        <span class="shortlist">Shortlisted: 5 times</span>
-        <span class="views">Views: 5</span>
-      </div>
-      <div class="checkbox">
-        <input class="chkbx" type="checkbox" id="property3" name="checkbox1">
-        <p>Property 3</p>
-        <span class="shortlist">Shortlisted: 3 times</span>
-        <span class="views">Views: 20</span>
-      </div>
-    </div>
+    <?php if (empty($engagementMetrics)): ?>
+      <p>No active listings to display.</p>
+    <?php else: ?>  
+      <?php foreach ($engagementMetrics as $metric): ?>
+        <div class="checkbox">
+          <p><?= htmlspecialchars($metric['PropertyName']); ?></p>
+          <span class="shortlist">Shortlisted: <?= htmlspecialchars($metric['Shortlisted']); ?> times</span>
+          <span class="views">Views: <?= htmlspecialchars($metric['views']); ?></span>
+        </div>
+      <?php endforeach; ?>
+    <?php endif; ?>
   </div>
-
 </div>
-
-
-
 
 </body>
 </html>
