@@ -120,6 +120,9 @@
                                                 <a href="viewSoldPropertyDetails.php?id=<?php echo $listing['id']; ?>&increment_views=1"
                                                     class="btn btn-primary">View Details</a>
                                             </div>
+                                            <div class="card-footer">
+                                                <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 <?php endforeach; ?>
