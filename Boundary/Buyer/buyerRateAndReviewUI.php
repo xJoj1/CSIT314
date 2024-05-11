@@ -14,7 +14,11 @@
     <script src="https://cdn.jsdelivr.net/npm/nouislider/distribute/nouislider.min.js"></script>
 </head>
 <body>
-  
+    <?php
+        require_once '../../Controller/Buyer/buyerRateAndReviewUIController.php';
+        $controller = new BuyerRateAndReviewUIController();
+        $properties = $controller->getActiveListings();
+    ?>
    <!-- Navigation Bar (Logged In) -->
    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <a class="navbar-brand" href="buyerDashboard.php">Real Estate</a>
@@ -49,62 +53,26 @@
  <!-- Search and Listings -->
  <div class="container AccContain  mt-5">
  <h1><b>Rate & Review</b></h1>
-
   <!-- Property Listings -->
   <div class="listing-container">
       <div class="scrollList">
           <div class="row">
-
+            <?php foreach ($properties as $property) : ?>
               <div class="col-md-4 mb-4">
                   <div class="card">
-                      <img class="card-img-top" src="" alt="Property Image">
+                      <img class="card-img-top" src="<?php echo htmlspecialchars($property['image_url']); ?>" alt="Property Image">
                       <div class="card-body">
-                          <h5 class="card-title"></h5>
-                          <p class="card-text"></p>
-                          <a href="buyerRateAndReviewDetailsUI.php? id=" class="btn btn-primary">Rate & Review</a>
-                          <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
-                        </div>
+                          <h5 class="card-title"><?php echo htmlspecialchars($property['address']); ?></h5>
+                          <p class="card-text"><?php echo 'Price: $' . htmlspecialchars(number_format($property['price'])); ?></p>
+                          <a href="buyerRateAndReviewDetailsUI.php" class="btn btn-primary">Rate & Review</a>
                       </div>
                   </div>
               </div>
-
-              <div class="col-md-4 mb-4">
-                  <div class="card">
-                      <img class="card-img-top" src="" alt="Property Image">
-                      <div class="card-body">
-                          <h5 class="card-title"></h5>
-                          <p class="card-text"></p>
-                          <a href="buyerRateAndReviewDetailsUI.php? id=" class="btn btn-primary">Rate & Review</a>
-                          <div class="card-footer">
-                            <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
-                        </div>
-                      </div>
-                  </div>
-              </div>
-
+            <?php endforeach; ?>
           </div>
       </div>
   </div>
-
 </div>
-
-<script>
-
-  function toggleFavorite(element) {
-        element.classList.toggle('far');
-        element.classList.toggle('fas');
-        element.classList.toggle('favorited');
-        if (element.classList.contains('favorited')) {
-            console.log('Added to favorites');
-        } else {
-            console.log('Removed from favorites');
-        }
-    }
-</script>
-
-
-
 
 </body>
 </html>

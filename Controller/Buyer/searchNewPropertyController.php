@@ -14,13 +14,13 @@ class searchNewPropertyController {
             $searchTerm = trim($_GET['search']);
             return $this->searchPropertyListings($searchTerm);
         } else {
-            return $this->getAllListings();
+            return $this->getActiveListings();
         }
     }
 
     // Retrieve all property listings from the database
-    public function getAllListings() {
-        return $this->propertyListing->getAllListings();
+    public function getActiveListings() {
+        return $this->propertyListing->getActiveListings();
     }
 
     // Method to search property listings by address
