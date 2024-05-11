@@ -120,16 +120,18 @@
 
             <a href="viewNewPropertyDetails.php?id=<?php echo htmlspecialchars($property['id']); ?>&increment_views=1" class="btn btn-primary">View Details</a>
                         </div>
+
                         <div class="card-footer">
                             <!-- Form for toggling the bookmark -->
-                        <form method="POST" action="savedNewPropertyUI.php">
-                            <input type="hidden" name="propertyId" value="<?php echo htmlspecialchars($property['id']); ?>">
-                            <input type="hidden" name="bookmark" value="<?php echo isset($property['bookmark']) ? ($property['bookmark'] == '1' ? '0' : '1') : '0'; ?>">
-                            <button type="submit" class="btn btn-link p-0">
-                                <i class="fa-heart <?php echo isset($property['bookmark']) && $property['bookmark'] == '1' ? 'fas' : 'far'; ?> favorite-icon"></i>    
-                        </button>
-                        </form>
+                            <form method="POST" action="savedNewPropertyUI.php">
+                                <input type="hidden" name="propertyId" value="<?php echo htmlspecialchars($property['id']); ?>">
+                                <input type="hidden" name="bookmark" value="<?php echo isset($property['bookmark']) ? ($property['bookmark'] == '1' ? '0' : '1') : '0'; ?>">
+                                <button type="submit" class="btn btn-link p-0">
+                                    <i class="fa-heart <?php echo isset($property['bookmark']) && $property['bookmark'] == '1' ? 'fas' : 'far'; ?> favorite-icon"></i>    
+                            </button>
+                            </form>
                         </div>
+                        
                     </div>
                 </div>
             <?php endforeach; ?>

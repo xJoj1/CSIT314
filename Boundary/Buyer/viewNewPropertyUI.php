@@ -28,6 +28,8 @@
         $properties = [];
 
     }
+
+ 
     ?>
 
     <!-- Navigation Bar (Logged In) -->
@@ -126,9 +128,18 @@
                                                 <a href="viewNewPropertyDetails.php?id=<?php echo $property['id']; ?>"
                                                     class="btn btn-primary">View Details</a>
                                             </div>
+
                                             <div class="card-footer">
-                                                <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
+                                                <!-- Form for toggling the bookmark -->
+                                                <form method="POST" action="viewNewPropertyUI.php"> <!-- Ensure action points to the correct handling script -->
+                                                    <input type="hidden" name="propertyId" value="<?php echo htmlspecialchars($property['id']); ?>">
+                                                    <input type="hidden" name="bookmark" value="<?php echo isset($property['bookmark']) && $property['bookmark'] == '1' ? '0' : '1'; ?>">
+                                                    <button type="submit" class="btn btn-link p-0">
+                                                        <i class="fa-heart <?php echo isset($property['bookmark']) && $property['bookmark'] == '1' ? 'fas' : 'far'; ?> favorite-icon"></i>
+                                                    </button>
+                                                </form>
                                             </div>
+
                                         </div>
                                     </div>
                                 <?php endforeach; ?>
