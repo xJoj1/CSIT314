@@ -79,6 +79,19 @@
         </div>
     </div>
 
+    <script>
+        function toggleFavorite(element) {
+            element.classList.toggle('far');
+            element.classList.toggle('fas');
+            element.classList.toggle('favorited');
+            if (element.classList.contains('favorited')) {
+                console.log('Added to favorites');
+            } else {
+                console.log('Removed from favorites');
+            }
+        }
+    </script>
+
 </body>
 
 </html>

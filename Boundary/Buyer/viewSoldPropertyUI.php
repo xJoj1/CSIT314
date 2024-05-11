@@ -86,7 +86,8 @@
                         </div>
                         <div id="priceSlider"></div>
                     </div>
-                    <button class="btn filter-button" onclick="applyFilters()">Apply Filters</button>
+                    <button id="applyFiltersBtn" class="btn filter-button" onclick="applyFilters()">Apply
+                        Filters</button>
                     <button class="btn filter-button" onclick="clearFilters()">Clear Filters</button>
                 </div>
             </div>
@@ -196,7 +197,8 @@
         function applyFilters() {
             var priceSlider = document.getElementById('priceSlider').noUiSlider;
             var prices = priceSlider.get();
-            var statusNew = document.querySelector('input[name="status"][value="new"]').checked;
+            var statusNew = document.querySelector('input[name="status"][value="sold"]').checked;
+            var noListingsFound = true; 
 
             $.ajax({
                 url: '../../Controller/buyer/viewSoldPropertyController.php',
@@ -207,13 +209,25 @@
                     status: statusSold ? 'sold' : 'active'
                 },
                 success: function (response) {
-                    $('.listing-container .scrollList .row').html(response);
+                    if (response.trim() === "") {
+                        noListingsFound = true;
+                    } else {
+                        noListingsFound = false;
+                        $('.listing-container .scrollList .row').html(response);
+                    }
                 },
                 error: function (xhr, status, error) {
                     console.error('AJAX error:', status, error);
                     alert('Error retrieving filtered properties. Please check the console for more details.');
+                },
+                complete: function () {
+                    if (noListingsFound && $('#applyFiltersBtn').data('clicked')) {
+                        $('.listing-container .scrollList .row').html("<h5>No listings found.</h5>");
+                    }
                 }
             });
+
+            $('#applyFiltersBtn').data('clicked', true);
         }
 
         function clearFilters() {
