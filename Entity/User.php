@@ -39,5 +39,34 @@ class User {
         $user = $result->fetch_assoc();
         return $user;
     }
+
+    public function updateUserDetails($userId, $username, $password, $birthdate, $address, $contact, $profileId) {
+        $query = "UPDATE users SET username = ?, password = ?, birthdate = ?, address = ?, contact = ?, ProfileID = ? WHERE user_id = ?";
+        $stmt = $this->conn->prepare($query);
+        if (!$stmt) {
+            error_log('Prepare failed: ' . $this->conn->error);
+            return false;
+        }
+    
+        $stmt->bind_param("sssssii", $username, $password, $birthdate, $address, $contact, $profileId, $userId);
+        if (!$stmt->execute()) {
+            error_log('Execute failed: ' . $stmt->error);
+            return false;
+        }
+    
+        return $stmt->affected_rows > 0;
+    }
+    // for form dropdown (profile_type)
+    public function getUserById($userId) {
+        $query = "SELECT users.*, user_profile.profile_type 
+                  FROM users 
+                  JOIN user_profile ON users.ProfileID = user_profile.profile_id 
+                  WHERE users.user_id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
 }
 ?>

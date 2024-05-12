@@ -11,6 +11,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+    <?php
+        require_once '../../Controller/SysAdmin/EditUserAccountController.php';
+        $controller = new EditUserAccountController();
+        $response = $controller->handleRequest();
+        $user = $response['user'] ?? null;
+        $message = $response['message'] ?? '';
+    ?>
 
 <!-- Navigation Bar (Logged In) -->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -47,147 +54,156 @@
 <!-- Container for Edit User Account -->
 <div class="container mt-5">
   <div class="create-container">
-      <a href="userAccounts.php" class="back-arrow">‹</a>
-      <h2>Edit User Account</h2>
-      <form id="userForm" onsubmit="return validateForm()" method="post"> 
-          <div class="form-group">
-              <div class="row">
-                  <div class="col-3">
-                      <label for="name">Name:</label>
-                  </div>
-                  <div class="col">
-                      <input type="text" id="name" value="User1">
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-3">
-                      <label></label>
-                  </div>
-                  <div class="col">
-                      <div class="col" id="nameError" class="error-message"></div>
-                  </div>
-              </div>
-          </div>
+        <?php if ($message): ?>
+            <div class="alert alert-warning"><?php echo $message; ?></div>
+        <?php endif; ?>
+        <?php if ($user): ?>
+            <a href="viewUserAccountListUI.php" class="back-arrow">‹ Back to List</a>
+            <h2>Edit User Account</h2>
+            <form id="userForm" onsubmit="return validateForm()" method="post" action=""> 
+            <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-3">
+                    <label for="name">Name:</label>
+                </div>
+                <div class="col">
+                    <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($user['username']); ?>">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <label></label>
+                    </div>
+                    <div class="col">
+                        <div class="col" id="nameError" class="error-message"></div>
+                    </div>
+                </div>
+            </div>
 
-          <div class="form-group">
-              <div class="row">
-                  <div class="col-3">
-                      <label for="user-id">User ID:</label>
-                  </div>
-                  <div class="col">
-                      <input type="text" id="user-id" value="user1">
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-3">
-                      <label></label>
-                  </div>
-                  <div class="col">
-                      <div class="col" id="userIdError" class="error-message"></div>
-                  </div>
-              </div>
-          </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-3">
+                        <label for="user-id">User ID:</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" id="user-id" name="user-id" value="<?php echo htmlspecialchars($user['user_id']); ?>">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <label></label>
+                    </div>
+                    <div class="col">
+                        <div class="col" id="userIdError" class="error-message"></div>
+                    </div>
+                </div>
+            </div>
 
-          <div class="form-group">
-              <div class="row">
-                  <div class="col-3">
-                      <label for="password">Password:</label>
-                  </div>
-                  <div class="col">
-                      <input type="password" id="password" value="password1">
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-3">
-                      <label></label>
-                  </div>
-                  <div class="col">
-                      <div class="col" id="passwordError" class="error-message"></div>
-                  </div>
-              </div>
-          </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-3">
+                        <label for="password">Password:</label>
+                    </div>
+                    <div class="col">
+                        <input type="password" id="password" name="password" value="<?php echo htmlspecialchars($user['password']); ?>">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <label></label>
+                    </div>
+                    <div class="col">
+                        <div class="col" id="passwordError" class="error-message"></div>
+                    </div>
+                </div>
+            </div>
 
-          <div class="form-group">
-              <div class="row">
-                  <div class="col-3">
-                      <label for="birthdate">Birthdate:</label>
-                  </div>
-                  <div class="col calendarI row">
-                      <input type="date" class = "col" id="birthdate" value="2000-12-12">
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-3">
-                      <label></label>
-                  </div>
-                  <div class="col">
-                      <div class="col" id="birthdateError" class="error-message"></div>
-                  </div>
-              </div>
-          </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-3">
+                        <label for="birthdate">Birthdate:</label>
+                    </div>
+                    <div class="col calendarI row">
+                        <input type="date" class = "col" id="birthdate" name="birthdate" value="<?php echo htmlspecialchars($user['birthdate']); ?>">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <label></label>
+                    </div>
+                    <div class="col">
+                        <div class="col" id="birthdateError" class="error-message"></div>
+                    </div>
+                </div>
+            </div>
 
-          <div class="form-group">
-              <div class="row">
-                  <div class="col-3">
-                      <label for="address">Address:</label>
-                  </div>
-                  <div class="col">
-                      <input type="text" id="address" value="Sample Address Blk 444">
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-3">
-                      <label></label>
-                  </div>
-                  <div class="col">
-                      <div class="col" id="addressError" class="error-message"></div>
-                  </div>
-              </div>
-          </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-3">
+                        <label for="address">Address:</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" id="address" name="address" value="<?php echo htmlspecialchars($user['address']); ?>">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <label></label>
+                    </div>
+                    <div class="col">
+                        <div class="col" id="addressError" class="error-message"></div>
+                    </div>
+                </div>
+            </div>
 
-          <div class="form-group">
-              <div class="row">
-                  <div class="col-3">
-                      <label for="contact">Contact:</label>
-                  </div>
-                  <div class="col">
-                      <input type="text" id="contact" value="99125999">
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-3">
-                      <label></label>
-                  </div>
-                  <div class="col">
-                      <div class="col" id="contactError" class="error-message"></div>
-                  </div>
-              </div>
-          </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-3">
+                        <label for="contact">Contact:</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" id="contact" name="contact" value="<?php echo htmlspecialchars($user['contact']); ?>">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <label></label>
+                    </div>
+                    <div class="col">
+                        <div class="col" id="contactError" class="error-message"></div>
+                    </div>
+                </div>
+            </div>
 
-          <div class="form-group">
-              <div class="row">
-                  <div class="col-3">
-                      <label for="profile-type">Profile Type:</label>
-                  </div>
-                  <div class="col">
-                      <select id="profile-type">
-                          <option value="buyer">Buyer</option>
-                          <option value="seller">Seller</option>
-                          <option value="agent">Real Estate Agent</option>
-                      </select>
-                  </div>
-              </div>
-          </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-3">
+                        <label for="profile-type">Profile Type:</label>
+                    </div>
+                    <div class="col">
+                        <select id="profile_type" name="profile_type">
+                            <?php foreach ($response['profileTypes'] as $type): ?>
+                                <option value="<?= $type['profile_id'] ?>" <?= $user['ProfileID'] == $type['profile_id'] ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($type['profile_type']) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
 
-          <div class="form-group mt-5">
-              <div class="row">
-                  <div class="col-3 m-auto">
-                      <button type="submit" class="btn-primary btn-block">Confirm</button>
-                  </div>
-              </div>
-          </div>
-      </form>
-  </div>
+            <div class="form-group mt-5">
+                <div class="row">
+                    <div class="col-3 m-auto">
+                        <button type="submit" class="btn-primary btn-block">Confirm</button>
+                    </div>
+                </div>
+            </div>
+            
+        </form>
+        <?php endif; ?>
+    </div>
 </div>
 
 <script>
