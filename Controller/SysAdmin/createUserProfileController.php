@@ -8,8 +8,7 @@ class createUserProfileController
 
     public function __construct()
     {
-        $database = new Database();  // Assumes the Database class has a method to get a connection
-        $this->userProfile = new UserProfile($database);
+        $this->userProfile = new UserProfile();
     }
 
     public function createProfile()

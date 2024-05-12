@@ -190,17 +190,17 @@ $profiles = $controller->searchUserProfile();
                     `<?php if (empty($profiles)): ?>
                                 <p>No user profiles found.</p>
                 <?php else: ?>
-                                <?php foreach ($profiles as $profile): ?>
-                                                <div class="checkbox profile-entry" data-profile-type="
-                                                <?php echo htmlspecialchars($profile['profile_type']); ?>">
-                                                <input class="chkbx" type="checkbox" name="profile_id[]"
-                                                id="profile<?php echo $profile['profile_id']; ?>"
-                                                value="<?php echo $profile['profile_id']; ?>">
-                                                <label for="profile<?php echo $profile['profile_id']; ?>">
-                                                <?php echo htmlspecialchars($profile['profile_type']); ?>
-                                                </label>
-                                                </div>
-                                <?php endforeach; ?>
+                    <?php foreach ($profiles as $profile): ?>
+                                    <div class="checkbox profile-entry" data-profile-type="
+                                    <?php echo htmlspecialchars($profile['profile_type']); ?>">
+                                    <input class="chkbx" type="checkbox" name="profile_id[]"
+                                    id="profile<?php echo $profile['profile_id']; ?>"
+                                    value="<?php echo $profile['profile_id']; ?>">
+                                    <label for="profile<?php echo $profile['profile_id']; ?>">
+                                    <?php echo htmlspecialchars($profile['profile_type']); ?>
+                                    </label>
+                                    </div>
+                    <?php endforeach; ?>
                 <?php endif; ?>`;
 
                 return;

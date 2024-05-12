@@ -82,14 +82,14 @@ if (isset($_GET['profileName'], $_GET['profileId'])) {
                 <p><b>Are you sure you want to suspend the profile: <?= $profileName ?>?</b></p>
                 <form method="POST">
                     <input type="hidden" name="profileId" value="<?= $profileId ?>">
-                    <button type="submit" name="confirm" class="btn btn-danger" style="text-align: center;">Confirm</button>
+                    <div class="popup-btn mt-4">
+                      <button type="submit" name="confirm" class="button" style="text-align: center;">Confirm</button>
+                      <a href="viewUserProfileListUI.php" class="button">Undo</a>
+                    </div>
                 </form>
             <?php else: ?>
                 <div class="alert alert-warning">Profile not found.</div>
-            <?php endif; ?>
-            <div class="popup-btn mt-5">
-                <a href="viewUserProfileListUI.php" class="button">Undo</a>
-            </div>
+            <?php endif; ?> 
         </div>
     </div>
 </div>

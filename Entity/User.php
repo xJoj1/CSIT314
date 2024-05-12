@@ -8,6 +8,9 @@ class User {
     public function __construct() {
         $database = new Database();
         $this->conn = $database->getConnection();
+        if ($this->conn->connect_errno) {
+            die("Failed to connect to MySQL: " . $this->conn->connect_error);
+        }
     }
 
     // FOR ALL EXISTING CODE, PLEASE DO NOT RENAME / REPLACE IT WITH YOUR OWN CODE BECAUSE IT MAY AFFECT OTHER WORKING FILES THANK YOU
@@ -67,6 +70,33 @@ class User {
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_assoc();
+    }
+
+    // Method to create a new user in the database
+    public function createUser($username, $password, $birthdate, $address, $contact, $profileTypeId) {
+        $query = "INSERT INTO " . $this->table_name . " (username, password, birthdate, address, contact, ProfileID) VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $this->conn->prepare($query);
+        if (!$stmt) {
+            error_log("Prepare failed: " . $this->conn->error);
+            return false;
+        }
+    
+        $stmt->bind_param("sssssi", $username, $password, $birthdate, $address, $contact, $profileTypeId);
+        if (!$stmt->execute()) {
+            error_log("Execute failed: " . $stmt->error);
+            return false;
+        }
+        return true;
+    }
+
+    public function searchUserByUsername($searchTerm = '')
+    {
+        $searchTerm = "%$searchTerm%";
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE username LIKE ?");
+        $stmt->bind_param("s", $searchTerm);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 }
 ?>

@@ -11,6 +11,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+    <?php
+        require_once '../../Controller/SysAdmin/createUserAccountController.php';
+        $controller = new CreateUserAccountController();
+        $data = $controller->handleRequest();
+        $profileTypes = $data['profileTypes'] ?? [];
+    ?>
 
     <!-- Navigation Bar (Logged In) -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -49,16 +55,16 @@
 
     <div class="container mt-5">
         <div class="create-container">
-            <a href="userAccounts.php" class="back-arrow">‹</a>
+            <a href="viewUserAccountListUI.php" class="back-arrow"><</a>
             <h2>Create User Account</h2>
-            <form id="userForm" onsubmit="return validateForm()" method="post"> 
+            <form id="userForm" onsubmit="return validateForm()" method="post" action="">
                 <div class="form-group">
                     <div class="row">
                         <div class="col-3">
                             <label for="name">Name:</label>
                         </div>
                         <div class="col">
-                            <input type="text" id="name" placeholder="Name">
+                            <input type="text" id="username" name="username" placeholder="Username">
                         </div>
                     </div>
                     <div class="row">
@@ -74,29 +80,10 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-3">
-                            <label for="user-id">User ID:</label>
-                        </div>
-                        <div class="col">
-                            <input type="text" id="user-id" placeholder="uid">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3">
-                            <label></label>
-                        </div>
-                        <div class="col">
-                            <div class="col" id="userIdError" class="error-message"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-3">
                             <label for="password">Password:</label>
                         </div>
                         <div class="col">
-                            <input type="password" id="password" placeholder="password">
+                            <input type="password" id="password" name="password" placeholder="password">
                         </div>
                     </div>
                     <div class="row">
@@ -115,7 +102,7 @@
                             <label for="birthdate">Birthdate:</label>
                         </div>
                         <div class="col calendarI row">
-                            <input type="date" class="col" id="birthdate" placeholder="DD / MM / YYYY">
+                            <input type="date" class="col" id="birthdate" name="birthdate" placeholder="DD / MM / YYYY">
                         </div>
                     </div>
                     <div class="row">
@@ -134,7 +121,7 @@
                             <label for="address">Address:</label>
                         </div>
                         <div class="col">
-                            <input type="text" id="address" placeholder="Address">
+                            <input type="text" id="address" name="address" placeholder="Address">
                         </div>
                     </div>
                     <div class="row">
@@ -153,7 +140,7 @@
                             <label for="contact">Contact:</label>
                         </div>
                         <div class="col">
-                            <input type="tel" id="contact" placeholder="Contact">
+                            <input type="tel" id="contact" name="contact" placeholder="Contact">
                         </div>
                     </div>
                     <div class="row">
@@ -172,10 +159,12 @@
                             <label for="profile-type">Profile Type:</label>
                         </div>
                         <div class="col">
-                            <select id="profile-type">
-                                <option value="buyer">Buyer</option>
-                                <option value="seller">Seller</option>
-                                <option value="agent">Real Estate Agent</option>
+                            <select id="profile-type" name="profile-type">
+                                <?php foreach ($profileTypes as $type): ?>
+                                    <option value="<?= htmlspecialchars($type['profile_id']) ?>">
+                                        <?= htmlspecialchars($type['profile_type']) ?>
+                                    </option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
@@ -191,10 +180,6 @@
             </form>
         </div>
     </div>
-
-    <!-- <footer class="container">
-        <small>&copy; 2024 Real Estate Dashboard</small>
-    </footer> -->
 
     <script>
         function validateForm() {
@@ -212,13 +197,6 @@
                 isValid = false;
             } else {
                 document.getElementById("nameError").innerHTML = "";
-            }
-
-            if (userId === "") {
-                document.getElementById("userIdError").innerHTML = "Please enter a user ID";
-                isValid = false;
-            } else {
-                document.getElementById("userIdError").innerHTML = "";
             }
 
             if (password === "") {

@@ -64,7 +64,7 @@
     <div class="search-container2">
         <div class="user-buttons2">
             <a href="searchUserAccountUI.php" class="button">Search User</a>
-            <a href="createUserAcc.php" class="button">Create User</a>
+            <a href="createUserAccountUI.php" class="button">Create User</a>
             <button onclick="editSelectedUser()" class="button">Edit User</button>
             <a href="#" onclick="viewSelectedUser()" class="button" >View User</a>
             <a href="#" class="button suspend" id="suspendButton" onclick="suspendSelectedUsers()" disabled>Suspend User</a>

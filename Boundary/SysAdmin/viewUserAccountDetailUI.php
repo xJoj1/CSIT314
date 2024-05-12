@@ -54,7 +54,7 @@
 <!-- Container for View User Account -->
 <div class="container mt-5">
   <div class="view-container"> 
-    <a href="viewUserAccountListUI.php" class="back-arrow">‹ Back to List</a>
+    <a href="viewUserAccountListUI.php" class="back-arrow"><</a>
     <h2 class="text-center mb-4">View User Account</h2>
     <?php if (!empty($users)): ?>
       <?php foreach ($users as $user): ?>

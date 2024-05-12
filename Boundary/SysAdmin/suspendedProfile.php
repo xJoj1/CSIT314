@@ -61,13 +61,14 @@
         </ul>
       </nav>
 
-      <div class="container mt-5">
+    <div class="container mt-5">
     <h1><b>Suspended User Profiles</b></h1>
     <form id="profileSelectionForm" method="POST">
+    <div class="suspend-container">
         <div class="selectAll">
             <input class="checkbox" type="checkbox" id="select-all-users" onclick="selectAll(this)">
             <p><b>Select All Users</b></p>
-            <button type="submit" class="btn btn-primary">Unsuspend Selected Profiles</button>
+            <button id="unsuspendUser" type="submit" class="button">Unsuspend Selected Profiles</button>
         </div>
         <div class="suspendList">
             <?php foreach ($suspendedProfiles as $profile): ?>
@@ -78,7 +79,8 @@
             <?php endforeach; ?>
         </div>
     </form>
-    <a href="userProfile.php" class="btn btn-secondary" role="button">Back</a>
+    </div><br>
+    <a id="back" href="userProfile.php" class="btn btn-secondary" role="button">Back</a>
 </div>
 
     <script>
