@@ -58,7 +58,7 @@
             <div class="alert alert-warning"><?php echo $message; ?></div>
         <?php endif; ?>
         <?php if ($user): ?>
-            <a href="viewUserAccountListUI.php" class="back-arrow">‹ Back to List</a>
+            <a href="viewUserAccountListUI.php" class="back-arrow"><</a>
             <h2>Edit User Account</h2>
             <form id="userForm" onsubmit="return validateForm()" method="post" action=""> 
             <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">

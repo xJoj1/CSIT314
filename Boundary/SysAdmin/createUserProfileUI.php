@@ -61,7 +61,7 @@
 
   <div class="container mt-5">
     <div class="create-container">
-      <a href="viewUserProfileListUI.php" class="back-arrow">‹</a>
+      <a href="viewUserProfileListUI.php" class="back-arrow"><</a>
       <h2>Create User Profile</h2>
       <form id="profileForm" onsubmit="return validateForm()" method="post" action="">
         <div class="form-group2">
@@ -71,7 +71,7 @@
             </div>
             <div class="col">
               <!-- Value here should reflect database value-->
-              <input type="text" id="profile_type" name="profile_type" value="Buyer">
+              <input type="text" id="profile_type" name="profile_type">
             </div>
           </div>
         </div>
