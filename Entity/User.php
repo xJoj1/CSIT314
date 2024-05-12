@@ -1,5 +1,5 @@
 <?php
-include_once 'DBC/Database.php';
+include_once '../../DBC/Database.php';
 
 class User {
     private $conn;
@@ -28,6 +28,16 @@ class User {
     public function getAllUserAccounts() {
         $result = $this->conn->query("SELECT * FROM users");
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function findUserById($userId) {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE user_id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        return $user;
     }
 }
 ?>

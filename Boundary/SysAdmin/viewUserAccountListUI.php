@@ -11,6 +11,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+    <?php
+        require '../../Controller/SysAdmin/viewAccountListController.php';
+        $controller = new viewAccountListController();
+        $users = $controller->getAllAccounts();  // Fetch all user accounts
+    ?>
 
 <!-- Navigation Bar (Logged In) -->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -27,7 +32,7 @@
             User Accounts
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-            <a class="dropdown-item" href="suspendedAcc.php">Suspended Users</a>
+            <a class="dropdown-item" href="suspendedAccount.php">Suspended Users</a>
         </div>
       </li>
       <li class="nav-item">
@@ -60,9 +65,9 @@
         <div class="user-buttons2">
             <a href="searchUserAccountUI.php" class="button">Search User</a>
             <a href="createUserAcc.php" class="button">Create User</a>
-            <a href="editUserAcc.php" class="button">Edit User</a>
-            <a href="viewUserAccountDetailUI.php" class="button">View User</a>
-            <a href="suspendUserProfileUI.php" class="button">Suspend User</a>
+            <button onclick="editSelectedUser()" class="button">Edit User</button>
+            <a href="#" onclick="viewSelectedUser()" class="button" >View User</a>
+            <a href="#" class="button suspend" id="suspendButton" onclick="suspendSelectedUsers()" disabled>Suspend User</a>
         </div>
     </div>
 
@@ -74,45 +79,67 @@
             <p><b>Select All Users</b></p>
         </div>
         <div class="suspendList">
-            <div class="checkbox">
-                <input class="chkbx" type="checkbox" id="tuser1" name="checkbox1">
-                <p>Test User 1</p>
-            </div>
-            <div class="checkbox">
-                <input class="chkbx" type="checkbox" id="tuser2" name="checkbox1">
-                <p>Test User 2</p>
-            </div>
-            <div class="checkbox">
-                <input class="chkbx" type="checkbox" id="tuser3" name="checkbox1">
-                <p>Test User 3</p>
-            </div>
-            <div class="checkbox">
-                <input class="chkbx" type="checkbox" id="tuser4" name="checkbox1">
-                <p>Test User 4</p>
-            </div>
-            <div class="checkbox">
-                <input class="chkbx" type="checkbox" id="tuser5" name="checkbox1">
-                <p>Test User 5</p>
-            </div>
-            <div class="checkbox">
-                <input class="chkbx" type="checkbox" id="tuser6" name="checkbox1">
-                <p>Test User 6</p>
-            </div>
+            <form id="userSelectionForm">
+                <?php if (empty($users)): ?>
+                    <p>No user accounts found.</p>
+                <?php else: ?>
+                    <?php foreach ($users as $user): ?>  <!-- Loop through each user -->
+                        <div class="checkbox user-entry"
+                        data-user-type ="<?php echo htmlspecialchars($profile['user_id']); ?>" >
+                            <input class="chkbx" type="checkbox" name="user_id[]"
+                                id="user<?php echo $user['user_id']; ?>"
+                                value="<?php echo $user['user_id']; ?>">
+                            <label for="user<?php echo $user['user_id']; ?>">
+                                <?php echo htmlspecialchars($user['username']); ?>
+                            </label>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </form>
         </div>
     </div>
 </div>
 
 <script>
-    // Checking of all checkbox
     document.addEventListener('DOMContentLoaded', function () {
-        var selectAllCheckbox = document.getElementById('select-all-users');
-        selectAllCheckbox.addEventListener('change', function (e) {
-        var allCheckboxes = document.querySelectorAll('.chkbx');
-        allCheckboxes.forEach(function (checkbox) {
-            checkbox.checked = e.target.checked;
+        const suspendButton = document.querySelector('.button.suspend');
+        const checkboxes = document.querySelectorAll('.chkbx');
+        // Attach change event to all checkboxes
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                updateSuspendButtonState();
+            });
         });
+
+        // Function for selecting all checkboxes
+        document.getElementById('select-all-users').addEventListener('change', function () {
+        checkboxes.forEach(checkbox => checkbox.checked = this.checked);
+        updateSuspendButtonState(); // Update button state when all selections change
         });
     });
+
+    // Edit, View, and Suspend functions
+    function editSelectedUser() {
+        const selectedUser = document.querySelector('input[name="user_id[]"]:checked');
+        if (selectedUser) {
+            window.location.href = 'editUserAccountUI.php?user_id=' + selectedUser.value;
+        } else {
+            alert('Please select a user to edit.');
+        }
+    }
+
+    function viewSelectedUser() {
+        const selectedUsers = document.querySelectorAll('input[name="user_id[]"]:checked');
+        if (selectedUsers.length > 0) {
+            let userIds = [];
+            selectedUsers.forEach(user => {
+                userIds.push(user.value);
+            });
+            window.location.href = 'viewUserAccountDetailUI.php?user_ids=' + userIds.join(',');
+        } else {
+            alert('Please select at least one user to view.');
+        }
+    }
 </script>
 
 </body>
