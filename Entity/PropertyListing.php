@@ -175,6 +175,13 @@ class PropertyListing {
             return false;
         }
     }
+
+    public function incrementShortlist($propertyId) {
+        $stmt = $this->db->prepare("UPDATE propertylisting SET shortlist_count = shortlist_count + 1 WHERE id = ?");
+        $stmt->bind_param("i", $propertyId);
+        $stmt->execute();
+    }
+    
     
     
     

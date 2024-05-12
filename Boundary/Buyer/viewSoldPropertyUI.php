@@ -123,8 +123,8 @@
                                                                 <br>
                                                                 <?php echo $property['beds'] . ' bed ' . $property['baths'] . ' bathroom'; ?>
                                                             </p>
-                                                            <a href="viewNewPropertyDetails.php?id=<?php echo $property['id']; ?>"
-                                                                class="btn btn-primary">View Details</a>
+                                                            <a href="viewSoldPropertyDetails.php?id=<?php echo $property['id']; ?> &increment_views=1" class="btn btn-primary">View Details</a>
+
                                                         </div>
 
                                                         <div class="card-footer">
@@ -132,6 +132,7 @@
                                                             <form method="POST" action="viewSoldPropertyUI.php"> <!-- Ensure action points to the correct handling script -->
                                                                 <input type="hidden" name="propertyId" value="<?php echo htmlspecialchars($property['id']); ?>">
                                                                 <input type="hidden" name="bookmark" value="<?php echo isset($property['bookmark']) && $property['bookmark'] == '1' ? '0' : '1'; ?>">
+                                                                <input type="hidden" name="incrementShortlist" value="1"> <!-- Signal to increment the count -->
                                                                 <button type="submit" class="btn btn-link p-0">
                                                                     <i class="fa-heart <?php echo isset($property['bookmark']) && $property['bookmark'] == '1' ? 'fas' : 'far'; ?> favorite-icon"></i>
                                                                 </button>

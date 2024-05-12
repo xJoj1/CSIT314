@@ -26,9 +26,14 @@ class viewNewPropertyController {
 
     }
 
-    public function updateBookmarkStatus($propertyId, $bookmark) {
+    public function updateBookmarkStatus($propertyId, $bookmark, $incrementShortlist) {
+        if ($incrementShortlist) {
+            $this->propertyListing->incrementShortlist($propertyId);
+        }
         return $this->propertyListing->toggleBookmark($propertyId, $bookmark);
     }
+    
+   
 
 }
 
@@ -64,8 +69,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $propertyId = $_POST['propertyId'];
         $bookmark = $_POST['bookmark'];  // This should be either '0' or '1' based on the form input
     
+        $incrementShortlist = isset($_POST['incrementShortlist']) ? $_POST['incrementShortlist'] : 0;
+
         // Call a method in the controller to update the bookmark status
-        $success = $controller->updateBookmarkStatus($propertyId, $bookmark);
+        $controller->updateBookmarkStatus($propertyId, $bookmark, $incrementShortlist);
     
         // Redirect back to avoid form resubmission issues
         header('Location: viewNewPropertyUI.php');

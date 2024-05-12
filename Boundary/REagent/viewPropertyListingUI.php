@@ -58,8 +58,8 @@
                 <button onclick="updateSelectedProperty()" class="button">Update Listing</button>
             </div>
         </div>
-
-        <!-- Property Listings -->
+-
+        <!-- Property Listings -->-
         <div class="listing-container">
             <div class="scrollList">
                 <form id="propertySelectionForm">
