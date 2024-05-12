@@ -1,3 +1,22 @@
+<?php
+ require_once '../../Controller/SysAdmin/suspendedProfileController.php';
+ $controller = new suspendedProfileController();
+ $suspendedProfiles = $controller->getAllInActiveProfiles();
+
+ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['profile_id'])) {
+     $profileIds = $_POST['profile_id'];
+     foreach ($profileIds as $profileId) {
+      $result =  $controller->unsuspendUserProfile($profileId);
+     }
+     header("Location: suspendedProfile.php?message=" . urlencode("Selected profiles have been unsuspended successfully."));
+     $message = $result ? "Profile suspended successfully." : "Failed to suspend profile.";
+     echo "<div class='alert alert-success'>$safeMessage</div>";
+     echo "<script>setTimeout(function() { window.location.href = 'suspendedProfile.php'; }, 3000);</script>";
+
+     exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,10 +42,10 @@
             <a class="nav-link" href="adminDashboard.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="userAccounts.php">User Account</a>
+            <a class="nav-link" href="viewUserAccountListUI.php">User Account</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="userProfile.php">User Profiles</a>
+            <a class="nav-link" href="viewUserProfileListUI.php">User Profiles</a>
           </li>
         </ul>
         <!-- Right-aligned dropdown for admin options -->
@@ -43,43 +62,34 @@
         </ul>
       </nav>
 
-      <!-- Suspend List -->
       <div class="container mt-5">
-
-          <h1><b>Suspended User Profiles</b></h1>
-
-          <!-- Main Body (List) -->
-          <div class="suspend-container">
-              <div class="selectAll">
-                  <!-- Need backend to do up a function to check all other checkboxes-->
-                  <input class="checkbox" type="checkbox" id="select-all-users" name="select-all-users">
-                  <p><b>Select All Users</b></p>
-                  <button id="unsuspendUser" type="unSuspendUser">Unsuspend User Profile</button>
-              </div>
-              <div class="suspendList">
-                  <div class="checkbox">
-                      <input class="chkbx" type="checkbox" id="tuser1" name="checkbox1">
-                      <p>John</p>
-                  </div>
-              </div>
-          </div>
-          <br>
-      <!-- Back Button -->
-      <a id="back" href="userProfile.php" class="btn btn-secondary" role="button">Back</a>
-      </div>
-    </div>
+    <h1><b>Suspended User Profiles</b></h1>
+    <form id="profileSelectionForm" method="POST">
+        <div class="selectAll">
+            <input class="checkbox" type="checkbox" id="select-all-users" onclick="selectAll(this)">
+            <p><b>Select All Users</b></p>
+            <button type="submit" class="btn btn-primary">Unsuspend Selected Profiles</button>
+        </div>
+        <div class="suspendList">
+            <?php foreach ($suspendedProfiles as $profile): ?>
+                <div class="checkbox profile-entry">
+                    <input class="chkbx" type="checkbox" name="profile_id[]" value="<?= $profile['profile_id'] ?>">
+                    <label for="profile<?= $profile['profile_id'] ?>"><?= htmlspecialchars($profile['profile_type']) ?></label>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </form>
+    <a href="userProfile.php" class="btn btn-secondary" role="button">Back</a>
+</div>
 
     <script>
-    // Checking of all checkbox
-    document.addEventListener('DOMContentLoaded', function () {
-        var selectAllCheckbox = document.getElementById('select-all-users');
-        selectAllCheckbox.addEventListener('change', function (e) {
-        var allCheckboxes = document.querySelectorAll('.chkbx');
-        allCheckboxes.forEach(function (checkbox) {
-            checkbox.checked = e.target.checked;
-        });
-        });
-    });
+        function selectAll(source) {
+            checkboxes = document.querySelectorAll('.chkbx');
+            for(var i = 0, n = checkboxes.length; i < n; i++) {
+                checkboxes[i].checked = source.checked;
+            }
+        }
     </script>
+
   </body>
 </html>

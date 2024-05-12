@@ -23,10 +23,10 @@
       <a class="nav-link" href="adminDashboard.php">Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="userAccounts.php">User Accounts</a>
+      <a class="nav-link" href="viewUserAccountListUI.php">User Accounts</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="userProfile.php">User Profiles</a>
+      <a class="nav-link" href="viewUserProfileListUI.php">User Profiles</a>
     </li>
   </ul>
   <!-- Right-aligned dropdown for admin options -->
