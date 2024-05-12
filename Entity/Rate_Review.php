@@ -15,6 +15,11 @@ class Rate_Review {
         }
     }
 
+    // Accessor for the database connection
+    public function getDb() {
+        return $this->db;
+    }
+
     // Method to add a new rating and review to the database
     public function addRateReview($userType, $userID, $agentID, $rating, $review) {
         // Prepare the SQL statement
@@ -29,6 +34,33 @@ class Rate_Review {
             error_log("Error in executing insertion: " . $stmt->error);
             return false;
         }
+    }
+
+    // Method to get all reviews from the database
+    public function getAllReviews() {
+        $sql = "SELECT * FROM " . $this->table . " ORDER BY ReviewDate DESC";
+        $result = $this->db->query($sql);
+        $reviews = [];
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $reviews[] = $row;
+            }
+        }
+        return $reviews;
+    }
+
+    // Method to get counts of each rating
+    public function getRatingCounts() {
+        $sql = "SELECT Rating, COUNT(*) as Count FROM " . $this->table . " GROUP BY Rating";
+        $result = $this->db->query($sql);
+        $ratingCounts = ['1' => 0, '2' => 0, '3' => 0, '4' => 0, '5' => 0]; // Initialize counts for all ratings
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $ratingCounts[$row['Rating']] = (int)$row['Count'];
+            }
+        }
+        return $ratingCounts;
     }
 }
 ?>
