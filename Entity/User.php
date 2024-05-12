@@ -88,5 +88,15 @@ class User {
         }
         return true;
     }
+
+    public function searchUserByUsername($searchTerm = '')
+    {
+        $searchTerm = "%$searchTerm%";
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE username LIKE ?");
+        $stmt->bind_param("s", $searchTerm);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
 ?>
