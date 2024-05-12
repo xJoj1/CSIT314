@@ -12,9 +12,9 @@ class EditUserAccountController {
     }
 
     public function handleRequest() {
-        echo '<pre>';
-            var_dump($_POST); // Dump all POST data to see what is received.
-        echo '</pre>';
+        // echo '<pre>';
+        //     var_dump($_POST); // Dump all POST data to see what is received.
+        // echo '</pre>';
         $profileTypes = $this->userProfileEntity->getAllUserProfiles(); // Fetch all profile types
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -42,9 +42,6 @@ class EditUserAccountController {
     }
 
     private function updateUser() {
-        if (!isset($_POST['profile_type']) || empty($_POST['profile_type'])) {
-            return ['message' => 'Profile type is required.'];
-        }
         $userId = $_POST['user_id'];
         $name = $_POST['name'];
         $password = $_POST['password']; // Consider hashing this password.
