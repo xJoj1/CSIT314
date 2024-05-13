@@ -50,7 +50,9 @@ class EditUserAccountController {
         $contact = $_POST['contact'];
         $profileTypeId = $_POST['profile_type']  ?? null;
 
-        $success = $this->userEntity->updateUserDetails($userId, $name, $password, $birthdate, $address, $contact, $profileTypeId);
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT); 
+
+        $success = $this->userEntity->updateUserDetails($userId, $name, $hashedPassword, $birthdate, $address, $contact, $profileTypeId);
         if ($success) {
             header("Location: viewUserAccountListUI.php?message=Update Successful");
             exit;
