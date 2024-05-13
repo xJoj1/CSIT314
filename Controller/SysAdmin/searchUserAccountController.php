@@ -12,8 +12,8 @@ class searchUserAccountController
         $this->userAccounts = new User();
 
     }
-    public function searchUserByUsername($searchTerm = '')
+    public function getUserByName($searchTerm = '')
     {
-        return $this->userAccounts->searchUserByUsername($searchTerm);
+        return $this->userAccounts->getUserByName($searchTerm);
     }
 }

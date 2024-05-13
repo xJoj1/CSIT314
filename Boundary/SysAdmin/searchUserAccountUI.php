@@ -14,7 +14,7 @@
     <?php
         require_once '../../Controller/SysAdmin/searchUserAccountController.php';
         $controller = new searchUserAccountController();
-        $accounts = $controller->searchUserByUsername();
+        $accounts = $controller->getUserByName();
     ?>
 <!-- Navigation Bar (Logged In) -->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -31,7 +31,7 @@
             User Accounts
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-            <a class="dropdown-item" href="suspendedAcc.php">Suspended Users</a>
+            <a class="dropdown-item" href="suspendedAccount.php">Suspended Users</a>
         </div>
       </li>
       <li class="nav-item">
@@ -66,10 +66,10 @@
             <input type="text" id="searchBox" name="searchBox" placeholder="Search.." onkeyup="filterAccounts()" size="40">
         </div>
         <div class="user-buttons">
-            <a href="createUserAcc.php" class="button">Create User</a>
-            <a href="editUserAcc.php" class="button">Edit User</a>
-            <a href="viewUser.php" class="button">View User</a>
-            <a href="suspendUserProfileUI.php" class="button">Suspend User</a>
+            <a href="createUserAccountUI.php" class="button">Create User</a>
+            <button onclick="editSelectedUser()" class="button">Edit User</button>
+            <a href="#" onclick="viewSelectedUser()" class="button">View User</a>
+            <a href="#" onclick="suspendSelectedAccounts()" class="button suspend">Suspend User</a>
         </div>
     </div>
 
@@ -86,15 +86,17 @@
                     <p>No user accounts found.</p>
                 <?php else: ?>
                     <?php foreach ($accounts as $account): ?>
-                        <div class="checkbox account-entry"
-                             data-account-type="<?php echo htmlspecialchars($account['username']); ?>">
-                            <input class="chkbx" type="checkbox" name="user_id[]"
-                                   id="account<?php echo $account['user_id']; ?>"
-                                   value="<?php echo $account['user_id']; ?>">
-                            <label for="account<?php echo $account['user_id']; ?>">
-                                <?php echo htmlspecialchars($account['username']); ?>
-                            </label>
-                        </div>
+                        <?php if ($account['status'] == 'active'): ?>
+                            <div class="checkbox account-entry"
+                                 data-user-name="<?php echo htmlspecialchars($account['username']); ?>">
+                                <input class="chkbx" type="checkbox" name="user_id[]"
+                                       id="account<?php echo $account['user_id']; ?>"
+                                       value="<?php echo $account['user_id']; ?>">
+                                <label for="account<?php echo $account['user_id']; ?>">
+                                    <?php echo htmlspecialchars($account['username']); ?>
+                                </label>
+                            </div>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </form>
@@ -103,21 +105,20 @@
 </div>
 
 <script>
-    // Checking of all checkbox
     document.addEventListener('DOMContentLoaded', function () {
         var selectAllCheckbox = document.getElementById('select-all-users');
-        var accountCheckboxes = document.querySelectorAll('.chkbx');  // 修改这里的选择器
+        var accountCheckboxes = document.querySelectorAll('.chkbx');
 
         selectAllCheckbox.addEventListener('change', function () {
             accountCheckboxes.forEach(checkbox => checkbox.checked = this.checked);
         });
 
-        accountCheckboxes.forEach(function (checkbox) {  // 修改这里的变量名
+        accountCheckboxes.forEach(function (checkbox) {
             checkbox.addEventListener('change', function () {
                 if (!this.checked) {
                     selectAllCheckbox.checked = false;
                 } else {
-                    const allChecked = Array.from(accountCheckboxes).every(chk => chk.checked);  // 修改这里的变量名
+                    const allChecked = Array.from(accountCheckboxes).every(chk => chk.checked);
                     selectAllCheckbox.checked = allChecked;
                 }
             });
@@ -125,67 +126,62 @@
     });
 
 
-    function editSelectedAccount() {
-        const selectedAccount = document.querySelector('input[name="user_id[]"]:checked');  // 修改选择器
-        if (selectedAccount) {
-            window.location.href = 'editUserAccountUI.php?account_id=' + selectedAccount.value;  // 修改URL
+    function editSelectedUser() {
+        const selectedUser = document.querySelector('input[name="user_id[]"]:checked');  
+        if (selectedUser) {
+            window.location.href = 'editUserAccountUI.php?user_id=' + selectedUser.value;  
         } else {
             alert('Please select an account to edit.');
         }
     }
 
-    function viewSelectedAccount() {
-        const accountEntries = document.querySelectorAll('.account-entry');  // 修改选择器
-        let accountIds = [];
-
-        accountEntries.forEach(account => {
-            if (account.style.display !== "none") {
-                const checkbox = account.querySelector('input[type="checkbox"]');
-                if (checkbox.checked) {
-                    accountIds.push(checkbox.value);
-                }
-            }
-        });
-
-        if (accountIds.length > 0) {
-            window.location.href = 'viewUserAccountDetailUI.php?account_ids=' + accountIds.join(',');  // 修改URL
+    function viewSelectedUser() {
+        const selectedUsers = document.querySelectorAll('input[name="user_id[]"]:checked');
+        if (selectedUsers.length > 0) {
+            let userIds = [];
+            selectedUsers.forEach(user => {
+                userIds.push(user.value);
+            });
+            window.location.href = 'viewUserAccountDetailUI.php?user_ids=' + userIds.join(',');
         } else {
-            alert('Please select at least one account to view.');
+            alert('Please select at least one user to view.');
         }
     }
 
     function filterAccounts() {
         var input = document.getElementById('searchBox');
         var filter = input.value.toUpperCase();
-        var accounts = document.querySelectorAll('.account-entry');  // 修改选择器
-        var accountContainer = document.getElementById('accountSelectionForm');  // 修改变量名
+        var accounts = document.querySelectorAll('.account-entry');
+        var accountContainer = document.getElementById('accountSelectionForm');
         var found = false;
 
         if (filter === '') {
 
-        profileContainer.innerHTML =
-            `<?php if (empty($profiles)): ?>
-                        <p>No user profiles found.</p>
+            accountContainer.innerHTML =
+                `<?php if (empty($accounts)): ?>
+                            <p>No user profiles found.</p>
             <?php else: ?>
                 <?php foreach ($accounts as $account): ?>
-                    <div class="checkbox account-entry"
-                            data-account-type="<?php echo htmlspecialchars($account['username']); ?>">
-                        <input class="chkbx" type="checkbox" name="user_id[]"
+                    <?php if ($account['status'] == 'active'): ?>
+                                <div class="checkbox profile-entry" data-profile-type="
+                                <?php echo htmlspecialchars($account['username']); ?>">
+                                <input class="chkbx" type="checkbox" name="user_id[]"
                                 id="account<?php echo $account['user_id']; ?>"
                                 value="<?php echo $account['user_id']; ?>">
-                        <label for="account<?php echo $account['user_id']; ?>">
-                            <?php echo htmlspecialchars($account['username']); ?>
-                        </label>
-                    </div>
+                                <label for="account<?php echo $account['user_id']; ?>">
+                                <?php echo htmlspecialchars($account['username']); ?>
+                                </label>
+                                </div>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             <?php endif; ?>`;
 
-        return;
+            return;
 
         }
 
         accounts.forEach(account => {
-            var txtValue = account.getAttribute('data-account-type').toUpperCase();  // 假设有这样的属性
+            var txtValue = account.getAttribute('data-user-name').toUpperCase();
             if (txtValue.indexOf(filter) > -1) {
                 account.style.display = "";
                 found = true;
@@ -195,8 +191,30 @@
         });
 
         if (!found) {
-            accountContainer.innerHTML = '<p>No user accounts found.</p>';  // 修改显示的消息
+            accountContainer.innerHTML = '<p>No user accounts found.</p>';
         }
+    }
+
+
+
+
+    function suspendSelectedAccounts() {
+        let selectedAccounts = [];
+        // Collect all checked checkboxes from the user account list
+        document.querySelectorAll('input[name="user_id[]"]:checked').forEach(function(checkbox) {
+            let userId = checkbox.value;
+            // Properly retrieve the 'data-user-name' attribute
+            let userName = checkbox.closest('.account-entry').getAttribute('data-user-name');
+            selectedAccounts.push({
+                userId: userId,
+                userName: userName
+            });
+        });
+
+        // //multi
+        let p = JSON.stringify(selectedAccounts);
+        p = encodeURIComponent(p)
+        window.location.href = "suspendUserAccountUI.php?data=" + p;
     }
 </script>
 

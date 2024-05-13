@@ -14,7 +14,8 @@ class viewAccountListController {
     }
 
     // Add method to fetch multiple user accounts by IDs
-    public function getUserById($userId) {
-        return $this->userAccount->findUserById($userId);
+    public function getUserById($userId = "")
+    {
+        return $this->userAccount->getUserById($userId);
     }
 }

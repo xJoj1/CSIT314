@@ -13,6 +13,28 @@
 </head>
 <body>
 
+  <?php
+    require_once '../../Controller/SysAdmin/suspendUserAccountController.php';
+    session_start();
+    $controller = new SuspendUserAccountController();
+    $usersFound = false;
+    $userList = [];
+
+    if(isset($_GET['data'])){
+        $userList =json_decode(urldecode($_GET['data']), true);
+
+        $usersFound = !empty($userList);
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirm'])) {
+        $result = $controller->suspendUserList($userList);
+        $message = $result ? "user(s) suspended successfully." : "Failed to suspend user(s).";
+        header("Location: viewUserAccountListUI.php?message=" . urlencode($message));
+        exit();
+
+    }
+  ?>
+
 <!-- Navigation Bar (Logged In) -->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <!-- Brand -->
@@ -28,7 +50,7 @@
             User Accounts
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-            <a class="dropdown-item" href="suspendedAcc.php">Suspended Users</a>
+            <a class="dropdown-item" href="suspendedAccount.php">Suspended Users</a>
         </div>
       </li>
       <li class="nav-item">
@@ -52,12 +74,26 @@
     <div class="suspend-profile">
         <div class="confirm-suspend mt-5">
             <h1>User Account Suspended</h1>
-            <!-- logic to get data reflected here for suspended user types-->
-            <p><b>User 'Test user 1', 'Test user 3' is suspended</b></p>
-            <div class="popup-btn mt-5">
-                <a href="#" class="button" id="undo-suspend" type="undoSuspend">Undo</button>
-                <a href="userAccounts.php" class="button">Confirm</a>
-            </div>
+                <?php if($usersFound): ?>
+                        <p><b>User <?php
+                                $count = count($userList);
+                                $i = 0;
+                                foreach ($userList as $user):
+                                    echo $user['userName'];
+                                    if (++$i !== $count) { // if not the last not add ,
+                                        echo ', ';
+                                    }
+                                endforeach; ?> is suspended</b></p>
+                        <form method="POST">
+                        <div class="popup-btn mt-5">
+                            <a href="viewUserAccountListUI.php" class="button" id="undo-suspend">Undo</a>
+                            <button type="submit" name="confirm" class="button">Confirm</button>
+                        </div>
+                    </form>
+                <?php else: ?>
+                    <div class="alert alert-warning">Profile not found.</div>
+                    <a href="viewUserAccountListUI.php" class="button" id="undo-suspend">Back</a>
+                <?php endif; ?>
         </div>
     </div>
 </div>

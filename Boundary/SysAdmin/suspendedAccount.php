@@ -12,6 +12,25 @@
   </head>
   <body>
 
+    <?php
+      require_once '../../Controller/SysAdmin/suspendedAccountController.php';
+      $controller = new suspendedAccountController();
+      $SuspendUserList = $controller->getSuspendedUserAccount();
+
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+          if (!empty($_POST['user_id'])) {
+              $userIds = $_POST['user_id'];
+              $result = $controller->unSuspendUserList($userIds);
+              $message = $result ? "user(s) unsuspended successfully." : "Failed to unsuspend user(s).";
+              header('location: suspendedAccount.php');
+
+          } else {
+              echo "No users selected";
+          }
+      }
+    ?>
+
+
     <!-- Navigation Bar (Logged In) -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
       <!-- Brand -->
@@ -53,37 +72,74 @@
                 <!-- Need backend to do up a function to check all other checkboxes-->
                 <input class="checkbox" type="checkbox" id="select-all-users" name="select-all-users">
                 <p><b>Select All Users</b></p>
-                <button id="unsuspendUser" type="unSuspendUser">Unsuspend User</button>
+                <button id="unsuspendUser" type="unSuspendUser" class="btb btn-primary">Unsuspend User</button>
 
             </div>
-            <div class="suspendList">
-                <div class="checkbox">
-                    <input class="chkbx" type="checkbox" id="tuser1" name="checkbox1">
-                    <p>Test User 1</p>
+            <form id="userForm" method="post">
+                <div class="suspendList">
+                    <?php foreach ($SuspendUserList as $user): ?>
+                        <div class="checkbox account-entry"
+                             data-user-name="<?php echo htmlspecialchars($user['username']); ?>">
+                            <input class="chkbx" type="checkbox" name="user_id[]"
+                                   id="account<?php echo $user['user_id']; ?>"
+                                   value="<?php echo $user['user_id']; ?>">
+                            <label for="account<?php echo $user['user_id']; ?>">
+                                <?php echo htmlspecialchars($user['username']); ?>
+                            </label>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
-                <div class="checkbox">
-                    <input class="chkbx" type="checkbox" id="tuser3" name="checkbox1">
-                    <p>Test User 3</p>
-                </div> 
-
-            </div>
+            </form>
         </div><br>
         <!-- Back Button -->
-        <a id="back" href="userAccounts.php" class="btn btn-secondary" role="button">Back</a>
+        <a id="back" href="viewUserAccountListUI.php" class="btn btn-secondary" role="button">Back</a>
         </div>
     </div>
 
     <script>
-    // Checking of all checkbox
-    document.addEventListener('DOMContentLoaded', function () {
-        var selectAllCheckbox = document.getElementById('select-all-users');
-        selectAllCheckbox.addEventListener('change', function (e) {
-        var allCheckboxes = document.querySelectorAll('.chkbx');
-        allCheckboxes.forEach(function (checkbox) {
-            checkbox.checked = e.target.checked;
+        document.addEventListener('DOMContentLoaded', function() {
+            var selectAllCheckbox = document.getElementById('select-all-users');
+            var accountCheckboxes = document.querySelectorAll('.chkbx');
+            var submitButton = document.getElementById('unsuspendUser');  // 确保使用正确的按钮ID
+            var form = document.getElementById('userForm');
+
+            selectAllCheckbox.addEventListener('change', function() {
+                accountCheckboxes.forEach(checkbox => checkbox.checked = this.checked);
+            });
+
+            accountCheckboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    if (!this.checked) {
+                        selectAllCheckbox.checked = false;
+                    } else {
+                        selectAllCheckbox.checked = Array.from(accountCheckboxes).every(chk => chk.checked);
+                    }
+                });
+            });
+
+            submitButton.addEventListener('click', function() {
+                // 清除之前可能添加的隐藏字段
+                document.querySelectorAll('.user-id-field').forEach(field => field.remove());
+
+                // 检查是否至少选择了一个用户
+                if (Array.from(accountCheckboxes).some(chk => chk.checked)) {
+                    // 为每个选中的复选框创建一个隐藏的输入字段
+                    Array.from(accountCheckboxes).forEach(function(checkbox) {
+                        if (checkbox.checked) {
+                            var input = document.createElement('input');
+                            input.type = 'hidden';
+                            input.name = 'user_id[]';  // PHP中读取的name
+                            input.value = checkbox.value;  // 用户ID
+                            input.classList.add('user-id-field');  // 添加类以便于清理
+                            form.appendChild(input);  // 将隐藏字段添加到表单中
+                        }
+                    });
+                    form.submit();  // 提交表单
+                } else {
+                    alert("Please select at least one user to unsuspend.");
+                }
+            });
         });
-        });
-    });
     </script>
 
   </body>

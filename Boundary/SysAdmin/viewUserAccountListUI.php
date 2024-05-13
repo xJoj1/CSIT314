@@ -84,17 +84,15 @@
                     <p>No user accounts found.</p>
                 <?php else: ?>
                     <?php foreach ($users as $user): ?>  <!-- Loop through each user -->
-                        <?php if ($user['status'] == 'active'): ?>  <!-- Only display users whose status is 'active' -->
-                            <div class="checkbox user-entry"
-                            data-user-type ="<?php echo htmlspecialchars($profile['user_id']); ?>" >
-                                <input class="chkbx" type="checkbox" name="user_id[]"
-                                    id="user<?php echo $user['user_id']; ?>"
-                                    value="<?php echo $user['user_id']; ?>">
-                                <label for="user<?php echo $user['user_id']; ?>">
-                                    <?php echo htmlspecialchars($user['username']); ?>
-                                </label>
-                            </div>
-                        <?php endif; ?>
+                        <div class="checkbox user-entry"
+                        data-user-type ="<?php echo htmlspecialchars($profile['user_id']); ?>" >
+                            <input class="chkbx" type="checkbox" name="user_id[]"
+                                id="user<?php echo $user['user_id']; ?>"
+                                value="<?php echo $user['user_id']; ?>">
+                            <label for="user<?php echo $user['user_id']; ?>">
+                                <?php echo htmlspecialchars($user['username']); ?>
+                            </label>
+                        </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </form>

@@ -89,13 +89,79 @@ class User {
         return true;
     }
 
-    public function searchUserByUsername($searchTerm = '')
+    // Suspended User Account 
+    public function getUserByName($searchTerm = '')
     {
         $searchTerm = "%$searchTerm%";
         $stmt = $this->conn->prepare("SELECT * FROM users WHERE username LIKE ?");
         $stmt->bind_param("s", $searchTerm);
         $stmt->execute();
         $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getUserByID2($searchTerm = '')
+    {
+        $searchTerm = "%$searchTerm%";
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE user_id LIKE ?");
+        $stmt->bind_param("s", $searchTerm);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+
+    public function suspendUser($userId)
+    {
+        $stmt = $this->conn->prepare("UPDATE users SET status = 'inactive' WHERE user_id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        if ($stmt->affected_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function suspendUserList($userList)
+    {
+        foreach ($userList as $user) {
+            $userId = $user['userId'];
+            $suspendResult = $this->suspendUser($userId);
+            if (!$suspendResult) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    public function unSuspendUser($userId)
+    {
+        $stmt = $this->conn->prepare("UPDATE users SET status = 'active' WHERE user_id = ?");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        if ($stmt->affected_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function usSuspendUserList($userList)
+    {
+        foreach ($userList as $user) {
+            $suspendResult = $this->unSuspendUser($user);
+            if (!$suspendResult) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function getSuspendedUserAccounts()
+    {
+        $result = $this->conn->query("SELECT * FROM users WHERE status = 'inactive' ");
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 }
