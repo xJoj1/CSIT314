@@ -63,33 +63,30 @@
 
     <!-- Suspend List -->
     <div class="container mt-5">
-
         <h1><b>Suspended User Accounts</b></h1>
-
+        <form id="userForm" method="post">
         <!-- Main Body (List) -->
         <div class="suspend-container">
             <div class="selectAll">
                 <!-- Need backend to do up a function to check all other checkboxes-->
                 <input class="checkbox" type="checkbox" id="select-all-users" name="select-all-users">
                 <p><b>Select All Users</b></p>
-                <button id="unsuspendUser" type="unSuspendUser" class="btb btn-primary">Unsuspend User</button>
-
+                <button id="unsuspendUser" type="unSuspendUser" class="btb btn-primary">Unsuspend Selected Accounts</button>
             </div>
-            <form id="userForm" method="post">
-                <div class="suspendList">
-                    <?php foreach ($SuspendUserList as $user): ?>
-                        <div class="checkbox account-entry"
-                             data-user-name="<?php echo htmlspecialchars($user['username']); ?>">
-                            <input class="chkbx" type="checkbox" name="user_id[]"
-                                   id="account<?php echo $user['user_id']; ?>"
-                                   value="<?php echo $user['user_id']; ?>">
-                            <label for="account<?php echo $user['user_id']; ?>">
-                                <?php echo htmlspecialchars($user['username']); ?>
-                            </label>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </form>
+            <div class="suspendList">
+                <?php foreach ($SuspendUserList as $user): ?>
+                    <div class="checkbox account-entry"
+                          data-user-name="<?php echo htmlspecialchars($user['username']); ?>">
+                        <input class="chkbx" type="checkbox" name="user_id[]"
+                                id="account<?php echo $user['user_id']; ?>"
+                                value="<?php echo $user['user_id']; ?>">
+                        <label for="account<?php echo $user['user_id']; ?>">
+                            <?php echo htmlspecialchars($user['username']); ?>
+                        </label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </form>
         </div><br>
         <!-- Back Button -->
         <a id="back" href="viewUserAccountListUI.php" class="btn btn-secondary" role="button">Back</a>

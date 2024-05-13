@@ -67,7 +67,7 @@
             <a href="createUserAccountUI.php" class="button">Create User</a>
             <button onclick="editSelectedUser()" class="button">Edit User</button>
             <a href="#" onclick="viewSelectedUser()" class="button" >View User</a>
-            <a href="#" class="button suspend" id="suspendButton" onclick="suspendSelectedUsers()" disabled>Suspend User</a>
+            <a href="#" onclick="suspendSelectedAccounts()" class="button suspend" id="suspendButton" onclick="suspendSelectedUsers()" disabled>Suspend User</a>
         </div>
     </div>
 
@@ -84,15 +84,17 @@
                     <p>No user accounts found.</p>
                 <?php else: ?>
                     <?php foreach ($users as $user): ?>  <!-- Loop through each user -->
-                        <div class="checkbox user-entry"
-                        data-user-type ="<?php echo htmlspecialchars($profile['user_id']); ?>" >
-                            <input class="chkbx" type="checkbox" name="user_id[]"
-                                id="user<?php echo $user['user_id']; ?>"
-                                value="<?php echo $user['user_id']; ?>">
-                            <label for="user<?php echo $user['user_id']; ?>">
-                                <?php echo htmlspecialchars($user['username']); ?>
-                            </label>
-                        </div>
+                        <?php if ($user['status'] == 'active'): ?>
+                            <div class="checkbox user-entry"
+                            data-user-type ="<?php echo htmlspecialchars($user['username']); ?>" >
+                                <input class="chkbx" type="checkbox" name="user_id[]"
+                                    id="user<?php echo $user['user_id']; ?>"
+                                    value="<?php echo $user['user_id']; ?>">
+                                <label for="user<?php echo $user['user_id']; ?>">
+                                    <?php echo htmlspecialchars($user['username']); ?>
+                                </label>
+                            </div>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </form>
@@ -102,19 +104,22 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const suspendButton = document.querySelector('.button.suspend');
-        const checkboxes = document.querySelectorAll('.chkbx');
-        // Attach change event to all checkboxes
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function () {
-                updateSuspendButtonState();
-            });
+        var selectAllCheckbox = document.getElementById('select-all-users');
+        var accountCheckboxes = document.querySelectorAll('.chkbx');
+
+        selectAllCheckbox.addEventListener('change', function () {
+            accountCheckboxes.forEach(checkbox => checkbox.checked = this.checked);
         });
 
-        // Function for selecting all checkboxes
-        document.getElementById('select-all-users').addEventListener('change', function () {
-        checkboxes.forEach(checkbox => checkbox.checked = this.checked);
-        updateSuspendButtonState(); // Update button state when all selections change
+        accountCheckboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                if (!this.checked) {
+                    selectAllCheckbox.checked = false;
+                } else {
+                    const allChecked = Array.from(accountCheckboxes).every(chk => chk.checked);
+                    selectAllCheckbox.checked = allChecked;
+                }
+            });
         });
     });
 
@@ -139,6 +144,25 @@
         } else {
             alert('Please select at least one user to view.');
         }
+    }
+
+    function suspendSelectedAccounts() {
+        let selectedAccounts = [];
+        // Collect all checked checkboxes from the user account list
+        document.querySelectorAll('input[name="user_id[]"]:checked').forEach(function(checkbox) {
+            let userId = checkbox.value;
+            // Properly retrieve the 'data-user-type' attribute
+            let userName = checkbox.closest('.user-entry').getAttribute('data-user-type');
+            selectedAccounts.push({
+                userId: userId,
+                userName: userName
+            });
+        });
+
+        // //multi
+        let p = JSON.stringify(selectedAccounts);
+        p = encodeURIComponent(p)
+        window.location.href = "suspendUserAccountUI.php?data=" + p;
     }
 </script>
 

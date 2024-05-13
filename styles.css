@@ -359,9 +359,9 @@ h1 {
   justify-content: space-evenly;
 }
 
-.popup-btn > button:nth-child(2) {
+/* .popup-btn > button:nth-child(2) {
   background-color: #61B3FF;
-}
+} */
 
 .container {
   position: relative;

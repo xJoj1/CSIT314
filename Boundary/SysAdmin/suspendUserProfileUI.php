@@ -83,8 +83,9 @@ if (isset($_GET['profileName'], $_GET['profileId'])) {
                 <form method="POST">
                     <input type="hidden" name="profileId" value="<?= $profileId ?>">
                     <div class="popup-btn mt-4">
-                      <button type="submit" name="confirm" class="button" style="text-align: center;">Confirm</button>
                       <a href="viewUserProfileListUI.php" class="button">Undo</a>
+                      <button type="submit" name="confirm" class="button" style="text-align: center;">Confirm</button>
+                      
                     </div>
                 </form>
             <?php else: ?>
