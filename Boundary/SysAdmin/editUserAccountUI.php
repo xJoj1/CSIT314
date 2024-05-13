@@ -87,7 +87,7 @@
                         <label for="user-id">User ID:</label>
                     </div>
                     <div class="col">
-                        <input type="text" id="user-id" name="user-id" value="<?php echo htmlspecialchars($user['user_id']); ?>">
+                        <input type="text" id="user-id" name="user-id" disabled value="<?php echo htmlspecialchars($user['user_id']); ?>">
                     </div>
                 </div>
                 <div class="row">
@@ -106,7 +106,7 @@
                         <label for="password">Password:</label>
                     </div>
                     <div class="col">
-                        <input type="password" id="password" name="password" value="<?php echo htmlspecialchars($user['password']); ?>">
+                        <input type="password" id="password" name="password" disabled value="<?php echo htmlspecialchars($user['password']); ?>">
                     </div>
                 </div>
                 <div class="row">

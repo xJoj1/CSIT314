@@ -1,5 +1,5 @@
 <?php
-include_once 'Entity/User.php';
+include_once __DIR__ . '/../Entity/User.php';
 
 class UserController {
     private $user;

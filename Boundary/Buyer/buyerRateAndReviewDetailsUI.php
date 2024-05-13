@@ -55,7 +55,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto nav-links-spacing">
                 <li class="nav-item">
-                    <a class="nav-link active-nav" href="buyerDashboard.php">Property</a> 
+                    <a class="nav-link" href="buyerDashboard.php">Property</a> 
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="mortgageCalculatorUI.php">Mortgage Calculator</a>

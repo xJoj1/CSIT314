@@ -28,7 +28,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto nav-links-spacing">
                 <li class="nav-item">
-                    <a class="nav-link active-nav" href="buyerDashboard.php">Property</a> 
+                    <a class="nav-link" href="buyerDashboard.php">Property</a> 
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="mortgageCalculatorUI.php">Mortgage Calculator</a>
@@ -48,18 +48,6 @@
                 </li>
             </ul>
         </div>
-    </li>
-  </ul>
-  <!-- Right-aligned dropdown for admin options -->
-  <ul class="navbar-nav ml-auto">
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="adminMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Welcome Buyer
-      </a>
-      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-        <a class="dropdown-item" href="#">Profile</a>
-        <a class="dropdown-item" href="../../logout.php">Logout</a> <!-- Link to logout.php -->
-      </div>
     </li>
   </ul>
 </nav>

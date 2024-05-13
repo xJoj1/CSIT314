@@ -1,5 +1,5 @@
 <?php
-include_once 'Controller/LoginController.php';
+include_once __DIR__ . '/Controller/LoginController.php';
 
 session_start(); // Start session at the very beginning
 

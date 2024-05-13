@@ -30,7 +30,7 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link active-nav" href="mortgageCalculatorUI.php">Mortgage Calculator</a>
+        <a class="nav-link" href="mortgageCalculatorUI.php">Mortgage Calculator</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="buyerRateAndReviewUI.php">Rating/Review</a>
@@ -99,14 +99,15 @@
                 <div class="calculator-button">
                     <button type="submit" class="btn btn-primary">Calculate Mortgage</button>
                 </div>
+                <!-- Result Display -->
+                <br>
+                <div class="form-group">
+                    <div id="result" class="alert alert-info" style="display:none;">
+                        <label>Payment:</label>
+                    </div>
+                </div>
             </form>
-            <p id="result">
-                <?php
-                if (isset($_GET['result'])) {
-                    echo htmlspecialchars($_GET['result']);
-                }
-                ?>
-            </p>
+            
 
             </div>
         </div>
@@ -120,17 +121,21 @@
 
         if (status === 'true') {
             displayResults(parseFloat(result.replace('Monthly Payment: $', ''))); 
-        } else {
+        } else { 
             alertError(decodeURIComponent(result));
         }
     }
 
     function alertError(message) {
-        document.getElementById('result').innerHTML = message;
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = message;
+        resultDiv.style.display = 'block';
     }
 
     function displayResults(monthlyPayment) {
-        document.getElementById('result').innerHTML = 'Monthly Payment: $' + monthlyPayment.toFixed(2);
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = 'Monthly Payment: $' + monthlyPayment.toFixed(2);
+        resultDiv.style.display = 'block';
     }
 </script>
 
