@@ -49,8 +49,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto nav-links-spacing">
-                <li class="nav-item">
-                    <a class="nav-link" href="buyerDashboard.php">Property</a> 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userAccMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Property Listing
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
+                        <a class="dropdown-item" href="viewNewPropertyUI.php">New Property</a>
+                        <a class="dropdown-item" href="viewSoldPropertyUI.php">Sold Property</a>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="mortgageCalculatorUI.php">Mortgage Calculator</a>

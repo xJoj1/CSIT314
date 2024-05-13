@@ -128,13 +128,14 @@
 
     function alertError(message) {
         const resultDiv = document.getElementById('result');
-        resultDiv.innerHTML = message;
+        resultDiv.innerHTML = message || '0';;
         resultDiv.style.display = 'block';
     }
 
     function displayResults(monthlyPayment) {
         const resultDiv = document.getElementById('result');
-        resultDiv.innerHTML = 'Monthly Payment: $' + monthlyPayment.toFixed(2);
+        monthlyPayment = (monthlyPayment) ? monthlyPayment.toFixed(2) : '0'; // Check if monthlyPayment is falsy then display '0'
+        resultDiv.innerHTML = 'Monthly Payment: $' + monthlyPayment;
         resultDiv.style.display = 'block';
     }
 </script>

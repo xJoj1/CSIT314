@@ -21,10 +21,7 @@
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-        <a class="nav-link" href="REdashboard.php">Home</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" href="viewPropertyListingUI.php">House Listing</a>
+        <a class="nav-link" href="viewPropertyListingUI.php">Property Listing</a>
         </li>
         <li class="nav-item">
         <a class="nav-link" href="viewRatingReview.php">Rating/Review</a>
