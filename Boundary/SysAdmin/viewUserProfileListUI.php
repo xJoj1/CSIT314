@@ -4,11 +4,11 @@ require_once '../../Controller/SysAdmin/viewProfileListController.php'; // Adjus
 $controller = new viewProfileListController();
 $profiles = $controller->getAllActiveProfiles();
 
-if (isset($_GET['message'])) {
-    $safeMessage = htmlspecialchars($_GET['message']);
-    echo "<div class='alert alert-success'>$safeMessage</div>";
-    echo "<script>setTimeout(function() { window.location.href = 'viewUserProfileListUI.php'; }, 3000);</script>";
-}
+// if (isset($_GET['message'])) {
+//     $safeMessage = htmlspecialchars($_GET['message']);
+//     echo "<div class='alert alert-success'>$safeMessage</div>";
+//     echo "<script>setTimeout(function() { window.location.href = 'viewUserProfileListUI.php'; }, 3000);</script>";
+// }
 
 ?>
 
@@ -175,17 +175,6 @@ if (isset($_GET['message'])) {
             let anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
             suspendButton.disabled = !anyChecked; // Disable if none are checked
         }
-
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                updateSuspendButtonState();
-            });
-        });
-
-        document.getElementById('select-all-users').addEventListener('change', function() {
-            checkboxes.forEach(checkbox => checkbox.checked = this.checked);
-            updateSuspendButtonState(); // Update button state when all selections change
-        });
 
         function suspendSelectedProfiles() {
             let selectedProfiles = [];

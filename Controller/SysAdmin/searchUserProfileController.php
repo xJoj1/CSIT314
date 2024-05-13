@@ -17,5 +17,9 @@ class searchUserProfileController {
 
     }
 
+    public function getAllActiveProfiles(){
+        return $this->userProfile->getAllActiveProfiles();
+    }
+
 }
 ?>

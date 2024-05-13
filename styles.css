@@ -921,3 +921,16 @@ h1 {
 .back-btn:hover {
   background-color: #5a6268; /* Darker shade on hover */
 }
+
+/* Suspend Account alert fix */
+.floating-alert {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #28a745; /* Success color */
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  display: none; /* Hidden by default */
+  z-index: 1050; /* Ensures it's on top of other content */
+}

@@ -80,7 +80,7 @@
         </div>
     </form>
     </div><br>
-    <a id="back" href="userProfile.php" class="btn btn-secondary" role="button">Back</a>
+    <a id="back" href="viewUserProfileListUI.php" class="btn btn-secondary" role="button">Back</a>
 </div>
 
     <script>
