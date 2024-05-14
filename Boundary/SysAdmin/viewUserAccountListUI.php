@@ -67,7 +67,7 @@
             <a href="createUserAccountUI.php" class="button">Create User</a>
             <button onclick="editSelectedUser()" class="button">Edit User</button>
             <a href="#" onclick="viewSelectedUser()" class="button" >View User</a>
-            <a href="#" onclick="suspendSelectedAccounts()" class="button suspend" id="suspendButton" onclick="suspendSelectedUsers()" disabled>Suspend User</a>
+            <a href="#" onclick="suspendSelectedAccounts()" class="button suspend" id="suspendButton" >Suspend User</a>
         </div>
     </div>
 
@@ -147,23 +147,29 @@
     }
 
     function suspendSelectedAccounts() {
-        let selectedAccounts = [];
-        // Collect all checked checkboxes from the user account list
-        document.querySelectorAll('input[name="user_id[]"]:checked').forEach(function(checkbox) {
-            let userId = checkbox.value;
-            // Properly retrieve the 'data-user-type' attribute
-            let userName = checkbox.closest('.user-entry').getAttribute('data-user-type');
-            selectedAccounts.push({
-                userId: userId,
-                userName: userName
+        const selectedUsers = document.querySelectorAll('input[name="user_id[]"]:checked');
+        if (selectedUsers.length > 0) {
+            let selectedAccounts = [];
+            // Collect all checked checkboxes from the user account list
+            selectedUsers.forEach(function(checkbox) {
+                let userId = checkbox.value;
+                // Properly retrieve the 'data-user-type' attribute
+                let userName = checkbox.closest('.user-entry').getAttribute('data-user-type');
+                selectedAccounts.push({
+                    userId: userId,
+                    userName: userName
+                });
             });
-        });
 
-        // //multi
-        let p = JSON.stringify(selectedAccounts);
-        p = encodeURIComponent(p)
-        window.location.href = "suspendUserAccountUI.php?data=" + p;
+            // Encode the selected accounts data for the URL
+            let p = JSON.stringify(selectedAccounts);
+            p = encodeURIComponent(p);
+            window.location.href = "suspendUserAccountUI.php?data=" + p;
+        } else {
+            alert('Please select at least one user to suspend.');
+        }
     }
+
 </script>
 
 </body>

@@ -20,7 +20,6 @@ class UserController {
             switch ($userType) {
                 case 'Admin':
                     header("location: Boundary/SysAdmin/adminDashboard.php");
-                    echo $user['user_id'];
                     exit;
                 case 'Agent':
                     header("location: Boundary/REagent/REdashboard.php");

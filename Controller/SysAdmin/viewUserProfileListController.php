@@ -1,7 +1,7 @@
 <?php
 require_once '../../Entity/UserProfile.php'; 
 
-class viewProfileListController {
+class viewUserProfileListController {
 
     private $userProfile;
 

@@ -1,15 +1,8 @@
 <?php
-require_once '../../Controller/SysAdmin/viewProfileListController.php'; // Adjust the path as needed
+require_once '../../Controller/SysAdmin/viewUserProfileListController.php'; // Adjust the path as needed
 
-$controller = new viewProfileListController();
+$controller = new viewUserProfileListController();
 $profiles = $controller->getAllActiveProfiles();
-
-// if (isset($_GET['message'])) {
-//     $safeMessage = htmlspecialchars($_GET['message']);
-//     echo "<div class='alert alert-success'>$safeMessage</div>";
-//     echo "<script>setTimeout(function() { window.location.href = 'viewUserProfileListUI.php'; }, 3000);</script>";
-// }
-
 ?>
 
 <!DOCTYPE html>

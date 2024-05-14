@@ -31,7 +31,6 @@
         $message = $result ? "user(s) suspended successfully." : "Failed to suspend user(s).";
         header("Location: viewUserAccountListUI.php?message=" . urlencode($message));
         exit();
-
     }
   ?>
 

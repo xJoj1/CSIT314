@@ -18,6 +18,8 @@
         $profileTypes = $data['profileTypes'] ?? [];
     ?>
 
+    
+
     <!-- Navigation Bar (Logged In) -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <!-- Brand -->
