@@ -107,8 +107,8 @@
                 <div class="search-border">
                     <!-- Button on the right -->
                     <div class="user-buttons3">
-                        <a href="searchNewPropertyUI.php" class="button">Search Property</a>
-                        <a href="savedNewPropertyUI.php" class="button">Saved Property</a>
+                        <a href="searchNewPropertyUI.php" class="buyerbutton">Search Property</a>
+                        <a href="savedNewPropertyUI.php" class="buyerbutton">Saved Property</a>
                     </div>
                 </div>
 
