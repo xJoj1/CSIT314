@@ -1,9 +1,27 @@
 <?php
+session_start(); // Ensure session is started
+
 // Unset all of the session variables
 $_SESSION = array();
 
-// Destroy the session.
-session_destroy();
+// Destroy the session if it's active
+if (session_id() != '' || isset($_SESSION)) {
+    session_destroy();
+}
+
+// Destroy the session cookie
+if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+    );
+}
+
+// Prevent browser caching
+header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
+header("Pragma: no-cache"); // HTTP 1.0.
+header("Expires: 0"); // Proxies.
 ?>
 
 <!DOCTYPE html>

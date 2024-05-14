@@ -1,24 +1,12 @@
 <?php
 require_once '../../Entity/User.php';
-require_once '../../Entity/UserProfile.php';
 
 class CreateUserAccountController {
     private $userEntity;
-    private $userProfile;
 
     public function __construct() {
         $this->userEntity = new User();
-        $this->userProfile = new UserProfile();
-    }
-
-    public function handleRequest() {
-        $profileTypes = $this->userProfile->getAllUserProfiles(); // Fetch all profile types
-
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $this->createUser();
-        } else {
-            return ['profileTypes' => $profileTypes];
-        }
+        $this->__cons();
     }
 
     private function createUser() {
@@ -48,5 +36,23 @@ class CreateUserAccountController {
             exit;
         }
     }
+
+    private $userProfile;
+
+    public function __cons() {
+        $this -> userProfile = new UserProfile();
+    }
+
+    public function handleRequest() {
+        $profileTypes = $this->userProfile->getAllUserProfiles(); // Fetch all profile types
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $this->createUser();
+        } else {
+            return ['profileTypes' => $profileTypes];
+        }
+    }
 }
+
+require_once '../../Entity/UserProfile.php';
 ?>
