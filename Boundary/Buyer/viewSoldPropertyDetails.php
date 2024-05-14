@@ -77,27 +77,11 @@
                         <p class="detail-text"><?php echo $listing['size'] . ' sqft'; ?></p>
                         <p class="light-text"><?php echo $listing['address']; ?></p>
                     </div>
-                    <div class="card-footer">
-                        <i class="far fa-heart favorite-icon" onclick="toggleFavorite(this)"></i>
-                    </div>
                 </div>
             <?php endif; ?>
         </div>
     </div>
 
-    <script>
-        function toggleFavorite(element) {
-            element.classList.toggle('far');
-            element.classList.toggle('fas');
-            element.classList.toggle('favorited');
-            if (element.classList.contains('favorited')) {
-                console.log('Added to favorites');
-            } else {
-                console.log('Removed from favorites');
-            }
-        }
-        
-    </script>
 
 </body>
 

@@ -139,6 +139,23 @@ button {
   border-radius: 10px;
 }
 
+.buyerbutton {
+  width: auto;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #6c757d; /* Default gray button color */
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap; /* Prevent the text from wrapping */
+}
+
+.buyerbutton:hover {
+  background-color: #35A5F5;
+}
+
 .searchbox {
   width: 50%;
   border-radius: 10px;
