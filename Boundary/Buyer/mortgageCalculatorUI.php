@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MortgageCalculator</title>
+    <title>Mortgage Calculator</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="../../styles.css"> 
@@ -50,12 +50,12 @@
   </ul>
 </nav>
 
-    <!-- Mortgage Calculator -->
-    <div class="container mt-5">
-        <div class="card">
-            <div class="card-header">Mortgage Calculator</div>
-            <div class="card-body">
-            <form id="mortgage-container" action="/Controller/Buyer/mortgageCalculatorController.php" method="post">
+<!-- Mortgage Calculator -->
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">Mortgage Calculator</div>
+        <div class="card-body">
+            <form id="mortgage-container">
                 <div class="form-group">
                     <div class="row">
                         <div class="col-3">
@@ -107,37 +107,42 @@
                     </div>
                 </div>
             </form>
-            
-
-            </div>
         </div>
     </div>
+</div>
 
-    <script>
-    window.onload = function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const status = urlParams.get('status');
-        const result = urlParams.get('result');
+<script>
+document.getElementById('mortgage-container').addEventListener('submit', function(e) {
+    e.preventDefault();
+    calculateMortgage();
+});
 
-        if (status === 'true') {
-            displayResults(parseFloat(result.replace('Monthly Payment: $', ''))); 
-        } else { 
-            alertError(decodeURIComponent(result));
+function calculateMortgage() {
+    const loanAmount = parseFloat(document.getElementById('loanAmount').value);
+    const downPayment = parseFloat(document.getElementById('downPayment').value);
+    const interestRate = parseFloat(document.getElementById('interestRate').value);
+    const loanTerm = parseInt(document.getElementById('loanTerm').value);
+
+    if (loanAmount > 0 && interestRate > 0 && loanTerm > 0 && loanAmount >= downPayment) {
+        const loanPrincipal = loanAmount - downPayment;
+        if (loanPrincipal <= 0) {
+            displayResults("Down payment must be less than the loan amount.");
+            return;
         }
+        const monthlyInterest = (interestRate / 100) / 12;
+        const numberOfPayments = loanTerm * 12;
+        const monthlyPayment = loanPrincipal * (monthlyInterest * Math.pow(1 + monthlyInterest, numberOfPayments)) / (Math.pow(1 + monthlyInterest, numberOfPayments) - 1);
+        displayResults(`Monthly Payment: $${monthlyPayment.toFixed(2)}`);
+    } else {
+        displayResults("Please check your input values.");
     }
+}
 
-    function alertError(message) {
-        const resultDiv = document.getElementById('result');
-        resultDiv.innerHTML = message || '0';;
-        resultDiv.style.display = 'block';
-    }
-
-    function displayResults(monthlyPayment) {
-        const resultDiv = document.getElementById('result');
-        monthlyPayment = (monthlyPayment) ? monthlyPayment.toFixed(2) : '0'; // Check if monthlyPayment is falsy then display '0'
-        resultDiv.innerHTML = 'Monthly Payment: $' + monthlyPayment;
-        resultDiv.style.display = 'block';
-    }
+function displayResults(message) {
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = message;
+    resultDiv.style.display = 'block';
+}
 </script>
 
 </body>
