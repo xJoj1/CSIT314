@@ -9,9 +9,11 @@ class UserController {
     }
 
     public function loginUser($username, $password, $userType) {
+        session_start();  // Ensure session is started before setting any session variables
+
         $user = $this->user->findUserByUsernameAndType($username, $userType);
 
-        if ($user && password_verify($password, $user['password'])) { // Use password_verify to check the password
+        if ($user && password_verify($password, $user['password'])) { // Use password_verify to check the hashed password
             $_SESSION['loggedin'] = true;
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['username'];

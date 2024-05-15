@@ -1,7 +1,7 @@
 <?php
 include_once __DIR__ . '/Controller/LoginController.php';
 
-session_start(); // Start session at the very beginning
+session_start(); 
 
 $userController = new UserController();
 
@@ -12,13 +12,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $profileType = $_POST['userType'];
     
-    // Debug output
-    error_log("Username: $username, Password: $password, UserType: $profileType");
-    
-    $login_err = $userController->loginUser($username, $password, $profileType);
+    // Attempt to log in
+    $loginResult = $userController->loginUser($username, $password, $profileType);
+    if ($loginResult !== true) {
+        $login_err = $loginResult; // Display login error message
+    }
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="container mt-5">
     <div class="login-container">
         <h1><b>Real Estate</b></h1>
-        <?php if ($login_err != "") echo '<div class="alert alert-danger">' . $login_err . '</div>'; ?>
+        <?php if (!empty($login_err)) echo '<div class="alert alert-danger">' . $login_err . '</div>'; ?>
         <form id="login-form" method="POST" action="login.php">
             <div class="form-group">
                 <div class="row">
