@@ -66,7 +66,7 @@
                             <label for="name">Name:</label>
                         </div>
                         <div class="col">
-                            <input type="text" id="username" name="username" placeholder="Username">
+                            <input type="text" id="username" name="username" placeholder="Username" required>
                         </div>
                     </div>
                     <div class="row">
@@ -85,7 +85,7 @@
                             <label for="password">Password:</label>
                         </div>
                         <div class="col">
-                            <input type="password" id="password" name="password" placeholder="password">
+                            <input type="password" id="password" name="password" placeholder="password" required>
                         </div>
                     </div>
                     <div class="row">
@@ -104,7 +104,7 @@
                             <label for="birthdate">Birthdate:</label>
                         </div>
                         <div class="col calendarI row">
-                            <input type="date" class="col" id="birthdate" name="birthdate" placeholder="DD / MM / YYYY">
+                            <input type="date" class="col" id="birthdate" name="birthdate" placeholder="DD / MM / YYYY" required>
                         </div>
                     </div>
                     <div class="row">
@@ -123,7 +123,7 @@
                             <label for="address">Address:</label>
                         </div>
                         <div class="col">
-                            <input type="text" id="address" name="address" placeholder="Address">
+                            <input type="text" id="address" name="address" placeholder="Address" required>
                         </div>
                     </div>
                     <div class="row">
@@ -142,7 +142,7 @@
                             <label for="contact">Contact:</label>
                         </div>
                         <div class="col">
-                            <input type="tel" id="contact" name="contact" placeholder="Contact">
+                            <input type="tel" id="contact" name="contact" placeholder="Contact" required>
                         </div>
                     </div>
                     <div class="row">
@@ -163,9 +163,11 @@
                         <div class="col">
                             <select id="profile-type" name="profile-type">
                                 <?php foreach ($profileTypes as $type): ?>
-                                    <option value="<?= htmlspecialchars($type['profile_id']) ?>">
-                                        <?= htmlspecialchars($type['profile_type']) ?>
-                                    </option>
+                                    <?php if ($type['status'] == 'active'): ?>
+                                        <option value="<?= htmlspecialchars($type['profile_id']) ?>">
+                                            <?= htmlspecialchars($type['profile_type']) ?>
+                                        </option>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             </select>
                         </div>

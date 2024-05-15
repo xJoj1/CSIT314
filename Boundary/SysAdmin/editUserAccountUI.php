@@ -184,9 +184,11 @@
                     <div class="col">
                         <select id="profile_type" name="profile_type">
                             <?php foreach ($response['profileTypes'] as $type): ?>
-                                <option value="<?= $type['profile_id'] ?>" <?= $user['ProfileID'] == $type['profile_id'] ? 'selected' : '' ?>>
-                                    <?= htmlspecialchars($type['profile_type']) ?>
-                                </option>
+                                <?php if ($type['status'] == 'active'): ?>
+                                    <option value="<?= $type['profile_id'] ?>" <?= $user['ProfileID'] == $type['profile_id'] ? 'selected' : '' ?>>
+                                        <?= htmlspecialchars($type['profile_type']) ?>
+                                    </option>
+                                <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
                     </div>

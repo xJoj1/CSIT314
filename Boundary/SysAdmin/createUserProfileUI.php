@@ -71,7 +71,7 @@
             </div>
             <div class="col">
               <!-- Value here should reflect database value-->
-              <input type="text" id="profile_type" name="profile_type">
+              <input type="text" id="profile_type" name="profile_type" required>
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@
               <label for="description">Description:</label>
             </div>
             <div class="col">
-              <textarea id="description" name="description" class="form-control"></textarea>
+              <textarea id="description" name="description" class="form-control" required></textarea>
             </div>
           </div>
           <div class="row">

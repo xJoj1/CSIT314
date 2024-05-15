@@ -65,10 +65,10 @@
 
     <!-- Search Bar -->
     <div class="container mt-5">
-        <form method="POST" action=""> 
+        <form id="removePropertyForm" method="POST" action=""> 
             <div class="search-container">
                 <div class="user-buttons3">  
-                    <button type="submit" class="button">Remove Listing</button>
+                    <button type="button" class="button" id="removeButton">Remove Listing</button>
                 </div>
             </div>
 
@@ -106,6 +106,15 @@
                 const anyChecked = Array.from(document.querySelectorAll('.remove-checkbox')).some(c => c.checked);
                 document.getElementById('remove-selected').disabled = !anyChecked;
             });
+        });
+
+        document.getElementById('removeButton').addEventListener('click', function(event) {
+            const checkboxes = document.querySelectorAll('input[name="remove_ids[]"]:checked');
+            if (checkboxes.length === 0) {
+                alert('Please select at least one property to remove.');
+            } else {
+                document.getElementById('removePropertyForm').submit();
+            }
         });
     </script>
 
