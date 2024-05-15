@@ -35,7 +35,7 @@
                 User Accounts
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-                <a class="dropdown-item" href="suspendedAcc.php">Suspended Users</a>
+                <a class="dropdown-item" href="suspendedAccount.php">Suspended Users</a>
             </div>
         </li>
         <li class="nav-item">
