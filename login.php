@@ -1,8 +1,6 @@
 <?php
 include_once __DIR__ . '/Controller/LoginController.php';
 
-session_start(); // Start session at the very beginning
-
 $userController = new UserController();
 
 $login_err = ""; // Initialize an error message variable
