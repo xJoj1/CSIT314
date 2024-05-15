@@ -48,7 +48,7 @@
             <form id="propertyForm" onsubmit="return validateForm()" method="post" enctype="multipart/form-data" novalidate>
                 <div class="form-group">
                     <label for="price">Price:</label>
-                    <input type="text" class="form-control" id="price" name="price" placeholder="$150,000">
+                    <input type="text" class="form-control" id="price" name="price" placeholder="$150,000" required>
                 </div>
                 
                 <div class="form-group">
@@ -71,22 +71,22 @@
 
                 <div class="form-group">
                     <label for="area">Area:</label>
-                    <input type="text" class="form-control" id="area" name="area" placeholder="1000 sqft">
+                    <input type="text" class="form-control" id="area" name="area" placeholder="1000 sqft" required>
                 </div>
 
                 <div class="form-group">
                     <label for="address">Address:</label>
-                    <input type="text" class="form-control" id="address" name="address" placeholder="Sample Address Blk 123">
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Sample Address Blk 123" required>
                 </div>
 
                 <div class="form-group">
                     <label for="description">Description:</label>
-                    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Description of the property"></textarea>
+                    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Description of the property" required></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="image">Image URL:</label>
-                    <input type="text" class="form-control" id="image" name="image" placeholder="Enter image URL">
+                    <input type="text" class="form-control" id="image" name="image" placeholder="Enter image URL" required>
                 </div>
 
                 <!-- Confirm button -->

@@ -163,9 +163,11 @@
                         <div class="col">
                             <select id="profile-type" name="profile-type">
                                 <?php foreach ($profileTypes as $type): ?>
-                                    <option value="<?= htmlspecialchars($type['profile_id']) ?>">
-                                        <?= htmlspecialchars($type['profile_type']) ?>
-                                    </option>
+                                    <?php if ($type['status'] == 'active'): ?>
+                                        <option value="<?= htmlspecialchars($type['profile_id']) ?>">
+                                            <?= htmlspecialchars($type['profile_type']) ?>
+                                        </option>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             </select>
                         </div>
