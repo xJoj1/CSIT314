@@ -159,11 +159,11 @@
 
             accountContainer.innerHTML =
                 `<?php if (empty($accounts)): ?>
-                            <p>No user profiles found.</p>
+                            <p>No user accounts found.</p>
             <?php else: ?>
                 <?php foreach ($accounts as $account): ?>
                     <?php if ($account['status'] == 'active'): ?>
-                                <div class="checkbox profile-entry" data-profile-type="
+                                <div class="checkbox account-entry" data-user-name="
                                 <?php echo htmlspecialchars($account['username']); ?>">
                                 <input class="chkbx" type="checkbox" name="user_id[]"
                                 id="account<?php echo $account['user_id']; ?>"
