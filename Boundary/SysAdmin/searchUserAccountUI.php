@@ -69,7 +69,7 @@
             <a href="createUserAccountUI.php" class="button">Create User</a>
             <button onclick="editSelectedUser()" class="button">Edit User</button>
             <a href="#" onclick="viewSelectedUser()" class="button">View User</a>
-            <a href="#" onclick="suspendSelectedAccounts()" class="button suspend">Suspend User</a>
+            <a href="#" onclick="suspendSelectedAccounts()" class="button suspend" id="suspendButton">Suspend User</a>
         </div>
     </div>
 
@@ -198,13 +198,12 @@
 
 
 
-    function suspendSelectedAccounts() {
-        const selectedUser = document.querySelector('input[name="user_id[]"]:checked');  
-        if(selectedUser){
-
-            let selectedAccounts = [];
+function suspendSelectedAccounts() {
+    const selectedUsers = document.querySelectorAll('input[name="user_id[]"]:checked');  
+    if (selectedUsers.length > 0) {
+        let selectedAccounts = [];
         // Collect all checked checkboxes from the user account list
-        document.querySelectorAll('input[name="user_id[]"]:checked').forEach(function(checkbox) {
+        selectedUsers.forEach(function(checkbox) {
             let userId = checkbox.value;
             // Properly retrieve the 'data-user-name' attribute
             let userName = checkbox.closest('.account-entry').getAttribute('data-user-name');
@@ -213,16 +212,15 @@
                 userName: userName
             });
         });
-        }else{
-            alert('Please select an account to suspend.');
-        }
-       
 
         // //multi
         let p = JSON.stringify(selectedAccounts);
         p = encodeURIComponent(p)
         window.location.href = "suspendUserAccountUI.php?data=" + p;
+    } else {
+        alert('Please select at least one user to suspend.');
     }
+}
 </script>
 
 </body>
