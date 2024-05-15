@@ -1,6 +1,5 @@
 <?php
 require_once '../../Entity/PropertyListing.php';
-require_once '../../DBC/Database.php';
 
 class CreatePropertyListingController {
     private $propertyListing;
