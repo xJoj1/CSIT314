@@ -61,8 +61,8 @@ $profiles = $controller->searchUserProfile();
     </nav>
 
     <?php
-    require_once '../../Controller/SysAdmin/viewProfileListController.php'; // Adjust the path as needed
-    $controller = new viewProfileListController();
+    require_once '../../Controller/SysAdmin/viewUserProfileListController.php'; // Adjust the path as needed
+    $controller = new viewUserProfileListController();
     $profiles = $controller->getAllActiveProfiles();
     ?>
 

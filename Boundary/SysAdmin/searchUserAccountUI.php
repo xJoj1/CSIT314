@@ -199,7 +199,10 @@
 
 
     function suspendSelectedAccounts() {
-        let selectedAccounts = [];
+        const selectedUser = document.querySelector('input[name="user_id[]"]:checked');  
+        if(selectedUser){
+
+            let selectedAccounts = [];
         // Collect all checked checkboxes from the user account list
         document.querySelectorAll('input[name="user_id[]"]:checked').forEach(function(checkbox) {
             let userId = checkbox.value;
@@ -210,6 +213,10 @@
                 userName: userName
             });
         });
+        }else{
+            alert('Please select an account to suspend.');
+        }
+       
 
         // //multi
         let p = JSON.stringify(selectedAccounts);
