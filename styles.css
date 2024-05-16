@@ -482,6 +482,11 @@ h1 {
   margin-top: 15px;
 }
 
+.btn-rate:hover {
+  background-color: #333333; /* Darker shade for hover state */
+  color: #ffffff;
+}
+
 /* Change the hover state as needed */
 .btn-primary:hover {
   background-color: #333333; /* Darker shade for hover state */
