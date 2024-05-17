@@ -56,24 +56,25 @@ class UserProfile
         return $stmt->affected_rows > 0;
     }
 
+    
     public function createUserProfile($profile_type, $description) {
-
         $query = "INSERT INTO " . $this->table . " (profile_type, description) VALUES (?, ?)";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param('ss', $profile_type, $description);
-
-        if ($stmt->execute()) {
-
-            return true;
-
-        } else {
-
-            error_log('SQL Error: ' . $stmt->error);
+    
+        try {
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                error_log('SQL Error: ' . $stmt->error);
+                return false;
+            }
+        } catch (mysqli_sql_exception $e) {
+            error_log('SQL Exception: ' . $e->getMessage());
             return false;
-
         }
-
     }
+    
 
     public function isDuplicate($profile_type, $description) {
 

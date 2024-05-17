@@ -1,10 +1,10 @@
 <?php
 require_once '../../Entity/UserProfile.php';
-// require_once '../../DBC/Database.php';
 
 class createUserProfileController
 {
     private $userProfile;
+    public $message = '';
 
     public function __construct()
     {
@@ -19,18 +19,19 @@ class createUserProfileController
 
             // Check for duplicate profiles
             if ($this->userProfile->isDuplicate($profile_type, $description)) {
-                echo "<script>alert('Duplicate user profile is not allowed.'); window.location.href = 'viewUserProfileListUI.php';</script>";
+                $this->message = 'Duplicate user profile is not allowed.';
+                header("Location: createUserProfileUI.php?message=" . urlencode($this->message));
                 exit;
             }
 
             // Save profile if no duplicates
             $result = $this->userProfile->createUserProfile($profile_type, $description);
-            $message = $result ? "Success" : "Failed to create profile.";
-            echo "<script>alert('$message'); window.location.href = 'viewUserProfileListUI.php';</script>";
+            $this->message = $result ? "Profile created successfully." : "Failed to create profile.";
+            header("Location: createUserProfileUI.php?message=" . urlencode($this->message));
             exit;
         }
     }
-
 }
+
 
 ?>

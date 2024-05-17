@@ -15,12 +15,13 @@
 <body>
 
   <?php
-
   require_once '../../Controller/SysAdmin/createUserProfileController.php';
 
   $controller = new createUserProfileController();
   $controller->createProfile();
-  
+
+  // Show the message if it's set in the URL parameters
+  $message = isset($_GET['message']) ? htmlspecialchars($_GET['message']) : '';
   ?>
 
   <!-- Navigation Bar (Logged In) -->
@@ -63,6 +64,13 @@
     <div class="create-container">
       <a href="viewUserProfileListUI.php" class="back-arrow"><</a>
       <h2>Create User Profile</h2>
+
+      <?php if ($message): ?>
+      <div class="alert alert-info">
+          <?= $message ?>
+      </div>
+      <?php endif; ?>
+
       <form id="profileForm" onsubmit="return validateForm()" method="post" action="">
         <div class="form-group2">
           <div class="row">
@@ -70,7 +78,6 @@
               <label for="profile_type">Role:</label>
             </div>
             <div class="col">
-              <!-- Value here should reflect database value-->
               <input type="text" id="profile_type" name="profile_type" required>
             </div>
           </div>
@@ -107,25 +114,16 @@
   </div>
 
   <script>
-
     function validateForm() {
-
-      var userId = document.getElementById("description").value;
-
-      if (userId === "") {
-
+      var description = document.getElementById("description").value;
+      if (description === "") {
         document.getElementById("descriptionError").innerHTML = "Please enter a description";
         return false;
-
       } else {
-
         document.getElementById("descriptionError").innerHTML = "";
         return true;
-
       }
-
     }
-
   </script>
 
 </body>
