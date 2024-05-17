@@ -59,7 +59,7 @@
 <!-- Property Details -->
 <div class="container AccContain mt-5">
     <div class="scrollProperty">
-        <a href="sellerViewListingUI.php" class="back-property">‹ Back to Listings</a>
+        <a href="sellerSoldPropertyUI.php" class="back-property">‹ Back to Listings</a>
         <div class="card property-details-card">
             <img class="card-img-top property-img" src="<?php echo $property['image_url']; ?>" alt="Property Image">
             <div class="detail-container">
