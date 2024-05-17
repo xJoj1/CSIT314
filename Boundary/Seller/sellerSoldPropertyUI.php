@@ -75,7 +75,7 @@
                     <div class="card-body">
                       <h5 class="card-title"><?= htmlspecialchars($listing['address']); ?></h5>
                       <p class="card-text"><?= $listing['price']; ?> - <?= $listing['size']; ?> sqft <?= $listing['beds']; ?> bed <?= $listing['baths']; ?> bathroom</p>
-                      <a href="../../Boundary/Seller/sellerViewListingDetailsUI.php?id=<?php echo $listing['id']; ?>&increment_views=1" 
+                      <a href="../../Boundary/Seller/sellerSoldDetailsUI.php?id=<?php echo $listing['id']; ?>&increment_views=1" 
                           class="btn btn-primary">View Details</a>
                     </div>
                 </div>

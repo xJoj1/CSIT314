@@ -15,7 +15,7 @@
 
 <body>
 <?php
-  require_once '../../Controller/Seller/sellerSoldDetailsController.php';
+  require_once '../../Controller/Seller/sellerSoldPropertyDetailsController.php';
   $controller = new SellerSoldDetailsController();
   $propertyId = $_GET['id'] ?? null;
   $property = $controller->handlePropertyRequest($propertyId);
