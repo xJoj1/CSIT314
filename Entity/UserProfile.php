@@ -56,7 +56,7 @@ class UserProfile
         return $stmt->affected_rows > 0;
     }
 
-    
+
     public function createUserProfile($profile_type, $description) {
         $query = "INSERT INTO " . $this->table . " (profile_type, description) VALUES (?, ?)";
         $stmt = $this->conn->prepare($query);
@@ -76,16 +76,6 @@ class UserProfile
     }
     
 
-    public function isDuplicate($profile_type, $description) {
-
-        $query = 'SELECT profile_id FROM ' . $this->table . ' WHERE profile_type = ? AND description = ?';
-        $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('ss', $profile_type, $description);
-        $stmt->execute();
-        $stmt->store_result();
-        return $stmt->num_rows > 0;
-
-    }
 
     public function searchUserProfile($searchTerm = '') {
 
