@@ -9,7 +9,7 @@ class UserController {
     }
 
     public function loginUser($username, $password, $userType) {
-        session_start();  // Ensure session is started before setting any session variables
+        // session_start();  // Ensure session is started before setting any session variables
 
         $user = $this->user->findUserByUsernameAndType($username, $userType);
 
